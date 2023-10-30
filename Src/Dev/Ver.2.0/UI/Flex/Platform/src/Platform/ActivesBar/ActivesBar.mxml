@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   backgroundColor="0x666666" borderVisible="false"
+				   width="100%" height="44"
+				   xmlns:ActivesBar="Platform.ActivesBar.*" xmlns:Button="UI.Button.*">
+	<s:layout>
+		<s:HorizontalLayout verticalAlign="middle"
+							paddingLeft="2" paddingRight="2"
+							gap="6"/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import Handler.LocHandler;
+			
+			import UI.Button.ButtonEvent;
+			
+			import Utils.AS3.Embeded;
+			import Handler.LocGeneratedCode;
+			
+			public function Dispose():void
+			{
+				if (activesBarList != null)
+				{
+					activesBarList.Dispose();
+					activesBarList = null;
+				}
+				
+				if (selectButtonActives != null)
+				{
+					selectButtonActives.Dispose();
+					selectButtonActives = null;
+				}
+			}
+			
+			protected function selectButtonActives_CLICKED(event:ButtonEvent):void
+			{
+				if (event.GetButton.Selected)
+				{
+					activesBarList.DoShowRemove();
+				}
+				else
+				{
+					activesBarList.DoHideRemove();
+				}
+			}
+		]]>
+	</fx:Script>
+	<Button:SelectButton id="selectButtonActives" width="41" height="36"
+						 m_strTooltip="{selectButtonActives.Selected?LocHandler.GS(LocGeneratedCode.Your_chat_members12Click_a_member_to_close_the_chat):LocHandler.GS(LocGeneratedCode.Your_chat_members12Click_to_close_the_chat)}"
+						 m_png="{Embeded.s_imgChat}"
+						 CLICKED="selectButtonActives_CLICKED(event)"/>
+	<ActivesBar:ActivesBarList id="activesBarList" width="100%" height="100%" m_iPaintedListItemCount="15" m_iPaintedListItemStpes="5"/>
+</s:BorderContainer>

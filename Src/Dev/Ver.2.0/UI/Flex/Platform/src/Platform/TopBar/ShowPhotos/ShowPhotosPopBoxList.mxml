@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<List:VListBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				width="100%" height="100%"
+				initialize="initializeHandler(event)"
+				xmlns:List="UI.List.*" xmlns:Button="UI.Button.*">
+	<fx:Script>
+		<![CDATA[
+			import Data.Base.CollectionEvent;
+			import Data.MemberData;
+			
+			import Handler.SesHandler;
+			
+			import Platform.Member.MemberPopBoxEvent;
+			
+			import UI.Box.BoxMDI;
+			import UI.List.ListItemEvent;
+			
+			import mx.events.FlexEvent;
+			
+			protected override function get DoFillByTimer():Boolean
+			{
+				return false;
+			}
+			protected override function get AddItemByCollectionEvent():Boolean
+			{
+				return false;
+			}
+			
+			private function initializeHandler(event:FlexEvent):void
+			{
+				m_scroller = scroller;
+				m_hvGroup = vGroup;
+			}
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (clickButtonNext != null)
+				{
+					clickButtonNext.Dispose();
+					clickButtonNext = null;
+				}
+				if (clickButtonPrev != null)
+				{
+					clickButtonPrev.Dispose();
+					clickButtonPrev = null;
+				}
+			}
+			
+			protected override function DoFillStep():void
+			{
+				for (var i:int = 0; i < m_iPaintedListItemCount; i++)
+				{
+					var memberData:MemberData = SesHandler.Instance.Session.BreakingNews.FindItemBreakingNewsDataByIndex(i).Member;
+					if (FindListItemByID(memberData.ID) == null)
+					{
+						AddShowPhotosListItem(memberData);
+					}
+				}
+				
+				InvalidatePrevNext();
+			}
+			
+			protected override function collectionBase_OBJECT_ADDED(event:CollectionEvent):void
+			{
+				if (AddItemByCollectionEvent)
+				{
+					AddShowPhotosListItem(MemberData(event.ObjectData));
+				}
+			}
+			
+			private function AddShowPhotosListItem(p_memberData:MemberData):void
+			{
+				var listItem:ShowPhotosPopBoxListItem = new ShowPhotosPopBoxListItem();
+				listItem.Init(p_memberData);
+				AddListItem(listItem, false);
+			}
+			
+			protected function showPhotosList_LIST_ITEM_CLICKED(event:ListItemEvent):void
+			{
+				event.stopPropagation();
+				BoxMDI.GetBoxMDI.DoCloseAllBox();
+				dispatchEvent(new MemberPopBoxEvent(MemberPopBoxEvent.OPEN_MEMBER_POP_BOX, MemberData((ShowPhotosPopBoxListItem(event.ListItem).m_objectBase))));
+			}
+			protected function showPhotosList_LIST_ITEM_MOUSE_OVER(event:ListItemEvent):void
+			{
+				event.stopPropagation();
+				/*
+				BoxMDI.GetBoxMDI.DoCloseMemberBox();
+				var balloonPopBox:BalloonPopBox = new BalloonPopBox();
+				BoxMDI.GetBoxMDI.AddBalloonPopUp(balloonPopBox);
+				balloonPopBox.Init(null, null);
+				
+				var pointLocal:Point = new Point(event.GetListItem.x, event.GetListItem.y);
+				var pointGlobal:Point = BoxMDI.GetBoxMDI.localToGlobal(pointLocal);
+				var pointGlobal2:Point = new Point(pointGlobal.x + this.x + event.GetListItem.width + 3, pointGlobal.y + this.y + 5 + event.GetListItem.top + event.GetListItem.height / 2);
+				var pointLocal2:Point = BoxMDI.GetBoxMDI.globalToLocal(pointGlobal2);
+				balloonPopBox.x = pointLocal2.x;
+				balloonPopBox.y = pointLocal2.y;
+				
+				balloonPopBox.GetData((ShowPhotosListItem(event.GetListItem)).m_memberData);
+				*/
+			}
+		]]>
+	</fx:Script>
+	<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+		<Button:ClickButton id="clickButtonPrev" visible="{m_bPrevVisible}" m_png="{m_classPrevPng}" CLICKED="DoMovePrev()" m_strTooltip="{m_strToolTipPrev}"/>
+		<s:Scroller id="scroller" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+			<s:Group width="100%" height="100%">
+				<s:VGroup id="vGroup" width="100%" height="100%" clipAndEnableScrolling="false" paddingTop="2" paddingBottom="2" gap="7"/>
+			</s:Group>
+		</s:Scroller>
+		<Button:ClickButton id="clickButtonNext" visible="{m_bNextVisible}" m_png="{m_classNextPng}" CLICKED="DoMoveNext()" m_strTooltip="{m_strToolTipNext}"/>
+	</s:VGroup>
+</List:VListBase>

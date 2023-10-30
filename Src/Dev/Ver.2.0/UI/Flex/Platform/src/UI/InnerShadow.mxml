@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="100%" height="100%" minWidth="0" minHeight="0"
+				   backgroundColor="0xffffff" borderVisible="true" borderStyle="inset" borderAlpha="0.5" cornerRadius="8"
+				   xmlns:Label="UI.Label.*">
+	<s:filters> 
+		<s:DropShadowFilter angle="45"
+							blurX="4" blurY="4"
+							distance="4"
+							alpha="0.63" color="0x000000" 
+							knockout="false" quality="2"
+							strength="1" inner="true" hideObject="false"/>
+	</s:filters>
+	<fx:Script>
+		<![CDATA[
+			import Utils.AS3.Filters;
+			
+			[Bindable] public var m_strGrayedText:String;
+			[Bindable] public var m_strLiveText:String;
+		]]>
+	</fx:Script>
+	<Label:NormalLabel paddingLeft="7" paddingRight="1" paddingTop="5" paddingBottom="2"
+					   visible="{m_strLiveText == ''}" text="{m_strGrayedText}" m_strfontFamily="lucida console" m_iFontSize="11" color="0x666666"/>
+</s:BorderContainer>

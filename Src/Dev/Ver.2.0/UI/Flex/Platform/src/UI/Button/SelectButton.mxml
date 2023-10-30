@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button:ButtonBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   toolTip="{m_strTooltip}"
+				   creationComplete="creationCompleteHandler(event)"
+				   xmlns:Button="UI.Button.*" xmlns:Label="UI.Label.*">
+	<fx:Metadata>
+		[Event(name=CLICKED, type="UI.Button.ButtonEvent")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import Utils.AS3.Embeded;
+			import Utils.AS3.Filters;
+			
+			import mx.events.FlexEvent;
+			
+			[Bindable] private var m_iNotificationCount:int;
+			
+			// properties
+			public function get NotificationCount():int
+			{
+				return m_iNotificationCount;
+			}
+			public function set NotificationCount(value:int):void
+			{
+				if (value > 99)
+				{
+					m_iNotificationCount = 99;
+				}
+				else
+				{
+					m_iNotificationCount = value;
+				}
+			}
+			
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				if (Selected)
+				{
+					filters = [Filters.Selected];
+				}
+				else
+				{
+					filters = null;
+				}
+			}
+			
+			protected override function rollOverHandler(event:MouseEvent):void
+			{
+				super.rollOverHandler(event);
+				if (Selected)
+				{
+					filters = [Filters.Selected, Filters.Sunken];
+				}
+				else
+				{
+					filters = [Filters.MO];
+				}
+			}
+			protected override function rollOutHandler(event:MouseEvent):void
+			{
+				super.rollOutHandler(event);
+				if (Selected)
+				{
+					filters = [Filters.Selected];
+				}
+				else
+				{
+					filters = null;
+				}
+			}
+			protected override function mouseDownHandler(event:MouseEvent):void
+			{
+				super.mouseDownHandler(event);
+				Selected = !Selected;
+				if (Selected)
+				{
+					filters = [Filters.MO, Filters.Sunken];
+					dispatchEvent(new ButtonEvent(ButtonEvent.CLICKED, this));
+				}
+				else
+				{
+					filters = [Filters.MO];
+					dispatchEvent(new ButtonEvent(ButtonEvent.CLICKED, this));
+				}
+			}
+			protected override function mouseUpHandler(event:MouseEvent):void
+			{
+				super.mouseUpHandler(event);
+				if (Selected)
+				{
+					filters = [Filters.Selected];
+				}
+				else
+				{
+					filters = null;
+				}
+			}
+		]]>
+	</fx:Script>
+	<s:HGroup width="100%" height="100%" horizontalAlign="left" verticalAlign="middle"
+			  paddingLeft="{m_iPngPaddingLeft}" paddingRight="{m_iPngPaddingRight}">
+		<mx:Image width="100%" height="100%" source="{m_png}" verticalAlign="middle" horizontalAlign="center"/>
+	</s:HGroup>
+	<s:HGroup width="100%" height="100%" horizontalAlign="{m_strLabelHorizontalAlign}" verticalAlign="middle"
+			  paddingLeft="{m_iLabelPaddingLeft}" paddingRight="{m_iLabelPaddingRight}">
+		<Label:ButtonLabel text="{m_strText}" m_iFontSize="{m_iFontSize}" paddingTop="2" verticalAlign="middle"/>
+	</s:HGroup>
+	<mx:Image id="imageNotification" top="-6" right="-3" source="{Embeded.s_imgNotificationMessageRed}" visible="{m_iNotificationCount > 0}"/>
+	<Label:ButtonLabel id="labelButtonNotification" width="16" top="-3" right="-1" text="{m_iNotificationCount}" textAlign="center" visible="{m_iNotificationCount > 0}"/>
+</Button:ButtonBase>

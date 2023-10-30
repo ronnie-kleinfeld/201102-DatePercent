@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Platform/src/UI/List/VListBase.mxml&apos; to &apos;VListBase.as&apos;" description="Rename resource &apos;VListBase.mxml&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/UI/List/VListBase.mxml" name="VListBase.as" stamp="1329595969292" updateReferences="true"/>
+</session>

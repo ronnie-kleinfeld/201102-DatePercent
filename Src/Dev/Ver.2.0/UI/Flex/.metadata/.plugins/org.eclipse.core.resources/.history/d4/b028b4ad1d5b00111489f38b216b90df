@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<List:ListItemBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="100%" height="60"
+				   xmlns:List="UI.List.*" xmlns:Photo="UI.Photo.*" xmlns:Label="UI.Label.*" xmlns:Sep="UI.Sep.*">
+	<fx:Metadata>
+		[Event(name=LIST_ITEM_CLICKED, type="UI.List.ListItemEvent")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import Data.Presents.PresentData;
+			
+			import UI.Box.MessageBox.MessageBox;
+			import UI.Box.MessageBox.MessageBoxEvent;
+			import UI.List.ListItemEvent;
+			
+			import Utils.AS3.Filters;
+			
+			[Bindable] public var m_presentData:PresentData;
+			
+			public function GetData(p_presentData:PresentData):void
+			{
+				m_presentData = p_presentData;
+			}
+			public override function Dispose():void
+			{
+				super.Dispose();
+			}
+			
+			protected override function rollOverHandler(event:MouseEvent):void
+			{
+				super.rollOverHandler(event);
+				if (event.buttonDown)
+				{
+					simplePhoto.filters = [Utils.AS3.Filters.Glow, Utils.AS3.Filters.Sunken];
+				}
+				else
+				{
+					simplePhoto.filters = [Utils.AS3.Filters.Glow];
+				}
+			}
+			protected override function rollOutHandler(event:MouseEvent):void
+			{
+				super.rollOutHandler(event);
+				simplePhoto.filters = null;
+			}
+			protected override function mouseDownHandler(event:MouseEvent):void
+			{
+				super.mouseDownHandler(event);
+				simplePhoto.filters = [Utils.AS3.Filters.Glow, Utils.AS3.Filters.Sunken];
+			}
+			protected override function mouseUpHandler(event:MouseEvent):void
+			{
+				super.mouseUpHandler(event);
+				simplePhoto.filters = [Utils.AS3.Filters.Glow];
+			}
+			protected override function clickHandler(event:MouseEvent):void
+			{
+				super.clickHandler(event);
+				dispatchEvent(new ListItemEvent(ListItemEvent.LIST_ITEM_CLICKED, this));
+			}
+			
+			public function presentsListPostModalBox(event:MessageBoxEvent):void
+			{
+				if (event.type == MessageBox.YES)
+				{
+					// send gift (this.m_strID) via facebook
+					// authorize via facebook credits
+					// on callback, send email
+					
+					
+					
+				}
+			}
+		]]>
+	</fx:Script>
+	<s:VGroup width="100%" height="100%">
+		<s:HGroup width="100%" height="100%" paddingLeft="2" paddingRight="2" gap="7">
+			<Photo:SimplePhoto id="simplePhoto" m_iSize="49" Photo="{m_presentData.Photo}"/>
+			<s:VGroup width="100%" height="100%" gap="0">
+				<Label:HeaderLabel id="labelHeadingName" text="{m_presentData.Name}"/>
+				<mx:Spacer height="1"/>
+				<Label:NormalLabel id="labelNormalCredits" text="Credits: {m_presentData.Cost}"/>
+			</s:VGroup>
+		</s:HGroup>
+		<Sep:HSep width="100%" visible="{m_bAddSep}"/>
+	</s:VGroup>
+</List:ListItemBase>

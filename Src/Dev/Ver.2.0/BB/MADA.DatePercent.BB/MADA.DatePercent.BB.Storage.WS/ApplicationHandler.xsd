@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ApplicationHandler" targetNamespace="http://tempuri.org/ApplicationHandler.xsd" xmlns:mstns="http://tempuri.org/ApplicationHandler.xsd" xmlns="http://tempuri.org/ApplicationHandler.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ConnectionStringDev" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="ConnectionStringDev (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ConnectionStringDev.ConnectionString" Provider="System.Data.SqlClient">
+          </Connection>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ApplicationHandler" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="ApplicationHandler" msprop:Generator_DataSetName="ApplicationHandler">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="T_DISTANCE_UNITS_TYPE_ENUM" msprop:Generator_UserTableName="T_DISTANCE_UNITS_TYPE_ENUM" msprop:Generator_RowDeletedName="T_DISTANCE_UNITS_TYPE_ENUMRowDeleted" msprop:Generator_RowChangedName="T_DISTANCE_UNITS_TYPE_ENUMRowChanged" msprop:Generator_RowClassName="T_DISTANCE_UNITS_TYPE_ENUMRow" msprop:Generator_RowChangingName="T_DISTANCE_UNITS_TYPE_ENUMRowChanging" msprop:Generator_RowEvArgName="T_DISTANCE_UNITS_TYPE_ENUMRowChangeEvent" msprop:Generator_RowEvHandlerName="T_DISTANCE_UNITS_TYPE_ENUMRowChangeEventHandler" msprop:Generator_TableClassName="T_DISTANCE_UNITS_TYPE_ENUMDataTable" msprop:Generator_TableVarName="tableT_DISTANCE_UNITS_TYPE_ENUM" msprop:Generator_RowDeletingName="T_DISTANCE_UNITS_TYPE_ENUMRowDeleting" msprop:Generator_TablePropName="T_DISTANCE_UNITS_TYPE_ENUM">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DUT_CODE" msprop:Generator_UserColumnName="DUT_CODE" msprop:Generator_ColumnPropNameInRow="DUT_CODE" msprop:Generator_ColumnVarNameInTable="columnDUT_CODE" msprop:Generator_ColumnPropNameInTable="DUT_CODEColumn" type="xs:int" />
+              <xs:element name="DUT_DESCRIPTION" msprop:Generator_UserColumnName="DUT_DESCRIPTION" msprop:Generator_ColumnPropNameInRow="DUT_DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDUT_DESCRIPTION" msprop:Generator_ColumnPropNameInTable="DUT_DESCRIPTIONColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ValueCode" msdata:ReadOnly="true" msprop:Generator_UserColumnName="ValueCode" msprop:Generator_ColumnPropNameInRow="ValueCode" msprop:Generator_ColumnVarNameInTable="columnValueCode" msprop:Generator_ColumnPropNameInTable="ValueCodeColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="ValueNameEnum" msdata:ReadOnly="true" msprop:Generator_UserColumnName="ValueNameEnum" msprop:Generator_ColumnPropNameInRow="ValueNameEnum" msprop:Generator_ColumnVarNameInTable="columnValueNameEnum" msprop:Generator_ColumnPropNameInTable="ValueNameEnumColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ValueName" msdata:ReadOnly="true" msprop:Generator_UserColumnName="ValueName" msprop:Generator_ColumnPropNameInRow="ValueName" msprop:Generator_ColumnVarNameInTable="columnValueName" msprop:Generator_ColumnPropNameInTable="ValueNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="T_SEX_TYPE_ENUM" msprop:Generator_UserTableName="T_SEX_TYPE_ENUM" msprop:Generator_RowDeletedName="T_SEX_TYPE_ENUMRowDeleted" msprop:Generator_RowChangedName="T_SEX_TYPE_ENUMRowChanged" msprop:Generator_RowClassName="T_SEX_TYPE_ENUMRow" msprop:Generator_RowChangingName="T_SEX_TYPE_ENUMRowChanging" msprop:Generator_RowEvArgName="T_SEX_TYPE_ENUMRowChangeEvent" msprop:Generator_RowEvHandlerName="T_SEX_TYPE_ENUMRowChangeEventHandler" msprop:Generator_TableClassName="T_SEX_TYPE_ENUMDataTable" msprop:Generator_TableVarName="tableT_SEX_TYPE_ENUM" msprop:Generator_RowDeletingName="T_SEX_TYPE_ENUMRowDeleting" msprop:Generator_TablePropName="T_SEX_TYPE_ENUM">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SEX_CODE" msprop:Generator_UserColumnName="SEX_CODE" msprop:Generator_ColumnPropNameInRow="SEX_CODE" msprop:Generator_ColumnVarNameInTable="columnSEX_CODE" msprop:Generator_ColumnPropNameInTable="SEX_CODEColumn" type="xs:int" />
+              <xs:element name="SEX_DESCRIPTION" msprop:Generator_UserColumnName="SEX_DESCRIPTION" msprop:Generator_ColumnPropNameInRow="SEX_DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnSEX_DESCRIPTION" msprop:Generator_ColumnPropNameInTable="SEX_DESCRIPTIONColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ValueCode" msdata:ReadOnly="true" msprop:Generator_UserColumnName="ValueCode" msprop:Generator_ColumnPropNameInRow="ValueCode" msprop:Generator_ColumnVarNameInTable="columnValueCode" msprop:Generator_ColumnPropNameInTable="ValueCodeColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="ValueNameEnum" msdata:ReadOnly="true" msprop:Generator_UserColumnName="ValueNameEnum" msprop:Generator_ColumnPropNameInRow="ValueNameEnum" msprop:Generator_ColumnVarNameInTable="columnValueNameEnum" msprop:Generator_ColumnPropNameInTable="ValueNameEnumColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ValueName" msdata:ReadOnly="true" msprop:Generator_UserColumnName="ValueName" msprop:Generator_ColumnPropNameInRow="ValueName" msprop:Generator_ColumnVarNameInTable="columnValueName" msprop:Generator_ColumnPropNameInTable="ValueNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="T_SERIALIZER" msprop:Generator_UserTableName="T_SERIALIZER" msprop:Generator_RowDeletedName="T_SERIALIZERRowDeleted" msprop:Generator_RowChangedName="T_SERIALIZERRowChanged" msprop:Generator_RowClassName="T_SERIALIZERRow" msprop:Generator_RowChangingName="T_SERIALIZERRowChanging" msprop:Generator_RowEvArgName="T_SERIALIZERRowChangeEvent" msprop:Generator_RowEvHandlerName="T_SERIALIZERRowChangeEventHandler" msprop:Generator_TableClassName="T_SERIALIZERDataTable" msprop:Generator_TableVarName="tableT_SERIALIZER" msprop:Generator_RowDeletingName="T_SERIALIZERRowDeleting" msprop:Generator_TablePropName="T_SERIALIZER">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SRL_DESCRIPTION" msprop:Generator_UserColumnName="SRL_DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnSRL_DESCRIPTION" msprop:Generator_ColumnPropNameInRow="SRL_DESCRIPTION" msprop:Generator_ColumnPropNameInTable="SRL_DESCRIPTIONColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SRL_KEY_1" msprop:Generator_UserColumnName="SRL_KEY_1" msprop:Generator_ColumnVarNameInTable="columnSRL_KEY_1" msprop:Generator_ColumnPropNameInRow="SRL_KEY_1" msprop:Generator_ColumnPropNameInTable="SRL_KEY_1Column" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SRL_KEY_2" msprop:Generator_UserColumnName="SRL_KEY_2" msprop:Generator_ColumnVarNameInTable="columnSRL_KEY_2" msprop:Generator_ColumnPropNameInRow="SRL_KEY_2" msprop:Generator_ColumnPropNameInTable="SRL_KEY_2Column" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="T_LOCALE_TYPE" msprop:Generator_UserTableName="T_LOCALE_TYPE" msprop:Generator_RowDeletedName="T_LOCALE_TYPERowDeleted" msprop:Generator_TableClassName="T_LOCALE_TYPEDataTable" msprop:Generator_RowChangedName="T_LOCALE_TYPERowChanged" msprop:Generator_RowClassName="T_LOCALE_TYPERow" msprop:Generator_RowChangingName="T_LOCALE_TYPERowChanging" msprop:Generator_RowEvArgName="T_LOCALE_TYPERowChangeEvent" msprop:Generator_RowEvHandlerName="T_LOCALE_TYPERowChangeEventHandler" msprop:Generator_TablePropName="T_LOCALE_TYPE" msprop:Generator_TableVarName="tableT_LOCALE_TYPE" msprop:Generator_RowDeletingName="T_LOCALE_TYPERowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="LCL_CODE" msprop:Generator_UserColumnName="LCL_CODE" msprop:Generator_ColumnPropNameInRow="LCL_CODE" msprop:Generator_ColumnVarNameInTable="columnLCL_CODE" msprop:Generator_ColumnPropNameInTable="LCL_CODEColumn" type="xs:int" />
+              <xs:element name="LCL_LOCALE" msprop:Generator_UserColumnName="LCL_LOCALE" msprop:Generator_ColumnPropNameInRow="LCL_LOCALE" msprop:Generator_ColumnVarNameInTable="columnLCL_LOCALE" msprop:Generator_ColumnPropNameInTable="LCL_LOCALEColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LCL_ENGLISH_NAME" msprop:Generator_UserColumnName="LCL_ENGLISH_NAME" msprop:Generator_ColumnPropNameInRow="LCL_ENGLISH_NAME" msprop:Generator_ColumnVarNameInTable="columnLCL_ENGLISH_NAME" msprop:Generator_ColumnPropNameInTable="LCL_ENGLISH_NAMEColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LCL_NATIVE_NAME" msprop:Generator_UserColumnName="LCL_NATIVE_NAME" msprop:Generator_ColumnPropNameInRow="LCL_NATIVE_NAME" msprop:Generator_ColumnVarNameInTable="columnLCL_NATIVE_NAME" msprop:Generator_ColumnPropNameInTable="LCL_NATIVE_NAMEColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:T_DISTANCE_UNITS_TYPE_ENUM" />
+      <xs:field xpath="mstns:DUT_CODE" />
+    </xs:unique>
+    <xs:unique name="T_SEX_TYPE_ENUM_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:T_SEX_TYPE_ENUM" />
+      <xs:field xpath="mstns:SEX_CODE" />
+    </xs:unique>
+    <xs:unique name="T_SERIALIZER_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:T_SERIALIZER" />
+      <xs:field xpath="mstns:SRL_DESCRIPTION" />
+    </xs:unique>
+    <xs:unique name="T_LOCALE_TYPE_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:T_LOCALE_TYPE" />
+      <xs:field xpath="mstns:LCL_CODE" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

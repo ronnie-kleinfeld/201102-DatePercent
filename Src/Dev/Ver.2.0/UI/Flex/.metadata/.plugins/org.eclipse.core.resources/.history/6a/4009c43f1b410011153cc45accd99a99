@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   backgroundColor="0x666666" borderVisible="false" dropShadowVisible="true"
+				   width="100%" minHeight="0"
+				   xmlns:UI="Components.UI.*" xmlns:Button="Components.UI.Button.*">
+	<s:layout>
+		<s:HorizontalLayout verticalAlign="middle"
+							paddingLeft="5" paddingRight="5" paddingTop="5" paddingBottom="5"/>
+	</s:layout>
+	<fx:Metadata>
+		[Event(name=BUTTON_CLICKED, type="Components.UI.Button.ButtonClickedEvent")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import Components.UI.Button.ButtonBase;
+			import Components.UI.Button.ButtonClickedEvent;
+			
+			import Utils.Log.Logger;
+			
+			[Bindable] [Embed(source="Res/ChangeLocationButton.png")] private var m_imgChangeLocation:Class;
+			[Bindable] [Embed(source="Res/ShowPhotosButton.png")] private var m_imgShowPhotosButton:Class;
+			[Bindable] [Embed(source="Res/Online.png")] private var m_imgOnline:Class;
+			[Bindable] [Embed(source="Res/Offline.png")] private var m_imgOffline:Class;
+			[Bindable] [Embed(source="Res/Missing.png")] private var m_imgMapZoomIn:Class;
+			[Bindable] [Embed(source="Res/Missing.png")] private var m_imgMapZoomOut:Class;
+			[Bindable] [Embed(source="Res/FindMe.png")] private var m_imgFindMe:Class;
+			[Bindable] [Embed(source="Res/ScreenToNormal.png")] private var m_imgScreenToNormal:Class;
+			[Bindable] [Embed(source="Res/ScreenToFull.png")] private var m_imgScreenToFull:Class;
+			[Bindable] [Embed(source="Res/ShareButton.png")] private var m_imgShareButton:Class;
+			[Bindable] [Embed(source="Res/Mail.png")] private var m_imgMail:Class;
+			[Bindable] [Embed(source="Res/SettingButton.png")] private var m_imgSettingButton:Class;
+			[Bindable] [Embed(source="Res/Help.png")] private var m_imgHelp:Class;
+			
+			[Bindable] private var m_bOnLine:Boolean = true;
+			[Bindable] private var m_bNormalSize:Boolean = true;
+			
+			private function DoDispatchEvent(event:MouseEvent):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+				dispatchEvent(new ButtonClickedEvent(ButtonClickedEvent.BUTTON_CLICKED, ButtonBase(event.currentTarget)));
+			}
+		]]>
+	</fx:Script>
+	<Button:SelectButton id="buttonChangeLocation" m_iLabelPaddingLeft="19" m_iLabelPaddingRight="4" m_strText="Change Location" m_png="{m_imgChangeLocation}" CLICKED="DoDispatchEvent(event)"/>
+	<Button:SelectButton id="buttonShowPhotos" m_iLabelPaddingLeft="27" m_iLabelPaddingRight="4" m_strText="Show Photos" m_png="{m_imgShowPhotosButton}" CLICKED="DoDispatchEvent(event)"/>
+	<mx:Spacer width="5"/>
+	<mx:Canvas>
+		<Button:ClickButton id="buttonOnline" visible="{m_bOnLine}" m_strTooltip="You are visible&#xD;Click to go invisible" m_png="{m_imgOnline}" CLICKED="m_bOnLine=false;DoDispatchEvent(event)"/>
+		<Button:ClickButton id="buttonOffline" visible="{!m_bOnLine}" m_strTooltip="You are invisible&#xD;Click to go visible" m_png="{m_imgOffline}" CLICKED="m_bOnLine=true;DoDispatchEvent(event)"/>
+	</mx:Canvas>
+	<mx:Spacer width="100%"/>
+	<Button:ClickButton id="buttonMapZoomIn" m_strTooltip="Zoom In" m_png="{m_imgMapZoomIn}" CLICKED="DoDispatchEvent(event)"/>
+	<Button:ClickButton id="buttonMapZoomOut" width="33" height="32" m_strTooltip="Zoom Out" m_png="{m_imgMapZoomOut}" CLICKED="DoDispatchEvent(event)"/>
+	<Button:ClickButton id="buttonFineMe" width="33" height="32" m_strTooltip="Find Me" m_png="{m_imgFindMe}" CLICKED="DoDispatchEvent(event)"/>
+	<mx:Canvas>
+		<Button:ClickButton id="buttonToFullSize" visible="{m_bNormalSize}" m_strTooltip="Full Size" m_png="{m_imgScreenToFull}" CLICKED="m_bNormalSize=false;DoDispatchEvent(event)"/>
+		<Button:ClickButton id="buttonToNormalSize" visible="{!m_bNormalSize}" left="9" m_strTooltip="Normal Size" m_png="{m_imgScreenToNormal}" CLICKED="m_bNormalSize=true;DoDispatchEvent(event)"/>
+	</mx:Canvas>
+	<Button:SelectButton id="buttonShare" m_png="{m_imgShareButton}" CLICKED="DoDispatchEvent(event)"/>
+	<Button:SelectButton id="buttonMessages" m_png="{m_imgMail}" CLICKED="DoDispatchEvent(event)" MessageCount="7"/>
+	<Button:SelectButton id="buttonSettings" m_png="{m_imgSettingButton}" CLICKED="DoDispatchEvent(event)"/>
+	<Button:SelectButton id="buttonHelp" m_png="{m_imgHelp}" CLICKED="DoDispatchEvent(event)"/>
+</s:BorderContainer>

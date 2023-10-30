@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.dp38745.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.dp38745.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.dp38745.com/">
+      <s:element name="LoggerWrite">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="p_strApplicationName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="p_iLogType" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="p_strSessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="p_strAppDomainName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="p_strMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="p_strExtMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoggerWriteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggerWriteResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoggerWriteBatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="p_strApplicationName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="p_strBatch" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoggerWriteBatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggerWriteBatchResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Ping">
+        <s:complexType />
+      </s:element>
+      <s:element name="PingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PingResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="LoggerWriteSoapIn">
+    <wsdl:part name="parameters" element="tns:LoggerWrite" />
+  </wsdl:message>
+  <wsdl:message name="LoggerWriteSoapOut">
+    <wsdl:part name="parameters" element="tns:LoggerWriteResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoggerWriteBatchSoapIn">
+    <wsdl:part name="parameters" element="tns:LoggerWriteBatch" />
+  </wsdl:message>
+  <wsdl:message name="LoggerWriteBatchSoapOut">
+    <wsdl:part name="parameters" element="tns:LoggerWriteBatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="PingSoapIn">
+    <wsdl:part name="parameters" element="tns:Ping" />
+  </wsdl:message>
+  <wsdl:message name="PingSoapOut">
+    <wsdl:part name="parameters" element="tns:PingResponse" />
+  </wsdl:message>
+  <wsdl:portType name="LoggerWSSoap">
+    <wsdl:operation name="LoggerWrite">
+      <wsdl:input message="tns:LoggerWriteSoapIn" />
+      <wsdl:output message="tns:LoggerWriteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoggerWriteBatch">
+      <wsdl:input message="tns:LoggerWriteBatchSoapIn" />
+      <wsdl:output message="tns:LoggerWriteBatchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <wsdl:input message="tns:PingSoapIn" />
+      <wsdl:output message="tns:PingSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LoggerWSSoap" type="tns:LoggerWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LoggerWrite">
+      <soap:operation soapAction="http://www.dp38745.com/LoggerWrite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoggerWriteBatch">
+      <soap:operation soapAction="http://www.dp38745.com/LoggerWriteBatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://www.dp38745.com/Ping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LoggerWSSoap12" type="tns:LoggerWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LoggerWrite">
+      <soap12:operation soapAction="http://www.dp38745.com/LoggerWrite" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoggerWriteBatch">
+      <soap12:operation soapAction="http://www.dp38745.com/LoggerWriteBatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <soap12:operation soapAction="http://www.dp38745.com/Ping" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LoggerWS">
+    <wsdl:port name="LoggerWSSoap" binding="tns:LoggerWSSoap">
+      <soap:address location="http://www.dp38745.com/LoggerWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LoggerWSSoap12" binding="tns:LoggerWSSoap12">
+      <soap12:address location="http://www.dp38745.com/LoggerWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

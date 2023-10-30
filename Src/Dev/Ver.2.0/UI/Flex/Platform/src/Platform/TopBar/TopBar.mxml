@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   backgroundColor="0x666666" borderVisible="false"
+				   width="100%" minHeight="0"
+				   xmlns:Button="UI.Button.*" xmlns:flexws="services.flexws.*" xmlns:Label="UI.Label.*">
+	<s:layout>
+		<s:HorizontalLayout verticalAlign="middle"
+							paddingLeft="5" paddingRight="5" paddingTop="5" paddingBottom="5"/>
+	</s:layout>
+	<fx:Metadata>
+		[Event(name=CLICKED, type="UI.Button.ButtonEvent")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import Handler.LocHandler;
+			import Handler.SesHandler;
+			
+			import Platform.Map.MapBox;
+			import Platform.TopBar.Help.HelpPopBox;
+			import Platform.TopBar.Inbox.InboxPopBox;
+			import Platform.TopBar.Settings.SettingsPopBox;
+			import Platform.TopBar.ShareApp.ShareAppPopBox;
+			import Platform.TopBar.ShowPhotos.ShowPhotosPopBox;
+			
+			import UI.Box.BoxMDI;
+			import UI.Button.ButtonEvent;
+			
+			import Utils.AS3.Embeded;
+			import Utils.AS3.Filters;
+			import Handler.LocGeneratedCode;
+			import Utils.AS3.NavigateToWebUrl;
+			import Utils.Log.Logger;
+			
+			import mx.events.CollectionEvent;
+			import mx.managers.CursorManager;
+			
+			[Bindable] private var m_bOnLine:Boolean = true;
+			[Bindable] private var m_bNormalSize:Boolean = true;
+			
+			public function Init():void
+			{
+				SesHandler.Instance.Session.Inboxes.addEventListener(CollectionEvent.COLLECTION_CHANGE, inbox_COLLECTION_CHANGE);
+			}
+			public function Dispose():void
+			{
+				if (clickButtonChangeLocation != null)
+				{
+					clickButtonChangeLocation.Dispose();
+					clickButtonChangeLocation = null;
+				}
+				if (selectButtonShowPhotos != null)
+				{
+					selectButtonShowPhotos.Dispose();
+					selectButtonShowPhotos = null;
+				}
+				if (clickButtonOnline != null)
+				{
+					clickButtonOnline.Dispose();
+					clickButtonOnline = null;
+				}
+				if (clickButtonOffline != null)
+				{
+					clickButtonOffline.Dispose();
+					clickButtonOffline = null;
+				}
+				if (clickButtonMapZoomIn != null)
+				{
+					clickButtonMapZoomIn.Dispose();
+					clickButtonMapZoomIn = null;
+				}
+				if (clickButtonMapZoomOut != null)
+				{
+					clickButtonMapZoomOut.Dispose();
+					clickButtonMapZoomOut = null;
+				}
+				if (clickButtonFineMe != null)
+				{
+					clickButtonFineMe.Dispose();
+					clickButtonFineMe = null;
+				}
+				if (clickButtonToFullSize != null)
+				{
+					clickButtonToFullSize.Dispose();
+					clickButtonToFullSize = null;
+				}
+				if (clickButtonToNormalSize != null)
+				{
+					clickButtonToNormalSize.Dispose();
+					clickButtonToNormalSize = null;
+				}
+				if (selectButtonShare != null)
+				{
+					selectButtonShare.Dispose();
+					selectButtonShare = null;
+				}
+				if (selectButtonInbox != null)
+				{
+					selectButtonInbox.Dispose();
+					selectButtonInbox = null;
+				}
+				if (selectButtonSettings != null)
+				{
+					selectButtonSettings.Dispose();
+					selectButtonSettings = null;
+				}
+				if (selectButtonHelp != null)
+				{
+					selectButtonHelp.Dispose();
+					selectButtonHelp = null;
+				}
+			}
+			
+			public function DoPaint():void
+			{
+				DoPaintInbox();
+			}
+			
+			private function selectButtonShowPhotos_CLICKED(event:ButtonEvent):void
+			{
+				if (event.GetButton.Selected)
+				{
+					BoxMDI.GetBoxMDI.DoCloseAllBox();
+					var showPhotosPopBox:ShowPhotosPopBox = new ShowPhotosPopBox();
+					BoxMDI.GetBoxMDI.AddNonModalPopUp(showPhotosPopBox);
+					showPhotosPopBox.Init(event.GetButton, null);
+					showPhotosPopBox.DoPaint();
+				}
+				else
+				{
+					BoxMDI.GetBoxMDI.DoCloseNonModalBox();
+				}
+			}
+			
+			private function clickButtonOnline_CLICKED(event:ButtonEvent):void
+			{
+				CursorManager.setBusyCursor();
+				canvasOnOffLine.enabled = false;
+				callResponderSetOnline.token = wsFlex.SetOffLine(SesHandler.Instance.Session.SID);
+			}
+			private function clickButtonOffline_CLICKED(event:ButtonEvent):void
+			{
+				CursorManager.setBusyCursor();
+				canvasOnOffLine.enabled = false;
+				callResponderSetOffline.token = wsFlex.SetOnLine(SesHandler.Instance.Session.SID);
+			}
+			
+			private function selectButtonShare_CLICKED(event:ButtonEvent):void
+			{
+				if (event.GetButton.Selected)
+				{
+					var shareAppPopBox:ShareAppPopBox = new ShareAppPopBox();
+					BoxMDI.GetBoxMDI.AddNonModalPopUp(shareAppPopBox);
+					shareAppPopBox.Init(event.GetButton, null);
+					shareAppPopBox.GetData();
+				}
+				else
+				{
+					BoxMDI.GetBoxMDI.DoCloseNonModalBox();
+				}
+			}
+			
+			private function selectButtonInbox_CLICKED(event:ButtonEvent):void
+			{
+				if (event.GetButton.Selected)
+				{
+					BoxMDI.GetBoxMDI.DoCloseMemberBox();
+					var inboxPopBox:InboxPopBox = new InboxPopBox();
+					BoxMDI.GetBoxMDI.AddNonModalPopUp(inboxPopBox);
+					inboxPopBox.Init(event.GetButton, null);
+					inboxPopBox.DoPaint();
+				}
+				else
+				{
+					BoxMDI.GetBoxMDI.DoCloseNonModalBox();
+				}
+			}
+			private function inbox_COLLECTION_CHANGE(event:CollectionEvent):void
+			{
+				DoPaintInbox();
+			}
+			private function DoPaintInbox():void
+			{
+				selectButtonInbox.NotificationCount = SesHandler.Instance.Session.Inboxes.UniqueLengthByMemberID;
+			}
+			
+			private function selectButtonSettings_CLICKED(event:ButtonEvent):void
+			{
+				if (event.GetButton.Selected)
+				{
+					var settingsPopBox:SettingsPopBox = new SettingsPopBox();
+					BoxMDI.GetBoxMDI.AddNonModalPopUp(settingsPopBox);
+					settingsPopBox.Init(event.GetButton, null);
+					settingsPopBox.GetData();
+				}
+				else
+				{
+					BoxMDI.GetBoxMDI.DoCloseNonModalBox();
+				}
+			}
+			
+			private function selectButtonHelp_CLICKED(event:ButtonEvent):void
+			{
+				if (event.GetButton.Selected)
+				{
+					var helpPopBox:HelpPopBox = new HelpPopBox();
+					BoxMDI.GetBoxMDI.AddNonModalPopUp(helpPopBox);
+					helpPopBox.Init(event.GetButton, null);
+					helpPopBox.GetData();
+				}
+				else
+				{
+					BoxMDI.GetBoxMDI.DoCloseNonModalBox();
+				}
+			}
+			
+			private function DoDispatchEvent(event:ButtonEvent):void
+			{
+				dispatchEvent(new ButtonEvent(ButtonEvent.CLICKED, event.GetButton));
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:CallResponder id="callResponderSetOnline"
+						 result="Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor();m_bOnLine=false;canvasOnOffLine.enabled=true"
+						 fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor();canvasOnOffLine.enabled=true"/>
+		<s:CallResponder id="callResponderSetOffline"
+						 result="Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor();m_bOnLine=true;canvasOnOffLine.enabled=true"
+						 fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor();canvasOnOffLine.enabled=true"/>
+		
+		<flexws:FlexWS id="wsFlex"
+					   fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+	</fx:Declarations>
+	<Button:ClickButton id="clickButtonChangeLocation" m_iLabelPaddingLeft="19" m_iLabelPaddingRight="4" m_strText="{LocHandler.GS(LocGeneratedCode.Change_Location)}" m_png="{Embeded.s_imgChangeLocation}" CLICKED="DoDispatchEvent(event)"/>
+	<Button:SelectButton id="selectButtonShowPhotos" m_iLabelPaddingLeft="27" m_iLabelPaddingRight="4" m_strText="{LocHandler.GS(LocGeneratedCode.Show_Photos)}" m_png="{Embeded.s_imgShowPhotosButton}" CLICKED="selectButtonShowPhotos_CLICKED(event)"/>
+	<mx:Spacer width="5"/>
+	<mx:Canvas id="canvasOnOffLine" filters="{m_bOnLine?[Filters.Selected]:null}">
+		<Button:ClickButton id="clickButtonOnline" visible="{m_bOnLine}" m_strTooltip="{LocHandler.GS(LocGeneratedCode.You_are_visible12Click_to_go_invisible)}" m_png="{Embeded.s_imgOnline}" CLICKED="clickButtonOnline_CLICKED(event)"/>
+		<Button:ClickButton id="clickButtonOffline" visible="{!m_bOnLine}" m_strTooltip="{LocHandler.GS(LocGeneratedCode.You_are_invisible12Click_to_go_visible)}" m_png="{Embeded.s_imgOffline}" CLICKED="clickButtonOffline_CLICKED(event)"/>
+	</mx:Canvas>
+	<mx:Spacer width="100%"/>
+	<Button:ClickButton id="clickButtonMapZoomIn" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Zoom_In)}" m_png="{Embeded.s_imgMapZoomIn}" CLICKED="{BoxMDI.GetBoxMDI.DoCloseAllBox();MapBox.GetMapBox.ZoomIn()}"/>
+	<Button:ClickButton id="clickButtonMapZoomOut" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Zoom_Out)}" m_png="{Embeded.s_imgMapZoomOut}" CLICKED="{BoxMDI.GetBoxMDI.DoCloseAllBox();MapBox.GetMapBox.ZoomOut()}"/>
+	<Button:ClickButton id="clickButtonFineMe" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Find_Me)}" m_png="{Embeded.s_imgFindMe}" CLICKED="{MapBox.GetMapBox.PanToMe()}"/>
+	<mx:Canvas>
+		<Button:ClickButton id="clickButtonToFullSize" visible="{m_bNormalSize}" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Full_Size)}" m_png="{Embeded.s_imgScreenToFull}" CLICKED="m_bNormalSize=false;DoDispatchEvent(event)"/>
+		<Button:ClickButton id="clickButtonToNormalSize" visible="{!m_bNormalSize}" left="9" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Normal_Size)}" m_png="{Embeded.s_imgScreenToNormal}" CLICKED="m_bNormalSize=true;DoDispatchEvent(event)"/>
+	</mx:Canvas>
+	<Button:SelectButton id="selectButtonShare" m_png="{Embeded.s_imgShareButton}" CLICKED="selectButtonShare_CLICKED(event)"/>
+	<Button:SelectButton id="selectButtonInbox" m_png="{Embeded.s_imgMail}" CLICKED="selectButtonInbox_CLICKED(event)"/>
+	<Button:SelectButton id="selectButtonSettings" m_png="{Embeded.s_imgSettingButton}" CLICKED="selectButtonSettings_CLICKED(event)"/>
+	<Button:SelectButton id="selectButtonHelp" m_png="{Embeded.s_imgHelp}" CLICKED="selectButtonHelp_CLICKED(event)"/>
+</s:BorderContainer>

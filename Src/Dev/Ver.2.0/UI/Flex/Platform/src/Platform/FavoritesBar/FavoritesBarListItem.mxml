@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<List:ListItemBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="41" height="41"
+				   xmlns:List="UI.List.*" xmlns:Photo="UI.Photo.*" xmlns:flexws="services.flexws.*">
+	<fx:Script>
+		<![CDATA[
+			import Data.Member.ActiveData;
+			import Data.MemberData;
+			
+			import Handler.LocHandler;
+			import Handler.SesHandler;
+			
+			import UI.Box.BoxMDI;
+			import UI.Box.MessageBox.MessageBox;
+			import UI.Box.MessageBox.MessageBoxEvent;
+			import UI.Photo.PhotoEvent;
+			
+			import Handler.LocGeneratedCode;
+			import Utils.Log.Logger;
+			
+			import mx.managers.CursorManager;
+			
+			protected override function get WidthTo():Number
+			{
+				return 41;
+			}
+			protected override function get HeightTo():Number
+			{
+				return 41;
+			}
+			
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (selectPhoto != null)
+				{
+					selectPhoto.Dispose();
+					selectPhoto = null;
+				}
+			}
+			
+			protected override function clickHandler(event:MouseEvent):void
+			{
+				SesHandler.Instance.Session.Actives.AddItemActiveData(new ActiveData(m_objectBase.ID, ActiveData.MEMBER_DETAILS));
+				selectPhoto.Selected = false;
+			}
+			
+			protected function selectPhoto_REMOVE_CLICKED(event:PhotoEvent):void
+			{
+				if (SesHandler.Instance.Session.Me.DontAskRemoveFromFavorites)
+				{
+					SesHandler.Instance.Session.Favorites.RemoveItemFavoriteDataByID(MemberData(m_objectBase).ID);
+					callResponderRemoveMemberFromFavorites.token = wsFlex.RemoveMemberFromFavorites(SesHandler.Instance.Session.SID, MemberData(m_objectBase).ID);
+				}
+				else
+				{
+					BoxMDI.GetBoxMDI.AddMessageBox(LocHandler.GS(LocGeneratedCode.Remove_from_FavoritesQ), LocHandler.GS(LocGeneratedCode.Add_this_member12to_your_favoritesQ), LocHandler.GS(LocGeneratedCode.Do_not_ask_me_again), MemberData(m_objectBase).Photo, MessageBox.YESNO, clickButtonDeleteMessagePostModalBox);
+				}
+			}
+			public function clickButtonDeleteMessagePostModalBox(event:MessageBoxEvent):void
+			{
+				if (event.type == MessageBox.YES)
+				{
+					if (event.DontAsk)
+					{
+						SesHandler.Instance.Session.Me.DontAskRemoveFromFavorites = true;
+						wsFlex.DontAskRemoveFromFavorites(SesHandler.Instance.Session.SID);
+					}
+					SesHandler.Instance.Session.Favorites.RemoveItemFavoriteDataByID(MemberData(m_objectBase).ID);
+					callResponderRemoveMemberFromFavorites.token = wsFlex.RemoveMemberFromFavorites(SesHandler.Instance.Session.SID, MemberData(m_objectBase).ID);
+				}
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:CallResponder id="callResponderRemoveMemberFromFavorites"
+						 result="Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"
+						 fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+		<flexws:FlexWS id="wsFlex"
+					   fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+	</fx:Declarations>
+	<Photo:SelectPhoto id="selectPhoto"
+					   m_iSize="39" m_bRemoveFadeEffect="true"
+					   Photo="{MemberData(m_objectBase).Photo}" m_strTooltip="{MemberData(m_objectBase).NickName}"
+					   NotificationCount="{MemberData(m_objectBase).CommCount}"
+					   REMOVE_CLICKED="selectPhoto_REMOVE_CLICKED(event)"/>
+</List:ListItemBase>

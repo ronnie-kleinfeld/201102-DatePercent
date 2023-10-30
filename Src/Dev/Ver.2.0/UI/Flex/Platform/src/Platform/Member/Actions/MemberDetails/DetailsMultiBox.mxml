@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="100%" height="100%"
+		 xmlns:Label="UI.Label.*" xmlns:Photo="UI.Photo.*" xmlns:Button="UI.Button.*" xmlns:UI="UI.*">
+	<s:layout>
+		<s:VerticalLayout gap="2"/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import Data.MemberData;
+			
+			import Handler.LocHandler;
+			
+			import UI.Box.BoxMDI;
+			import UI.Box.ModalBox.ShowPhotoModalBox;
+			import UI.Photo.PhotoEvent;
+			
+			import Utils.AS3.Embeded;
+			import Handler.LocGeneratedCode;
+			
+			[Bindable] private var m_memberData:MemberData;
+			
+			public function Init(p_memberData:MemberData):void
+			{
+				m_memberData = p_memberData;
+			}
+			public function Dispose():void
+			{
+				if (clickPhoto != null)
+				{
+					clickPhoto.Dispose();
+					clickPhoto = null;
+				}
+				
+				m_memberData = null;
+			}
+			
+			protected function clickPhoto_CLICKED(event:PhotoEvent):void
+			{
+				var memberPhotosModalBox:ShowPhotoModalBox = new ShowPhotoModalBox();
+				BoxMDI.GetBoxMDI.AddModalBox(memberPhotosModalBox);
+				memberPhotosModalBox.Init(null, null);
+				memberPhotosModalBox.GetData(event.PhotoUI.Photo, null);
+			}
+		]]>
+	</fx:Script>
+	<Label:HeaderLabel width="100%" text="{LocHandler.GS(LocGeneratedCode.Details)}" textAlign="left"/>
+	<mx:Spacer height="4"/>
+	<Photo:ClickPhoto id="clickPhoto" m_iSize="100" Photo="{m_memberData.Photo}" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Click_to_see_large_photo)}" CLICKED="clickPhoto_CLICKED(event)"/>
+	<mx:Spacer height="4"/>
+	<Label:NormalLabel text="{LocHandler.GS(LocGeneratedCode.Age)}: {m_memberData.Age}"/>
+	<Label:NormalLabel text="{LocHandler.GS(LocGeneratedCode.Distance)}: {m_memberData.DistanceLabel}"/>
+	<Label:NormalLabel text="{LocHandler.GS(LocGeneratedCode.DatePrecentage)}: {m_memberData.DatePercentageLabel}"/>
+	<s:HGroup width="100%" verticalAlign="middle" height="28" gap="2">
+		<UI:SimpleImage width="25" m_png="{Embeded.s_imgBirthdayCake}" toolTip="{LocHandler.GS(LocGeneratedCode.Birthdate)}"/>
+		<mx:Spacer width="4"/>
+		<Label:NormalLabel text="{m_memberData.BirthdateLabel}"/>
+	</s:HGroup>
+	<mx:Spacer width="6"/>
+	<s:HGroup width="100%" verticalAlign="middle" height="28" gap="2">
+		<UI:SimpleImage width="25" m_png="{m_memberData.HoroscopePng}" toolTip="{LocHandler.GS(LocGeneratedCode.Horoscope)}"/>
+		<mx:Spacer width="4"/>
+		<Label:NormalLabel text="{m_memberData.HoroscopeLabel}"/>
+	</s:HGroup>
+</s:Group>

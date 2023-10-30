@@ -1,0 +1,95 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B6D0B74A-8FC6-4BAA-BB00-F72462210C61}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MADA.DatePercent.SMTP.DBS</RootNamespace>
+    <AssemblyName>MADA.DatePercent.SMTP.DBS</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="dbSMTPDB\SMTPDB.cs" />
+    <Compile Include="dbSMTPDB\SPs\APT_EMAILDeleteByEML_ID.cs" />
+    <Compile Include="dbSMTPDB\SPs\APT_EMAILInsertInto.cs" />
+    <Compile Include="dbSMTPDB\SPs\APT_EMAILSelect.cs" />
+    <Compile Include="dbSMTPDB\SPs\APT_EMAIL_HISTORYSelect.cs" />
+    <Compile Include="dbSMTPDB\SPs\APT_EMAIL_HISTORYSelectByEMH_GETTER_EMAIL.cs" />
+    <Compile Include="dbSMTPDB\SPs\APT_EMAIL_UNTISPAMDeleteByEMM_EMAIL.cs" />
+    <Compile Include="dbSMTPDB\SPs\Enum.cs" />
+    <Compile Include="dbSMTPDB\SPs\PT_EMAILDeleteUntiSpam.cs" />
+    <Compile Include="dbSMTPDB\SPs\PT_EMAILSelectTop1.cs" />
+    <Compile Include="dbSMTPDB\SPs\PT_EMAIL_HISTORYInsertInto.cs" />
+    <Compile Include="dbSMTPDB\SPs\PT_EMAIL_UNTISPAMInsertInto.cs" />
+    <Compile Include="dbSMTPDB\SPs\sp_alterdiagram.cs" />
+    <Compile Include="dbSMTPDB\SPs\sp_creatediagram.cs" />
+    <Compile Include="dbSMTPDB\SPs\sp_dropdiagram.cs" />
+    <Compile Include="dbSMTPDB\SPs\sp_helpdiagramdefinition.cs" />
+    <Compile Include="dbSMTPDB\SPs\sp_helpdiagrams.cs" />
+    <Compile Include="dbSMTPDB\SPs\sp_renamediagram.cs" />
+    <Compile Include="dbSMTPDB\SPs\sp_upgraddiagrams.cs" />
+    <Compile Include="dbSMTPDB\Tables\CodeTables.cs" />
+    <Compile Include="dbSMTPDB\Tables\Enum.cs" />
+    <Compile Include="dbSMTPDB\Tables\sysdiagrams.cs" />
+    <Compile Include="dbSMTPDB\Tables\T_EMAIL.cs" />
+    <Compile Include="dbSMTPDB\Tables\T_EMAIL_HISTORY.cs" />
+    <Compile Include="dbSMTPDB\Tables\T_EMAIL_UNTISPAM.cs" />
+    <Compile Include="dbSMTPDB\Views\Enum.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\Framework\Dev\Ver.1.0\EnterpriseLibrary\Common\Common.csproj">
+      <Project>{A09297C8-2C40-470B-8856-D856676DDFFA}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Framework\Dev\Ver.1.0\EnterpriseLibrary\Data\Data.csproj">
+      <Project>{D349B6D8-992F-443F-BB57-57E50DD98794}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Framework\Dev\Ver.1.0\EnterpriseLibrary\Logging\Logging.csproj">
+      <Project>{6AC97717-899D-4F72-BC5B-2C37959CD4FF}</Project>
+      <Name>Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Framework\Dev\Ver.1.0\EnterpriseLibrary\ObjectBuilder\ObjectBuilder.csproj">
+      <Project>{2AE49F19-392B-4C50-A13C-F49B2579849D}</Project>
+      <Name>ObjectBuilder</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

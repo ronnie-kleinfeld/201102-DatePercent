@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Platform/src/Platform/Map/MapMarker/MapQuestMapMarker.mxml&apos; to &apos;MapQuestMapMarker.as&apos;" description="Rename resource &apos;MapQuestMapMarker.mxml&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/Platform/Map/MapMarker/MapQuestMapMarker.mxml" name="MapQuestMapMarker.as" stamp="1331903501053" updateReferences="true"/>
+</session>

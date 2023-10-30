@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PopBox:PopBoxBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="200" height="51"
+				   preinitialize="preinitializeHandler(event)" creationComplete="creationCompleteHandler(event)"
+				   xmlns:PopBox="UI.Box.PopBox.*" xmlns:Box="UI.Box.*" xmlns:ShowPhotos="Platform.TopBar.ShowPhotos.*">
+	<fx:Script>
+		<![CDATA[
+			import Handler.LocHandler;
+			import Handler.SesHandler;
+			
+			import UI.Box.PopBox.NodgePositionEnum;
+			import UI.Button.ButtonBase;
+			import UI.Photo.PhotoBase;
+			
+			import Handler.LocGeneratedCode;
+			
+			import mx.events.EffectEvent;
+			import mx.events.FlexEvent;
+			
+			protected function preinitializeHandler(event:FlexEvent):void
+			{
+				m_enumNodgePosition = NodgePositionEnum.TOP_LEFT;
+			}
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				boxGroup.InitPadding(m_enumNodgePosition);
+				boxCanvas.InidNodge(m_enumNodgePosition);
+				boxBC.ShowCloseButton();
+			}
+			public override function Init(p_buttonOpener:ButtonBase, p_photoOpener:PhotoBase):void
+			{
+				super.Init(p_buttonOpener, p_photoOpener);
+				DoShowBox(boxCanvas);
+			}
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (boxBC != null)
+				{
+					boxBC.Dispose();
+				}
+				if (boxCanvas != null)
+				{
+					boxCanvas.Dispose();
+				}
+				
+				if (showPhotosList != null)
+				{
+					showPhotosList.Dispose();
+					showPhotosList = null;
+				}
+			}
+			
+			public function DoPaint():void
+			{
+				DoShowContent(boxContent);
+				DoPaintTitle();
+				if (SesHandler.Instance.Session.BreakingNews.Length == 0)
+				{
+					this.height = 72;
+				}
+				else
+				{
+					this.height = 51 + (12 + 2 + 2) * 2 + 59 * SesHandler.Instance.Session.BreakingNews.Length + 2;
+				}
+				if (this.height > 400)
+				{
+					this.height = 400;
+				}
+				showPhotosList.Init(SesHandler.Instance.Session.BreakingNews);
+			}
+			protected override function m_fadeContent_EFFECT_END(event:EffectEvent):void
+			{
+				showPhotosList.DoFill();
+			}
+			private function DoPaintTitle():void
+			{
+				if (SesHandler.Instance.Session.BreakingNews.Length > 0)
+				{
+					boxBC.ShowTitle(SesHandler.Instance.Session.BreakingNews.Length + " " + LocHandler.GS(LocGeneratedCode.members_in_region));
+				}
+				else
+				{
+					boxBC.ShowTitle(LocHandler.GS(LocGeneratedCode.No_members_in_region));
+				}
+			}
+			
+			protected override function SetLocation():void
+			{
+				this.left = 180 - 26 - 28;
+				this.top = 37;
+			}
+		]]>
+	</fx:Script>
+	<Box:BoxCanvas id="boxCanvas" width="100%" height="100%">
+		<Box:BoxGroup id="boxGroup" width="100%" height="100%">
+			<Box:BoxBC id="boxBC" width="100%" height="100%" CLOSE="dispatchEvent(new Event(CLOSE))">
+				<Box:BoxContent id="boxContent" width="100%" height="100%">
+					<mx:Spacer height="25"/>
+					<ShowPhotos:ShowPhotosPopBoxList id="showPhotosList" width="100%" height="100%"
+													 m_bAddSep="true" m_iPaintedListItemCount="5" m_iPaintedListItemStpes="5"  m_iPaintedListItemMaxCount="20"/>
+				</Box:BoxContent>
+			</Box:BoxBC>
+		</Box:BoxGroup>
+	</Box:BoxCanvas>
+</PopBox:PopBoxBase>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Platform/Res/Slide 13.swf&apos; to &apos;Animation.swf&apos;" description="Rename resource &apos;Slide 13.swf&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Res/Slide 13.swf" name="Animation.swf" stamp="1328134954654" updateReferences="true"/>
+</session>

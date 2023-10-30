@@ -1,0 +1,101 @@
+package Data.Base
+{
+	import flash.events.Event;
+	
+	import mx.collections.ArrayCollection;
+	
+	[Event(name=CollectionEvent.OBJECT_ADDED, type=CollectionEvent)]
+	[Event(name=CollectionEvent.OBJECT_REMOVED, type=CollectionEvent)]
+	public class CollectionBase extends ArrayCollection
+	{
+		public function CollectionBase()
+		{
+			super();
+		}
+		public function Dispose():void
+		{
+			while (this.Length > 0)
+			{
+				ObjectBase(RemoveItemAt(0)).Dispose();
+			}
+		}
+		
+		public function AddItem(p_objectBase:ObjectBase):void
+		{
+			this.addItem(p_objectBase);
+			dispatchEvent(new CollectionEvent(CollectionEvent.OBJECT_ADDED, this, p_objectBase));
+		}
+		public function AddItemAt(p_objectBase:ObjectBase, p_iIndex:int):void
+		{
+			this.addItemAt(p_objectBase, p_iIndex);
+			dispatchEvent(new CollectionEvent(CollectionEvent.OBJECT_ADDED, this, p_objectBase));
+		}
+		
+		public function RemoveItem(p_objectBase:ObjectBase):void
+		{
+			this.removeItemAt(this.FindItemIndexByID(p_objectBase.ID));
+			dispatchEvent(new CollectionEvent(CollectionEvent.OBJECT_REMOVED, this, p_objectBase));
+			return p_objectBase;
+		}
+		public function RemoveItemAt(p_iIndex:int):void
+		{
+			var objectBase:ObjectBase = ObjectBase(this.removeItemAt(p_iIndex));
+			dispatchEvent(new CollectionEvent(CollectionEvent.OBJECT_REMOVED, this, objectBase));
+			return objectBase;
+		}
+		public function RemoveItemByID(p_iID:int):void
+		{
+			var objectBase:ObjectBase;
+			objectBase = ObjectBase(this.removeItemAt(this.FindItemIndexByID(p_iID)));
+			dispatchEvent(new CollectionEvent(CollectionEvent.OBJECT_REMOVED, this, objectBase));
+			return objectBase;
+		}
+		public function RemoveAll():void
+		{
+			var objectBase:ObjectBase;
+			while (this.Length > 0)
+			{
+				objectBase = ObjectBase(this.removeItemAt(0));
+				dispatchEvent(new CollectionEvent(CollectionEvent.OBJECT_REMOVED, this, objectBase));
+			}
+		}
+		
+		public function FindItemByID(p_iID:int):ObjectBase
+		{
+			var oObject:ObjectBase;
+			for (var i:int = 0; i < this.Length; i++)
+			{
+				oObject = ObjectBase(this.getItemAt(i));
+				if (oObject.ID == p_iID)
+				{
+					return oObject;
+				}
+			}
+			
+			return null;
+		}
+		public function FindItemIndexByID(p_iID:int):int
+		{
+			var oObject:ObjectBase;
+			for (var i:int = 0; i < this.Length; i++)
+			{
+				oObject = ObjectBase(this.getItemAt(i));
+				if (oObject.ID == p_iID)
+				{
+					return i;
+				}
+			}
+			
+			return -1;
+		}
+		public function FindItemByIndex(p_iIndex:int):ObjectBase
+		{
+			return ObjectBase(this.getItemAt(p_iIndex));
+		}
+		
+		public function get Length():int
+		{
+			return this.length;
+		}
+	}
+}

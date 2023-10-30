@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   backgroundColor="0x666666" borderVisible="false" dropShadowVisible="true"
+				   width="100%" height="44"
+				   xmlns:Button="UI.Button.*" xmlns:FavoritesBar="Platform.FavoritesBar.*">
+	<s:layout>
+		<s:HorizontalLayout verticalAlign="middle"
+							paddingLeft="2" paddingRight="2"
+							gap="6"/>
+	</s:layout>
+	<fx:Metadata>
+		[Event(name=FILL_TIMER_FILLED, type="UI.List.ListEvent")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import Handler.LocHandler;
+			
+			import UI.Button.ButtonEvent;
+			import UI.List.ListEvent;
+			
+			import Utils.AS3.Embeded;
+			import Handler.LocGeneratedCode;
+			
+			public function Dispose():void
+			{
+				if (favoritesBarList != null)
+				{
+					favoritesBarList.Dispose();
+					favoritesBarList = null;
+				}
+			}
+			
+			public function DoPaint():void
+			{
+				favoritesBarList.DoFill();
+			}
+			
+			protected function selectButtonFavorites_CLICKED(event:ButtonEvent):void
+			{
+				if (event.GetButton.Selected)
+				{
+					favoritesBarList.DoShowRemove();
+				}
+				else
+				{
+					favoritesBarList.DoHideRemove();
+				}
+			}
+			
+			protected function favoritesBarList_FILL_TIMER_FILLED(event:ListEvent):void
+			{
+				dispatchEvent(new ListEvent(ListEvent.FILL_TIMER_FILLED, event.List));
+			}
+		]]>
+	</fx:Script>
+	<Button:SelectButton id="selectButtonFavorites" width="41" height="100%"
+						 m_strTooltip="{selectButtonFavorites.Selected?LocHandler.GS(LocGeneratedCode.Your_favorites_members12Click_a_member_to_remove_from_your_favorites):LocHandler.GS(LocGeneratedCode.Your_favorites_members12Click_to_remove_members)}"
+						 m_png="{Embeded.s_imgFavorite}"
+						 CLICKED="selectButtonFavorites_CLICKED(event)"/>
+	<FavoritesBar:FavoritesBarList id="favoritesBarList" width="100%" height="100%" m_iPaintedListItemCount="15" m_iPaintedListItemStpes="5"
+								   FILL_TIMER_FILLED="favoritesBarList_FILL_TIMER_FILLED(event)"/>
+</s:BorderContainer>

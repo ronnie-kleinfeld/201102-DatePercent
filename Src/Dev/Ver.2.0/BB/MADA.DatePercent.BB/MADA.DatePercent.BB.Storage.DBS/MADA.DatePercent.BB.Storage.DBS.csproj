@@ -1,0 +1,203 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6908DAC8-314F-4EB9-AAD8-6E9017C145CF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MADA.DatePercent.BB.Storage.DBS</RootNamespace>
+    <AssemblyName>MADA.DatePercent.BB.Storage.DBS</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="dbStorageDB\SPs\APT_DISTANCE_UNITS_TYPE_ENUMSelect.cs" />
+    <Compile Include="dbStorageDB\SPs\APT_EMAIL_UNTISPAMSelect.cs" />
+    <Compile Include="dbStorageDB\SPs\APT_LOCALE_TYPESelect.cs" />
+    <Compile Include="dbStorageDB\SPs\APT_SERIALIZERInsertInto.cs" />
+    <Compile Include="dbStorageDB\SPs\APT_SERIALIZERSelect.cs" />
+    <Compile Include="dbStorageDB\SPs\APT_SEX_TYPE_ENUMSelect.cs" />
+    <Compile Include="dbStorageDB\SPs\APT_USERSelect.cs" />
+    <Compile Include="dbStorageDB\SPs\APT_USERSelectByUSR_FB_UID.cs" />
+    <Compile Include="dbStorageDB\SPs\APT_USERSelectByUSR_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\APT_USERSelectByUSR_UID.cs" />
+    <Compile Include="dbStorageDB\SPs\APT_USER_BLACK_LISTSelectByUSB_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\APT_USER_CREDITInsertInto.cs" />
+    <Compile Include="dbStorageDB\SPs\APT_USER_FAVORITESelectByUSV_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\APT_USER_LINKDeleteByUSL_LINKED_USER_IDUSL_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\APT_USER_LINK_TYPE_ENUMSelect.cs" />
+    <Compile Include="dbStorageDB\SPs\APT_USER_LOCAL_MEMBERDeleteByULM_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\APT_USER_LOGONInsertIntoUpdateByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\APT_USER_LOGONSelectByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\APT_USER_TRANSACTIONSelectByUPT_TRANSACTION_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\Enum.cs" />
+    <Compile Include="dbStorageDB\SPs\PTSessionFillByUSR_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PTSessionFillCreditsByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PTSessionFillInboxByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PTSessionFillLocalMembersByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PTSessionFillMembersByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PTSessionInitByUSV_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERInsertIntoNewFBUser.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERSelectByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERSelectByUSR_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERSelectByUSR_UID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERSelectFillByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERSelectNameByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERUpdateByUSR_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERUpdateFBByUSR_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERUpdateMyProfileByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERUpdateUSR_CREDITS_BALANCEByUSR_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERUpdateUSR_DONT_ASK_ADD_TO_FAVORITESByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERUpdateUSR_DONT_ASK_BLOCK_MEMBERByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERUpdateUSR_DONT_ASK_FEEDBACK_SENTByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERUpdateUSR_DONT_ASK_INVITATION_SENTByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERUpdateUSR_DONT_ASK_PROFILE_UPDATEDByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERUpdateUSR_DONT_ASK_REMOVE_FROM_BLACK_LISTByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERUpdateUSR_DONT_ASK_REMOVE_FROM_FAVORITESByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERUpdateUSR_DONT_ASK_REMOVE_FROM_MY_PHOTOSByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERUpdateUSR_DONT_ASK_REPORT_SENTByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERUpdateUSR_DONT_ASK_TWINK_SENTByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERUpdateUSR_LAT_USR_LNGByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERUpdateUSR_LOCALE_CODEByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USERUpdateUSR_RADIUS_KMByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_BLACK_LISTDeleteByUSL_SIDUSB_BLACK_LIST_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_BLACK_LISTInsertInto.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_BLACK_LISTSelectByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_COMMDeleteByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_COMMInsertIntoByUSC_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_COMMInsertIntoByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_COMMUpdateAsReadByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_CREDITInsertIntoSendAPresent.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_CREDITInsertIntoTransactionCompleted.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_CREDITInsertIntoTransactionRefunded.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_CREDITInsertIntoUnlimitedChatWithAMember.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_CREDITSelectByUSD_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_FAVORITEDeleteByUSL_SIDUSV_FAVORITE_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_FAVORITEInsertInto.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_FRIENDInsertIntoUpdateByUSF_USER_IDUSR_FB_UID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_INBOXDeleteByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_INBOXDeleteByUSL_SID_USI_SENDER_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_INBOXInsertIntoByUSI_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_INBOXInsertIntoByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LIKEInsertIntoUpdateByUSK_FB_OBJECT_IDUSK_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LINKInsertIntoUpdateByUSL_LINKED_USER_IDUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LINKInsertIntoUpdateByUSL_LINKED_USER_IDUSL_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LINKSelectByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LINKSelectByUSL_SIDUSL_LINKED_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOCAL_MEMBERDeleteAged.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOCAL_MEMBERInsertIntoByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONDeleteAged.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONIncreaseAge.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSCheckBreakingNews.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSGetUsers.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSSetFlag.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONSetFlagUSL_HAS_INBOX.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONUpdateUSL_AGEByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONUpdateUSL_CREDITS_BALANCE_UPDATEDByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONUpdateUSL_CREDITS_BALANCE_UPDATEDByUSL_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONUpdateUSL_FB_UPDATEDByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONUpdateUSL_FB_UPDATEDByUSL_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONUpdateUSL_FETCHED_LOCAL_IDByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONUpdateUSL_FETCHED_LOCAL_IDByUSL_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONUpdateUSL_FETCHED_LOGON_IDByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONUpdateUSL_FETCHED_LOGON_IDByUSL_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONUpdateUSL_HAS_BREAKING_NEWSByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONUpdateUSL_HAS_BREAKING_NEWSByUSL_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONUpdateUSL_HAS_INBOXByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONUpdateUSL_HAS_INBOXByUSL_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONUpdateUSL_HAS_ONLINE_FAVORITESByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONUpdateUSL_HAS_ONLINE_FAVORITESByUSL_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONUpdateUSL_IS_ONLINEByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONUpdateUSL_IS_ONLINEByUSL_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONUpdateUSL_LINK_UPDATEDByUSL_SID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_LOGONUpdateUSL_LINK_UPDATEDByUSL_USER_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_PHOTOInsertIntoUpdateByUSP_FB_PID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_PHOTOUpdateByUSP_ID.cs" />
+    <Compile Include="dbStorageDB\SPs\PT_USER_TRANSACTIONInsertInto.cs" />
+    <Compile Include="dbStorageDB\SPs\sp_alterdiagram.cs" />
+    <Compile Include="dbStorageDB\SPs\sp_creatediagram.cs" />
+    <Compile Include="dbStorageDB\SPs\sp_dropdiagram.cs" />
+    <Compile Include="dbStorageDB\SPs\sp_helpdiagramdefinition.cs" />
+    <Compile Include="dbStorageDB\SPs\sp_helpdiagrams.cs" />
+    <Compile Include="dbStorageDB\SPs\sp_renamediagram.cs" />
+    <Compile Include="dbStorageDB\SPs\sp_upgraddiagrams.cs" />
+    <Compile Include="dbStorageDB\StorageDB.cs" />
+    <Compile Include="dbStorageDB\Tables\CodeTables.cs" />
+    <Compile Include="dbStorageDB\Tables\Enum.cs" />
+    <Compile Include="dbStorageDB\Tables\sysdiagrams.cs" />
+    <Compile Include="dbStorageDB\Tables\T_CONTACT_FETCHER_TYPE_ENUM.cs" />
+    <Compile Include="dbStorageDB\Tables\T_DISTANCE_UNITS_TYPE_ENUM.cs" />
+    <Compile Include="dbStorageDB\Tables\T_DOMAIN_TYPE_ENUM.cs" />
+    <Compile Include="dbStorageDB\Tables\T_EMAIL_UNTISPAM.cs" />
+    <Compile Include="dbStorageDB\Tables\T_LOCALE_TYPE.cs" />
+    <Compile Include="dbStorageDB\Tables\T_SERIALIZER.cs" />
+    <Compile Include="dbStorageDB\Tables\T_SEX_TYPE_ENUM.cs" />
+    <Compile Include="dbStorageDB\Tables\T_USER.cs" />
+    <Compile Include="dbStorageDB\Tables\T_USER_BLACK_LIST.cs" />
+    <Compile Include="dbStorageDB\Tables\T_USER_COMM.cs" />
+    <Compile Include="dbStorageDB\Tables\T_USER_COMM_TYPE_ENUM.cs" />
+    <Compile Include="dbStorageDB\Tables\T_USER_CREDIT.cs" />
+    <Compile Include="dbStorageDB\Tables\T_USER_CREDIT_TYPE_ENUM.cs" />
+    <Compile Include="dbStorageDB\Tables\T_USER_FAVORITE.cs" />
+    <Compile Include="dbStorageDB\Tables\T_USER_FRIEND.cs" />
+    <Compile Include="dbStorageDB\Tables\T_USER_INBOX.cs" />
+    <Compile Include="dbStorageDB\Tables\T_USER_LIKE.cs" />
+    <Compile Include="dbStorageDB\Tables\T_USER_LINK.cs" />
+    <Compile Include="dbStorageDB\Tables\T_USER_LINK_TYPE_ENUM.cs" />
+    <Compile Include="dbStorageDB\Tables\T_USER_LOCAL_MEMBER.cs" />
+    <Compile Include="dbStorageDB\Tables\T_USER_LOGON.cs" />
+    <Compile Include="dbStorageDB\Tables\T_USER_PHOTO.cs" />
+    <Compile Include="dbStorageDB\Tables\T_USER_TRANSACTION.cs" />
+    <Compile Include="dbStorageDB\Views\Enum.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\Framework\Dev\Ver.1.0\EnterpriseLibrary\Common\Common.csproj">
+      <Project>{A09297C8-2C40-470B-8856-D856676DDFFA}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Framework\Dev\Ver.1.0\EnterpriseLibrary\Data\Data.csproj">
+      <Project>{D349B6D8-992F-443F-BB57-57E50DD98794}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Framework\Dev\Ver.1.0\EnterpriseLibrary\Logging\Logging.csproj">
+      <Project>{6AC97717-899D-4F72-BC5B-2C37959CD4FF}</Project>
+      <Name>Logging</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

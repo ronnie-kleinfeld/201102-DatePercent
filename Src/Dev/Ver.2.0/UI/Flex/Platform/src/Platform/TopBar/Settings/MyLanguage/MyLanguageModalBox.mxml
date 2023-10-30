@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModalBox:ModalBoxBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+					   width="476" height="255"
+					   initialize="initializeHandler(event)" creationComplete="creationCompleteHandler(event)"
+					   xmlns:ModalBox="UI.Box.ModalBox.*" xmlns:Box="UI.Box.*" xmlns:UI="UI.*" xmlns:Label="UI.Label.*" xmlns:Button="UI.Button.*" xmlns:flexws="services.flexws.*">
+	<fx:Metadata>
+		[Event(name=CLOSE, type="flash.events.Event")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import Handler.AppHandler;
+			import Handler.LocHandler;
+			import Handler.ParHandler;
+			import Handler.SesHandler;
+			
+			import UI.Box.BoxMDI;
+			import UI.Box.MessageBox.MessageBox;
+			import UI.Box.MessageBox.MessageBoxEvent;
+			import UI.Button.ButtonBase;
+			import UI.Button.ButtonEvent;
+			import UI.Button.SelectButton;
+			import UI.Photo.PhotoBase;
+			
+			import Handler.LocGeneratedCode;
+			import Utils.Log.Logger;
+			
+			import mx.events.FlexEvent;
+			import mx.managers.CursorManager;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.components.VGroup;
+			
+			private var m_strLocale:String;
+			private var m_iLocaleCode:int;
+			
+			//class
+			protected function initializeHandler(event:FlexEvent):void
+			{
+				boxBC.ShowTitle(LocHandler.GS(LocGeneratedCode.Edit_My_Language));
+			}
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				boxBC.ShowCloseButton();
+			}
+			public override function Init(p_buttonOpener:ButtonBase, p_photoOpener:PhotoBase):void
+			{
+				super.Init(p_buttonOpener, p_photoOpener);
+				DoShowBox(boxCanvas);
+			}
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (boxBC != null)
+				{
+					boxBC.Dispose();
+				}
+				if (boxCanvas != null)
+				{
+					boxCanvas.Dispose();
+				}
+			}
+			
+			public function GetData(p_strLocale:String):void
+			{
+				m_strLocale = p_strLocale;
+				
+				DoPaint();
+			}
+			public function DoPaint():void
+			{
+				var vGroup:VGroup;
+				for (var i:int = 0; i < AppHandler.Instance.GetLocaleType.length; i++)
+				{
+					if (hGroup.numElements == 0)
+					{
+						vGroup = new VGroup();
+						vGroup.percentHeight = 100;
+						hGroup.addElement(vGroup);
+					}
+					else
+					{
+						if (vGroup.numElements == 10)
+						{
+							vGroup = new VGroup();
+							vGroup.percentHeight = 100;
+							hGroup.addElement(vGroup);
+						}
+					}
+					
+					var oLocaleType:Object = AppHandler.Instance.GetLocaleType.getItemAt(i);
+					var selectButton:SelectButton = new SelectButton();
+					selectButton.m_strText = oLocaleType.LCL_NATIVE_NAME;
+					selectButton.id = oLocaleType.LCL_CODE;
+					selectButton.Selected = oLocaleType.LCL_LOCALE == ParHandler.Instance.Locale;
+					selectButton.height = 15;
+					selectButton.m_iLabelPaddingLeft = 4;
+					selectButton.m_iLabelPaddingRight = 4;
+					selectButton.m_iFontSize = 12;
+					selectButton.m_strLabelHorizontalAlign = "left";
+					selectButton.addEventListener(ButtonEvent.CLICKED, selectButton_CLICKED);
+					vGroup.addElement(selectButton);
+				}
+				
+				DoShowContent(boxContent);
+			}
+			protected function selectButton_CLICKED(event:ButtonEvent):void
+			{
+				event.currentTarget.Selected = false;
+				m_iLocaleCode = int(event.currentTarget.id);
+				BoxMDI.GetBoxMDI.AddMessageBox(LocHandler.GS(LocGeneratedCode.Change_Language), LocHandler.GS(LocGeneratedCode.Are_you_sure_you_want12to_change12the_languageQ), "", SesHandler.Instance.Session.Me.Photo, MessageBox.YESNO, selectButtonPostModalBox);
+			}
+			public function selectButtonPostModalBox(event:MessageBoxEvent):void
+			{
+				if (event.type == MessageBox.YES)
+				{
+					callResponderSetLocale.token = wsFlex.SetLocale(SesHandler.Instance.Session.SID, m_iLocaleCode);
+				}
+			}
+			protected function callResponderSetLocale_resultHandler(event:ResultEvent):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+				
+				try
+				{
+					if (ExternalInterface.available) 
+					{
+						ExternalInterface.call("location.reload()");
+					}
+				}
+				catch (error:Error)
+				{
+					Logger.Instance.WriteError(error, flash.utils.getQualifiedClassName(this));
+				}
+			}
+			
+			// events
+			protected function clickButtonYes_CLICKED(event:ButtonEvent):void
+			{
+				var iDistanceUnitsTypeCode:int;
+				
+			}
+			public function clickButtonYesPostModalBox(event:MessageBoxEvent):void
+			{
+				if (event.DontAsk)
+				{
+					SesHandler.Instance.Session.Me.DontAskProfileUpdated = true;
+					wsFlex.DontAskProfileUpdated(SesHandler.Instance.Session.SID);
+				}
+				dispatchEvent(new Event(CLOSE));
+			}
+			
+			protected function clickButtonNo_CLICKED(event:ButtonEvent):void
+			{
+				dispatchEvent(new Event(CLOSE));
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:CallResponder id="callResponderSetLocale"
+						 result="Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor();callResponderSetLocale_resultHandler(event)"
+						 fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+		<flexws:FlexWS id="wsFlex"
+					   fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+	</fx:Declarations>
+	<Box:BoxCanvas id="boxCanvas" width="100%" height="100%">
+		<Box:BoxGroup id="boxGroup" width="100%" height="100%">
+			<Box:BoxBC id="boxBC" width="100%" height="100%" CLOSE="dispatchEvent(new Event(CLOSE))">
+				<Box:BoxContent id="boxContent" width="100%" height="100%">
+					<mx:Spacer height="20"/>
+					<s:HGroup id="hGroup" width="100%" height="100%"/>
+				</Box:BoxContent>
+			</Box:BoxBC>
+		</Box:BoxGroup>
+	</Box:BoxCanvas>
+</ModalBox:ModalBoxBase>

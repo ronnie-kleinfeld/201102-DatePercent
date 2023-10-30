@@ -1,0 +1,211 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1A0AEBA0-D7D5-4091-866C-50E138292703}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MADA.DatePercent.BL</RootNamespace>
+    <AssemblyName>MADA.DatePercent.BL</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationHandler.cs">
+      <DependentUpon>ApplicationHandler.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ApplicationHandler.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApplicationHandler.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CommHandler.cs" />
+    <Compile Include="EMailHandler.cs" />
+    <Compile Include="EMailHandlerDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EMailHandlerDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EMailHandlerDetailsShareDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EMailHandlerDetailsShareDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EMailHandlerInviteDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EMailHandlerInviteDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Facebook.cs" />
+    <Compile Include="FacebookDataSet.cs">
+      <DependentUpon>FacebookDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FacebookDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FacebookDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FacebookUtil.cs" />
+    <Compile Include="FS.cs" />
+    <Compile Include="InviteeHandler.cs" />
+    <Compile Include="ListHandler.cs" />
+    <Compile Include="LocationHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Serializer.cs" />
+    <Compile Include="SessionHandler.cs">
+      <DependentUpon>SessionHandler.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SessionHandler.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SessionHandler.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="UserHandler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="ApplicationHandler.xsc">
+      <DependentUpon>ApplicationHandler.xsd</DependentUpon>
+    </None>
+    <None Include="ApplicationHandler.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ApplicationHandler.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ApplicationHandler.xss">
+      <DependentUpon>ApplicationHandler.xsd</DependentUpon>
+    </None>
+    <None Include="EMailHandlerDataSet.xsc">
+      <DependentUpon>EMailHandlerDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EMailHandlerDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EMailHandlerDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="EMailHandlerDataSet.xss">
+      <DependentUpon>EMailHandlerDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EMailHandlerDetailsShareDataSet.xsc">
+      <DependentUpon>EMailHandlerDetailsShareDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EMailHandlerDetailsShareDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EMailHandlerDetailsShareDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="EMailHandlerDetailsShareDataSet.xss">
+      <DependentUpon>EMailHandlerDetailsShareDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EMailHandlerInviteDataSet.xsc">
+      <DependentUpon>EMailHandlerInviteDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EMailHandlerInviteDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EMailHandlerInviteDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="EMailHandlerInviteDataSet.xss">
+      <DependentUpon>EMailHandlerInviteDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="FacebookDataSet.xsc">
+      <DependentUpon>FacebookDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="FacebookDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FacebookDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="FacebookDataSet.xss">
+      <DependentUpon>FacebookDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="SessionHandler.xsc">
+      <DependentUpon>SessionHandler.xsd</DependentUpon>
+    </None>
+    <None Include="SessionHandler.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SessionHandler.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="SessionHandler.xss">
+      <DependentUpon>SessionHandler.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Framework\Dev\Ver.1.0\EnterpriseLibrary\Common\Common.csproj">
+      <Project>{A09297C8-2C40-470B-8856-D856676DDFFA}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\Framework\Dev\Ver.1.0\EnterpriseLibrary\Data\Data.csproj">
+      <Project>{D349B6D8-992F-443F-BB57-57E50DD98794}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\Framework\Dev\Ver.1.0\MADA.Common\MADA.Common.csproj">
+      <Project>{4CD17982-9552-4CEE-9AD1-531534D9FB8B}</Project>
+      <Name>MADA.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\Framework\Dev\Ver.1.0\MADA.Data\MADA.Data.csproj">
+      <Project>{CC8CF9E4-6755-4B24-AD9A-B70F71EA9645}</Project>
+      <Name>MADA.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\Log\Dev\Ver.1.0\MADA.Log.Api.Net\MADA.Log.Api.Net.csproj">
+      <Project>{11F390E2-70D9-4F27-A0C0-95EC370C4EAC}</Project>
+      <Name>MADA.Log.Api.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MADA.DatePercent.BE\MADA.DatePercent.BE.csproj">
+      <Project>{BA338231-6FA3-45F9-8A80-05FE6821BA5E}</Project>
+      <Name>MADA.DatePercent.BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MADA.DatePercent.DBS\MADA.DatePercent.DBS.csproj">
+      <Project>{E1A8D368-D5B4-4146-B225-189EE66A730B}</Project>
+      <Name>MADA.DatePercent.DBS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+			   minWidth="760"
+			   width="100%" height="100%"
+			   backgroundColor="0xA6D3FF"
+			   creationComplete="creationCompleteHandler(event)"
+			   currentState="Loading"
+			   xmlns:local="*">
+	<fx:Script>
+		<![CDATA[
+			import Log.Logger;
+			
+			import Utils.NavigateToWebUrl;
+			
+			import mx.events.FlexEvent;
+			
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				DoAnimation();
+			}
+			
+			// animation
+			private function DoAnimation():void
+			{
+				if (swfLoaderAnimation.source == null)
+				{
+					swfLoaderAnimation.load("AnimationApp.swf");
+				}
+			}
+			private function DisposeAnimation():void
+			{
+			}
+			protected function swfLoaderAnimation_progressHandler(event:ProgressEvent):void
+			{
+				try
+				{
+					Logger.Instance.WriteInformation(event.bytesLoaded + "/" + event.bytesTotal, flash.utils.getQualifiedClassName(this));
+				}
+				catch (error:Error)
+				{
+					Logger.Instance.WriteError(new Error("swfLoader_progressHandler" + error.message), flash.utils.getQualifiedClassName(this));
+					currentState = "Null";
+					NavigateToWebUrl.RedirectToApp(true);
+				}
+			}
+			protected function swfLoaderAnimation_completeHandler(event:Event):void
+			{
+				try
+				{
+					Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+					
+					m_systemManager = swfLoader.content as SystemManager;
+					m_systemManager.addEventListener(FlexEvent.APPLICATION_COMPLETE, m_systemManager_APPLICATION_COMPLETE); 
+				}
+				catch (error:Error)
+				{
+					Logger.Instance.WriteError(new Error("swfLoader_completeHandler" + error.message), flash.utils.getQualifiedClassName(this));
+					currentState = "Null";
+					NavigateToWebUrl.RedirectToApp(true);
+				}
+			}
+			private function m_systemManager_APPLICATION_COMPLETE(event:FlexEvent):void
+			{
+				try
+				{
+					Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+					DoMapReady();
+				}
+				catch (error:Error)
+				{
+					Logger.Instance.WriteError(new Error("m_systemManager_APPLICATION_COMPLETE" + error.message), flash.utils.getQualifiedClassName(this));
+					currentState = "Null";
+					NavigateToWebUrl.RedirectToApp(true);
+				}
+			}
+			protected function swfLoaderAnimation_ioErrorHandler(event:IOErrorEvent):void
+			{
+				Logger.Instance.WriteIOErrorEvent(event, flash.utils.getQualifiedClassName(this));
+				currentState = "Null";
+				NavigateToWebUrl.RedirectToApp(true);
+			}
+			
+			// platform
+			private function DoPlatform():void
+			{
+				swfLoaderPlatform.addEventListener("LOADED", platform_LOADED);
+				
+				if (swfLoaderPlatform.source == null)
+				{
+					swfLoaderPlatform.load("PlatformApp.swf");
+				}
+				
+				DisposeAnimation();
+			}
+			protected function swfLoaderPlatform_progressHandler(event:ProgressEvent):void
+			{
+			}
+			protected function swfLoaderPlatform_completeHandler(event:Event):void
+			{
+			}
+			protected function swfLoaderPlatform_ioErrorHandler(event:IOErrorEvent):void
+			{
+			}
+			protected function platform_LOADED(event:Event):void
+			{
+				currentState = "Platform";
+			}
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="Loading"/>
+		<s:State name="Animation"/>
+		<s:State name="Platform"/>
+	</s:states>
+	<mx:SWFLoader id="swfLoaderAnimation"
+				  visible="false" visible.Animation="true"
+				  showBusyCursor="true"
+				  progress="swfLoaderAnimation_progressHandler(event)" complete="swfLoaderAnimation_completeHandler(event)" ioError="swfLoaderAnimation_ioErrorHandler(event)"
+				  click="currentState='Platform'"/>
+	<mx:SWFLoader id="swfLoaderPlatform"
+				  visible="false" visible.Animation="true"
+				  showBusyCursor="true"
+				  progress="swfLoaderPlatform_progressHandler(event)" complete="swfLoaderPlatform_completeHandler(event)" ioError="swfLoaderPlatform_ioErrorHandler(event)"/>
+</s:Application>

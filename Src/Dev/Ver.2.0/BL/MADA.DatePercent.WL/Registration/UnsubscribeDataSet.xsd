@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="UnsubscribeDataSet" targetNamespace="http://tempuri.org/UnsubscribeDataSet.xsd" xmlns:mstns="http://tempuri.org/UnsubscribeDataSet.xsd" xmlns="http://tempuri.org/UnsubscribeDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="DatePercentConnectionString" IsAppSettingsProperty="True" Modifier="Assembly" Name="DatePercentConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.DatePercentConnectionString.ConnectionString" Provider="System.Data.SqlClient">
+          </Connection>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ConnectionStringDev" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="ConnectionStringDev (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ConnectionStringDev.ConnectionString" Provider="System.Data.SqlClient">
+          </Connection>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="UnsubscribeDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="UnsubscribeDataSet" msprop:Generator_DataSetName="UnsubscribeDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="T_USER_EMAIL" msprop:Generator_UserTableName="T_USER_EMAIL" msprop:Generator_RowDeletedName="T_USER_EMAILRowDeleted" msprop:Generator_RowChangedName="T_USER_EMAILRowChanged" msprop:Generator_RowClassName="T_USER_EMAILRow" msprop:Generator_RowChangingName="T_USER_EMAILRowChanging" msprop:Generator_RowEvArgName="T_USER_EMAILRowChangeEvent" msprop:Generator_RowEvHandlerName="T_USER_EMAILRowChangeEventHandler" msprop:Generator_TableClassName="T_USER_EMAILDataTable" msprop:Generator_TableVarName="tableT_USER_EMAIL" msprop:Generator_RowDeletingName="T_USER_EMAILRowDeleting" msprop:Generator_TablePropName="T_USER_EMAIL">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="USE_USER_ID" msprop:Generator_UserColumnName="USE_USER_ID" msprop:Generator_ColumnPropNameInRow="USE_USER_ID" msprop:Generator_ColumnVarNameInTable="columnUSE_USER_ID" msprop:Generator_ColumnPropNameInTable="USE_USER_IDColumn" type="xs:int" />
+              <xs:element name="USE_EMAIL" msprop:Generator_UserColumnName="USE_EMAIL" msprop:Generator_ColumnPropNameInRow="USE_EMAIL" msprop:Generator_ColumnVarNameInTable="columnUSE_EMAIL" msprop:Generator_ColumnPropNameInTable="USE_EMAILColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="T_USER_INVITEE" msprop:Generator_UserTableName="T_USER_INVITEE" msprop:Generator_RowDeletedName="T_USER_INVITEERowDeleted" msprop:Generator_TableClassName="T_USER_INVITEEDataTable" msprop:Generator_RowChangedName="T_USER_INVITEERowChanged" msprop:Generator_RowClassName="T_USER_INVITEERow" msprop:Generator_RowChangingName="T_USER_INVITEERowChanging" msprop:Generator_RowEvArgName="T_USER_INVITEERowChangeEvent" msprop:Generator_RowEvHandlerName="T_USER_INVITEERowChangeEventHandler" msprop:Generator_TablePropName="T_USER_INVITEE" msprop:Generator_TableVarName="tableT_USER_INVITEE" msprop:Generator_RowDeletingName="T_USER_INVITEERowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="USI_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="USI_ID" msprop:Generator_ColumnPropNameInRow="USI_ID" msprop:Generator_ColumnVarNameInTable="columnUSI_ID" msprop:Generator_ColumnPropNameInTable="USI_IDColumn" type="xs:int" />
+              <xs:element name="USI_EMAIL" msprop:Generator_UserColumnName="USI_EMAIL" msprop:Generator_ColumnPropNameInRow="USI_EMAIL" msprop:Generator_ColumnVarNameInTable="columnUSI_EMAIL" msprop:Generator_ColumnPropNameInTable="USI_EMAILColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:T_USER_INVITEE" />
+      <xs:field xpath="mstns:USI_ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

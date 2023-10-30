@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PopBox:PopBoxBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="200" height="350"
+				   preinitialize="preinitializeHandler(event)" creationComplete="creationCompleteHandler(event)"
+				   xmlns:PopBox="UI.Box.PopBox.*" xmlns:Box="UI.Box.*" xmlns:PresentsPopBox="Platform.Map.Balloon.PresentsPopBox.*">
+	<fx:Script>
+		<![CDATA[
+			import Data.MemberData;
+			
+			import Handler.AppHandler;
+			import Handler.LocHandler;
+			
+			import UI.Box.BoxMDI;
+			import UI.Box.MessageBox.MessageBox;
+			import UI.Box.PopBox.NodgePositionEnum;
+			import UI.Button.ButtonBase;
+			import UI.List.ListItemEvent;
+			import UI.Photo.PhotoBase;
+			
+			import Handler.LocGeneratedCode;
+			
+			import mx.events.FlexEvent;
+			
+			private var m_memberData:MemberData;
+			
+			protected function preinitializeHandler(event:FlexEvent):void
+			{
+				m_enumNodgePosition = NodgePositionEnum.LEFT_TOP;
+			}
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				boxGroup.InitPadding(m_enumNodgePosition);
+				boxCanvas.InidNodge(m_enumNodgePosition);
+				boxBC.ShowCloseButton();
+				boxBC.ShowTitle(LocHandler.GS(LocGeneratedCode.Select_a_present));
+			}
+			public override function Init(p_buttonOpener:ButtonBase, p_photoOpener:PhotoBase):void
+			{
+				super.Init(p_buttonOpener, p_photoOpener);
+				DoShowBox(boxCanvas);
+			}
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (boxBC != null)
+				{
+					boxBC.Dispose();
+				}
+				if (boxCanvas != null)
+				{
+					boxCanvas.Dispose();
+				}
+				
+				if (presentsList != null)
+				{
+					presentsList.Dispose();
+					presentsList = null;
+				}
+				
+				m_memberData = null;
+			}
+			
+			public function GetData(p_memberData:MemberData):void
+			{
+				m_memberData = p_memberData;
+				DoPaint();
+			}
+			public function DoPaint():void
+			{
+				DoShowContent(boxContent);
+				presentsList.Init(AppHandler.Instance.Presents);
+				presentsList.DoFill();
+			}
+			
+			protected function presentsList_LIST_ITEM_CLICKED(event:ListItemEvent):void
+			{
+				BoxMDI.GetBoxMDI.AddMessageBox(LocHandler.GS(LocGeneratedCode.Send_PresentQ), LocHandler.GS(LocGeneratedCode.Are_you_sure_you_want12to_send_a_present12to_this_memberQ), LocHandler.GS(LocGeneratedCode.Do_not_ask_me_again), m_memberData.Photo, MessageBox.YESNO, event.PostMessageBox);
+				dispatchEvent(new Event(CLOSE));
+			}
+		]]>
+	</fx:Script>
+	<Box:BoxCanvas id="boxCanvas" width="100%" height="100%">
+		<Box:BoxGroup id="boxGroup" width="100%" height="100%">
+			<Box:BoxBC id="boxBC" width="100%" height="100%" CLOSE="dispatchEvent(new Event(CLOSE))">
+				<Box:BoxContent id="boxContent" width="100%" height="100%">
+					<mx:Spacer height="5"/>
+					<PresentsPopBox:PresentsPopBoxList id="presentsList" width="100%" height="100%"
+													   m_bAddSep="true" m_iPaintedListItemCount="5" m_iPaintedListItemStpes="5"/>
+				</Box:BoxContent>
+			</Box:BoxBC>
+		</Box:BoxGroup>
+	</Box:BoxCanvas>
+</PopBox:PopBoxBase>

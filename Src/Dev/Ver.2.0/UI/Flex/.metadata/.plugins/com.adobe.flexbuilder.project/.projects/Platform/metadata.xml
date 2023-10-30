@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<projectMetadata>
+  <swf bgcolor="ffffff" fullPath="/Platform/bin-debug/Platform.swf" height="100%" pageTitle="" width="100%"/>
+  <generatedHTMLResources/>
+  <swf bgcolor="ffffff" fullPath="/Platform/bin-debug/PlatformApp.swf" height="100%" pageTitle="" width="100%"/>
+  <swf bgcolor="ffffff" fullPath="/Platform/bin-release/PlatformApp.swf" height="100%" pageTitle="" width="100%"/>
+  <swf bgcolor="0000ff" fullPath="/Platform/bin-debug/LoaderApp.swf" height="100%" pageTitle="" width="100%"/>
+  <swf bgcolor="ffffff" fullPath="/Platform/bin-debug/Animation.swf" height="100%" pageTitle="" width="100%"/>
+<swf bgcolor="ffffff" fullPath="/Platform/bin-debug/AnimationApp.swf" height="600" pageTitle="" width="760"/>
+  <swf bgcolor="ffffff" fullPath="/Platform/bin-debug/LocationApp.swf" height="100%" pageTitle="" width="100%"/>
+<swf bgcolor="ffffff" fullPath="/Platform/bin-debug/FeedbackPopBox.swf" height="100%" pageTitle="" width="100%"/>
+<swf bgcolor="ffffff" fullPath="/Platform/bin-debug/barak.swf" height="100%" pageTitle="" width="100%"/>
+  <swf bgcolor="ffffff" fullPath="/Platform/bin-debug/barakInnerFilter.swf" height="100%" pageTitle="" width="100%"/>
+<swf bgcolor="ffffff" fullPath="/Platform/bin-debug/FeedbackPopBoxOLD.swf" height="100%" pageTitle="" width="100%"/>
+  <swf bgcolor="ffffff" fullPath="/Platform/bin-debug/ButtonTest.swf" height="100%" pageTitle="" width="100%"/>
+<swf bgcolor="ffffff" fullPath="/Platform/bin-debug/PayPalTest.swf" height="100%" pageTitle="" width="100%"/>
+  <swf bgcolor="ffffff" fullPath="/Platform/bin-debug/WindowOpenerTester.swf" height="100%" pageTitle="" width="100%"/>
+<swf bgcolor="ffffff" fullPath="/Platform/bin-debug/Loader.swf" height="100%" pageTitle="" width="100%"/>
+  <swf bgcolor="ffffff" fullPath="/Platform/bin-debug/LoaderBox.swf" height="100%" pageTitle="" width="100%"/>
+  <swf bgcolor="ffffff" fullPath="/Platform/bin-debug/LoaderBoxOLD.swf" height="100%" pageTitle="" width="100%"/>
+<swf bgcolor="ffffff" fullPath="/Platform/bin-debug/ExternalInterface.swf" height="100%" pageTitle="" width="100%"/>
+  <swf bgcolor="ffffff" fullPath="/Platform/bin-debug/ExternalInterfaceTest.swf" height="100%" pageTitle="" width="100%"/>
+<swf bgcolor="ffffff" fullPath="/Platform/bin-debug/EI2.swf" height="100%" pageTitle="" width="100%"/>
+<swf bgcolor="ffffff" fullPath="/Platform/bin-debug/MapQuestApp.swf" height="100%" pageTitle="" width="100%"/>
+  <swf bgcolor="ffffff" fullPath="/Platform/bin-debug/Test1.swf" height="100%" pageTitle="" width="100%"/>
+<swf bgcolor="ffffff" fullPath="/Platform/bin-debug/MapQuestWS.swf" height="100%" pageTitle="" width="100%"/>
+<swf bgcolor="ffffff" fullPath="/Platform/bin-debug/LocApp.swf" height="100%" pageTitle="" width="100%"/>
+</projectMetadata>

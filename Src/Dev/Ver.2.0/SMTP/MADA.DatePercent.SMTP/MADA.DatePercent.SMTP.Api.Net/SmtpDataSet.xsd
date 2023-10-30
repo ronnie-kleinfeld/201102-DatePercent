@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SmtpDataSet" targetNamespace="http://tempuri.org/SmtpDataSet.xsd" xmlns:mstns="http://tempuri.org/SmtpDataSet.xsd" xmlns="http://tempuri.org/SmtpDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="SmtpDBConnectionString" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="SmtpDBConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.MADA.DatePercent.SMTP.Api.Net.Properties.Settings.GlobalReference.Default.SmtpDBConnectionString" Provider="System.Data.SqlClient">
+          </Connection>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="SmtpDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="SmtpDataSet" msprop:Generator_DataSetName="SmtpDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="T_EMAIL" msprop:Generator_UserTableName="T_EMAIL" msprop:Generator_RowDeletedName="T_EMAILRowDeleted" msprop:Generator_RowChangedName="T_EMAILRowChanged" msprop:Generator_RowClassName="T_EMAILRow" msprop:Generator_RowChangingName="T_EMAILRowChanging" msprop:Generator_RowEvArgName="T_EMAILRowChangeEvent" msprop:Generator_RowEvHandlerName="T_EMAILRowChangeEventHandler" msprop:Generator_TableClassName="T_EMAILDataTable" msprop:Generator_TableVarName="tableT_EMAIL" msprop:Generator_RowDeletingName="T_EMAILRowDeleting" msprop:Generator_TablePropName="T_EMAIL">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EML_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="EML_ID" msprop:Generator_ColumnVarNameInTable="columnEML_ID" msprop:Generator_ColumnPropNameInRow="EML_ID" msprop:Generator_ColumnPropNameInTable="EML_IDColumn" type="xs:int" />
+              <xs:element name="SessionID" msprop:Generator_UserColumnName="SessionID" msprop:Generator_ColumnPropNameInRow="SessionID" msprop:Generator_ColumnVarNameInTable="columnSessionID" msprop:Generator_ColumnPropNameInTable="SessionIDColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="EML_SENDER_NAME" msprop:Generator_UserColumnName="EML_SENDER_NAME" msprop:Generator_ColumnVarNameInTable="columnEML_SENDER_NAME" msprop:Generator_ColumnPropNameInRow="EML_SENDER_NAME" msprop:Generator_ColumnPropNameInTable="EML_SENDER_NAMEColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EML_GETTER_EMAIL" msprop:Generator_UserColumnName="EML_GETTER_EMAIL" msprop:Generator_ColumnVarNameInTable="columnEML_GETTER_EMAIL" msprop:Generator_ColumnPropNameInRow="EML_GETTER_EMAIL" msprop:Generator_ColumnPropNameInTable="EML_GETTER_EMAILColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EML_GETTER_NAME" msprop:Generator_UserColumnName="EML_GETTER_NAME" msprop:Generator_ColumnVarNameInTable="columnEML_GETTER_NAME" msprop:Generator_ColumnPropNameInRow="EML_GETTER_NAME" msprop:Generator_ColumnPropNameInTable="EML_GETTER_NAMEColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EML_SUBJECT" msprop:Generator_UserColumnName="EML_SUBJECT" msprop:Generator_ColumnVarNameInTable="columnEML_SUBJECT" msprop:Generator_ColumnPropNameInRow="EML_SUBJECT" msprop:Generator_ColumnPropNameInTable="EML_SUBJECTColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EML_BODY" msprop:Generator_UserColumnName="EML_BODY" msprop:Generator_ColumnVarNameInTable="columnEML_BODY" msprop:Generator_ColumnPropNameInRow="EML_BODY" msprop:Generator_ColumnPropNameInTable="EML_BODYColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:T_EMAIL" />
+      <xs:field xpath="mstns:EML_ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

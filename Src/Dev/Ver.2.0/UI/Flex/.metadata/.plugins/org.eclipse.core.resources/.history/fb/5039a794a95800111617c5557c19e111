@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PopBox:PopBoxBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="250" height="203"
+				   preinitialize="preinitializeHandler(event)" creationComplete="creationCompleteHandler(event)"
+				   xmlns:PopBox="UI.Box.PopBox.*" xmlns:Box="UI.Box.*" xmlns:Photo="UI.Photo.*" xmlns:Button="UI.Button.*" xmlns:Label="UI.Label.*" xmlns:BalloonPhotos="Platform.Map.Balloon.BalloonPhotos.*" xmlns:BalloonLikes="Platform.Map.Balloon.BalloonLikes.*" xmlns:Friends="Platform.Map.Balloon.Friends.*" xmlns:UI="UI.*" xmlns:flexws="services.flexws.*" xmlns:BalloonFriends="Platform.Map.Balloon.BalloonFriends.*">
+	<fx:Script>
+		<![CDATA[
+			import Data.MemberData;
+			
+			import Handler.SessionHandler;
+			
+			import Platform.Member.Presents.PresentsPopBox;
+			
+			import UI.Box.BoxMDI;
+			import UI.Box.MessageBox.MessageBox;
+			import UI.Box.MessageBox.MessageBoxEvent;
+			import UI.Box.ModalBox.ShowPhotoModalBox;
+			import UI.Box.PopBox.NodgePositionEnum;
+			import UI.Button.ButtonBase;
+			import UI.Button.ButtonEvent;
+			import UI.List.ListItemEvent;
+			import UI.Photo.PhotoBase;
+			import UI.Photo.PhotoEvent;
+			
+			import Utils.AS3.Embeded;
+			import Utils.Log.Logger;
+			
+			import mx.events.FlexEvent;
+			import mx.managers.CursorManager;
+			
+			[Bindable] public var m_memberData:MemberData;
+			
+			//class
+			protected function preinitializeHandler(event:FlexEvent):void
+			{
+				m_enumNodgePosition = NodgePositionEnum.NONE;
+			}
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				boxGroup.InitPadding(m_enumNodgePosition);
+				boxCanvas.InidNodge(m_enumNodgePosition);
+			}
+			public override function Init(p_boxMDI:BoxMDI, p_buttonOpener:ButtonBase, p_photoOpener:PhotoBase):void
+			{
+				super.Init(p_boxMDI, p_buttonOpener, p_photoOpener);
+				DoShowBox(boxCanvas);
+			}
+			public override function Dispose():void
+			{
+				super.Dispose();
+				boxCanvas.Dispose();
+				boxBC.Dispose();
+			}
+			
+			public function GetData(p_memberData:MemberData):void
+			{
+				m_memberData = p_memberData;
+				
+				balloonPhotosList.GetData(m_memberData.Photos);
+				balloonFriendsList.GetData(m_memberData.Friends);
+				balloonLikesList.GetData(m_memberData.Likes);
+				DoPaint();
+			}
+			public function DoPaint():void
+			{
+				DoShowContent(boxContent);
+			}
+			
+			// events
+			protected function clickPhoto_CLICKED(event:PhotoEvent):void
+			{
+				var memberPhotosModalBox:ShowPhotoModalBox = new ShowPhotoModalBox();
+				m_boxMDI.AddModalBox(memberPhotosModalBox);
+				memberPhotosModalBox.Init(m_boxMDI, null, null);
+				memberPhotosModalBox.GetData(event.PhotoUI.Photo, null);
+			}
+			protected function clickButtonStartChat_CLICKED(event:ButtonEvent):void
+			{
+				// add member (m_strID) to chat bar
+				// open memberPopBox (m_strID)
+				
+				
+			}
+			
+			private function selectButtonAddToFavorites_CLICKED(event:ButtonEvent):void
+			{
+				if (event.GetButton.Selected)
+				{
+					m_boxMDI.AddMessageBox("Add to Favorites?", "Add this member\nto your favorites?", m_memberData.Photo, MessageBox.YESNO, selectPhotoAddToFavoritesAddPostModalBox);
+				}
+				else
+				{
+					m_boxMDI.AddMessageBox("Remove from Favorites?", "Remove this member\nfrom your favorites?", m_memberData.Photo, MessageBox.YESNO, selectPhotoAddToFavoritesRemovePostModalBox);
+				}
+			}
+			public function selectPhotoAddToFavoritesAddPostModalBox(event:MessageBoxEvent):void
+			{
+				if (event.type == MessageBox.YES)
+				{
+					callResponderAddMemberToFavorites.token = wsFlex.AddMemberToFavorites(SessionHandler.Instance.Session.SID, m_memberData.ID);
+					m_memberData.IsFavoriteToggler();
+				}
+				else
+				{
+					selectButtonAddToFavorites.Selected = !selectButtonAddToFavorites.Selected;
+				}
+			}
+			public function selectPhotoAddToFavoritesRemovePostModalBox(event:MessageBoxEvent):void
+			{
+				if (event.type == MessageBox.YES)
+				{
+					callResponderRemoveMemberFromFavorites.token = wsFlex.RemoveMemberFromFavorites(SessionHandler.Instance.Session.SID, m_memberData.ID);
+					m_memberData.IsFavoriteToggler();
+				}
+				else
+				{
+					selectButtonAddToFavorites.Selected = !selectButtonAddToFavorites.Selected;
+				}
+			}
+			
+			private function selectButtonSendPresent_CLICKED(event:ButtonEvent):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+				var presentsPopBox:PresentsPopBox = new PresentsPopBox();
+				m_boxMDI.AddNonModalPopUp(presentsPopBox);
+				presentsPopBox.Init(m_boxMDI, null, null);
+				presentsPopBox.GetData(m_memberData);
+			}
+			
+			private function clickButtonBlock_CLICKED(event:ButtonEvent):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+				m_boxMDI.AddMessageBox("Block Member?", "Are you sure you want\nto block this member?", m_memberData.Photo, MessageBox.YESNO, clickButtonBlockPostModalBox);
+			}
+			public function clickButtonBlockPostModalBox(event:MessageBoxEvent):void
+			{
+				if (event.type == MessageBox.YES)
+				{
+					callResponderBlockMember.token = wsFlex.BlockMember(SessionHandler.Instance.Session.SID, m_memberData.ID);
+					// todo: remove memebr from session list
+				}
+			}
+			
+			protected function balloonPhotosList_LIST_ITEM_CLICKED(event:ListItemEvent):void
+			{
+				var memberPhotosModalBox:ShowPhotoModalBox = new ShowPhotoModalBox();
+				m_boxMDI.AddModalBox(memberPhotosModalBox);
+				memberPhotosModalBox.Init(m_boxMDI, null, null);
+				memberPhotosModalBox.GetData(m_memberData.Photo, m_memberData.Photos);
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:CallResponder id="callResponderBlockMember"
+						 result="Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"
+						 fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+		<s:CallResponder id="callResponderAddMemberToFavorites"
+						 result="Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"
+						 fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+		<s:CallResponder id="callResponderRemoveMemberFromFavorites"
+						 result="Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"
+						 fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+		<flexws:FlexWS id="wsFlex"
+					   fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+	</fx:Declarations>
+	<Box:BoxCanvas id="boxCanvas" width="100%" height="100%">
+		<Box:BoxGroup id="boxGroup" width="100%" height="100%">
+			<Box:BoxBC id="boxBC" width="100%" height="100%" backgroundColor="0x3399ff"
+					   CLOSE="dispatchEvent(new Event(CLOSE))">
+				<Box:BoxContent id="boxContent" width="100%" height="100%">
+					<Box:layout>
+						<s:VerticalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"
+										  gap="0"/>
+					</Box:layout>
+					<s:HGroup width="100%">
+						<s:Group height="100%">
+							<Photo:ClickPhoto id="clickPhoto" m_iSize="51" Photo="{m_memberData.Photo}" m_strTooltip="Click for large photo" CLICKED="clickPhoto_CLICKED(event)"/>
+							<Button:ClickButton id="clickButtonStartChat" top="47" left="-4" m_strText="Chat" m_strTooltip="Click to chat with this member" m_iLabelPaddingLeft="8"
+												m_png="{Embeded.s_imgStartChat}"
+												CLICKED="clickButtonStartChat_CLICKED(event)"/>
+						</s:Group>
+						<s:VGroup width="100%" height="100%" gap="0">
+							<Label:HeaderLabel text="{m_memberData.NickName}"/>
+							<mx:Spacer height="1"/>
+							<Label:NormalLabel text="Age: {m_memberData.Age} y/o"/>
+							<Label:NormalLabel text="Distance: {m_memberData.DistanceLabel} meter"/>
+							<Label:NormalLabel text="DatePrecent: {m_memberData.DatePercentage}%"/>
+						</s:VGroup>
+						<s:VGroup width="20" height="100%" horizontalAlign="center" gap="0">
+							<Button:SelectButton id="selectButtonAddToFavorites"
+												 m_strTooltip="{selectButtonAddToFavorites.Selected?'Remove from Favorites':'Add to Favorites'}" m_png="{Embeded.s_imgFavorite}" Selected="{m_memberData.IsFavorite}"
+												 CLICKED="selectButtonAddToFavorites_CLICKED(event)"/>
+							<Button:SelectButton id="selectButtonSendPresent" m_strTooltip="Send a Present" m_png="{Embeded.s_imgSendGift}"
+												 CLICKED="selectButtonSendPresent_CLICKED(event)"/>
+							<Button:ClickButton id="clickButtonBlock" m_strTooltip="Block Member" m_png="{Embeded.s_imgBlock}"
+												CLICKED="clickButtonBlock_CLICKED(event)"/>
+						</s:VGroup>
+					</s:HGroup>
+					<s:HGroup width="100%" verticalAlign="middle" height="28" gap="2">
+						<UI:SimpleImage m_png="{Embeded.s_imgBirthdayCake}" toolTip="Birthdate"/>
+						<Label:NormalLabel text="16/04/1982"/>
+						<UI:SimpleImage m_png="{Embeded.s_imgHoroscope01aries}" toolTip="Horoscope"/>
+						<Label:NormalLabel text="Aries"/>
+					</s:HGroup>
+					<s:HGroup width="100%" verticalAlign="middle" height="28" gap="2">
+						<UI:SimpleImage m_png="{Embeded.s_imgShowMemberPhotos}" toolTip="Member's Photos"/>
+						<BalloonPhotos:BalloonPhotosList id="balloonPhotosList" width="100%" height="32" m_iListItemAdded="6" m_iIncrementSteps="6"
+														 m_bSmallIcons="true" m_bAddSep="false" m_boxMDI="{m_boxMDI}"
+														 LIST_ITEM_CLICKED="balloonPhotosList_LIST_ITEM_CLICKED(event)"/>
+					</s:HGroup>
+					<s:HGroup width="100%" verticalAlign="middle" height="28" gap="2">
+						<UI:SimpleImage m_png="{Embeded.s_imgLike}" toolTip="Things you both like"/>
+						<BalloonLikes:BalloonLikesList id="balloonLikesList" width="100%" height="28" m_iListItemAdded="7" m_iIncrementSteps="7"
+													   m_bSmallIcons="true" m_bAddSep="false" m_boxMDI="{m_boxMDI}"/>
+					</s:HGroup>
+					<s:HGroup width="100%" verticalAlign="middle" gap="2">
+						<UI:SimpleImage m_png="{Embeded.s_imgFacebook}" toolTip="Mutual friends"/>
+						<BalloonFriends:BalloonFriendsList id="balloonFriendsList" width="100%" height="26" m_iListItemAdded="7" m_iIncrementSteps="7"
+														   m_bSmallIcons="true" m_bAddSep="false" m_boxMDI="{m_boxMDI}"/>
+					</s:HGroup>
+				</Box:BoxContent>
+			</Box:BoxBC>
+		</Box:BoxGroup>
+	</Box:BoxCanvas>
+</PopBox:PopBoxBase>

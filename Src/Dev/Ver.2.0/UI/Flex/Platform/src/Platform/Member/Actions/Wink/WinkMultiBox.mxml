@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="100%" height="100%"
+		 xmlns:flexws="services.flexws.*" xmlns:Button="UI.Button.*" xmlns:Label="UI.Label.*">
+	<s:layout>
+		<s:VerticalLayout gap="2"/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import Data.Member.CommData;
+			import Data.MemberData;
+			
+			import Enum.CommTypeEnum;
+			
+			import Handler.LocHandler;
+			import Handler.SesHandler;
+			
+			import UI.Box.BoxMDI;
+			import UI.Box.MessageBox.MessageBox;
+			import UI.Box.MessageBox.MessageBoxEvent;
+			import UI.Button.ButtonEvent;
+			
+			import Utils.AS3.Embeded;
+			import Handler.LocGeneratedCode;
+			import Utils.Log.Logger;
+			
+			import mx.managers.CursorManager;
+			
+			[Bindable] private var m_memberData:MemberData;
+			
+			public function Init(p_memberData:MemberData):void
+			{
+				m_memberData = p_memberData;
+			}
+			public function Dispose():void
+			{
+				if (clickButton01 != null)
+				{
+					clickButton01.Dispose();
+					clickButton01 = null;
+				}
+				if (clickButton02 != null)
+				{
+					clickButton02.Dispose();
+					clickButton02 = null;
+				}
+				if (clickButton03 != null)
+				{
+					clickButton03.Dispose();
+					clickButton03 = null;
+				}
+				if (clickButton04 != null)
+				{
+					clickButton04.Dispose();
+					clickButton04 = null;
+				}
+				if (clickButton05 != null)
+				{
+					clickButton05.Dispose();
+					clickButton05 = null;
+				}
+				if (clickButton06 != null)
+				{
+					clickButton06.Dispose();
+					clickButton06 = null;
+				}
+				if (clickButton07 != null)
+				{
+					clickButton07.Dispose();
+					clickButton07 = null;
+				}
+				if (clickButton08 != null)
+				{
+					clickButton08.Dispose();
+					clickButton08 = null;
+				}
+				if (clickButton09 != null)
+				{
+					clickButton09.Dispose();
+					clickButton09 = null;
+				}
+				if (clickButton10 != null)
+				{
+					clickButton10.Dispose();
+					clickButton10 = null;
+				}
+				if (clickButton11 != null)
+				{
+					clickButton11.Dispose();
+					clickButton11 = null;
+				}
+				if (clickButton12 != null)
+				{
+					clickButton12.Dispose();
+					clickButton12 = null;
+				}
+				if (clickButton13 != null)
+				{
+					clickButton13.Dispose();
+					clickButton13 = null;
+				}
+				if (clickButton14 != null)
+				{
+					clickButton14.Dispose();
+					clickButton14 = null;
+				}
+				if (clickButton15 != null)
+				{
+					clickButton15.Dispose();
+					clickButton15 = null;
+				}
+				if (clickButton16 != null)
+				{
+					clickButton16.Dispose();
+					clickButton16 = null;
+				}
+				if (clickButton17 != null)
+				{
+					clickButton17.Dispose();
+					clickButton17 = null;
+				}
+				if (clickButton18 != null)
+				{
+					clickButton18.Dispose();
+					clickButton18 = null;
+				}
+				if (clickButton19 != null)
+				{
+					clickButton19.Dispose();
+					clickButton19 = null;
+				}
+				if (clickButton20 != null)
+				{
+					clickButton20.Dispose();
+					clickButton20 = null;
+				}
+				if (clickButton21 != null)
+				{
+					clickButton21.Dispose();
+					clickButton21 = null;
+				}
+				if (clickButton22 != null)
+				{
+					clickButton22.Dispose();
+					clickButton22 = null;
+				}
+				if (clickButton23 != null)
+				{
+					clickButton23.Dispose();
+					clickButton23 = null;
+				}
+				if (clickButton24 != null)
+				{
+					clickButton24.Dispose();
+					clickButton24 = null;
+				}
+				if (clickButton25 != null)
+				{
+					clickButton25.Dispose();
+					clickButton25 = null;
+				}
+				if (clickButton26 != null)
+				{
+					clickButton26.Dispose();
+					clickButton26 = null;
+				}
+				if (clickButton27 != null)
+				{
+					clickButton27.Dispose();
+					clickButton27 = null;
+				}
+				if (clickButton28 != null)
+				{
+					clickButton28.Dispose();
+					clickButton28 = null;
+				}
+				if (clickButton29 != null)
+				{
+					clickButton29.Dispose();
+					clickButton29 = null;
+				}
+				if (clickButton30 != null)
+				{
+					clickButton30.Dispose();
+					clickButton30 = null;
+				}
+				if (clickButton31 != null)
+				{
+					clickButton31.Dispose();
+					clickButton31 = null;
+				}
+				if (clickButton32 != null)
+				{
+					clickButton32.Dispose();
+					clickButton32 = null;
+				}
+				if (clickButton33 != null)
+				{
+					clickButton33.Dispose();
+					clickButton33 = null;
+				}
+				if (clickButton34 != null)
+				{
+					clickButton34.Dispose();
+					clickButton34 = null;
+				}
+				if (clickButton35 != null)
+				{
+					clickButton35.Dispose();
+					clickButton35 = null;
+				}
+				if (clickButton37 != null)
+				{
+					clickButton37.Dispose();
+					clickButton37 = null;
+				}
+				if (clickButton38 != null)
+				{
+					clickButton38.Dispose();
+					clickButton38 = null;
+				}
+				if (clickButton39 != null)
+				{
+					clickButton39.Dispose();
+					clickButton39 = null;
+				}
+				if (clickButton40 != null)
+				{
+					clickButton40.Dispose();
+					clickButton40 = null;
+				}
+				if (clickButton41 != null)
+				{
+					clickButton41.Dispose();
+					clickButton41 = null;
+				}
+				if (clickButton43 != null)
+				{
+					clickButton43.Dispose();
+					clickButton43 = null;
+				}
+				if (clickButton44 != null)
+				{
+					clickButton44.Dispose();
+					clickButton44 = null;
+				}
+				if (clickButton45 != null)
+				{
+					clickButton45.Dispose();
+					clickButton45 = null;
+				}
+				if (clickButton46 != null)
+				{
+					clickButton46.Dispose();
+					clickButton46 = null;
+				}
+				
+				m_memberData = null;
+			}
+			
+			protected function clickButton_CLICKED(event:ButtonEvent):void
+			{
+				m_memberData.Comms.AddItemCommData(new CommData(
+					-1, SesHandler.Instance.Session.Me.ID, m_memberData.ID, CommTypeEnum.WINK, new Date(), "", int(event.GetButton.m_strTag), -1, true));
+				callResponderSendTwink.token = wsFlex.SendTwink(SesHandler.Instance.Session.SID, m_memberData.ID, int(event.GetButton.m_strTag));
+				if (SesHandler.Instance.Session.Me.DontAskTwinkSent)
+				{
+					BoxMDI.GetBoxMDI.AddMessageBox("", LocHandler.GS(LocGeneratedCode.The_twink_was_sent_successfully), LocHandler.GS(LocGeneratedCode.Do_not_tell_me_again), null, MessageBox.YES, clickButtonYesPostModalBox);
+				}
+			}
+			public function clickButtonYesPostModalBox(event:MessageBoxEvent):void
+			{
+				if (event.DontAsk)
+				{
+					SesHandler.Instance.Session.Me.DontAskTwinkSent = true;
+					wsFlex.DontAskTwinkSent(SesHandler.Instance.Session.SID);
+				}
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:CallResponder id="callResponderSendTwink"
+						 result="Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"
+						 fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+		<flexws:FlexWS id="wsFlex"
+					   fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+	</fx:Declarations>
+	<Label:HeaderLabel width="100%" text="{LocHandler.GS(LocGeneratedCode.Send_wink)}" textAlign="left"/>
+	<s:HGroup gap="2">
+		<Button:ClickButton id="clickButton01" m_strTag="1" m_png="{Embeded.s_imgTwink01}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton02" m_strTag="2" m_png="{Embeded.s_imgTwink02}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton03" m_strTag="3" m_png="{Embeded.s_imgTwink03}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton04" m_strTag="4" m_png="{Embeded.s_imgTwink04}" CLICKED="clickButton_CLICKED(event)"/>
+	</s:HGroup>
+	<s:HGroup gap="2">
+		<Button:ClickButton id="clickButton05" m_strTag="5" m_png="{Embeded.s_imgTwink05}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton06" m_strTag="6" m_png="{Embeded.s_imgTwink06}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton07" m_strTag="7" m_png="{Embeded.s_imgTwink07}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton08" m_strTag="8" m_png="{Embeded.s_imgTwink08}" CLICKED="clickButton_CLICKED(event)"/>
+	</s:HGroup>
+	<s:HGroup gap="2">
+		<Button:ClickButton id="clickButton09" m_strTag="9" m_png="{Embeded.s_imgTwink09}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton10" m_strTag="10" m_png="{Embeded.s_imgTwink10}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton11" m_strTag="11" m_png="{Embeded.s_imgTwink11}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton12" m_strTag="12" m_png="{Embeded.s_imgTwink12}" CLICKED="clickButton_CLICKED(event)"/>
+	</s:HGroup>
+	<s:HGroup gap="2">
+		<Button:ClickButton id="clickButton13" m_strTag="13" m_png="{Embeded.s_imgTwink13}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton14" m_strTag="14" m_png="{Embeded.s_imgTwink14}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton15" m_strTag="15" m_png="{Embeded.s_imgTwink15}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton16" m_strTag="16" m_png="{Embeded.s_imgTwink16}" CLICKED="clickButton_CLICKED(event)"/>
+	</s:HGroup>
+	<s:HGroup gap="2">
+		<Button:ClickButton id="clickButton17" m_strTag="17" m_png="{Embeded.s_imgTwink17}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton18" m_strTag="18" m_png="{Embeded.s_imgTwink18}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton19" m_strTag="19" m_png="{Embeded.s_imgTwink19}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton20" m_strTag="20" m_png="{Embeded.s_imgTwink20}" CLICKED="clickButton_CLICKED(event)"/>
+	</s:HGroup>
+	<s:HGroup gap="2">
+		<Button:ClickButton id="clickButton21" m_strTag="21" m_png="{Embeded.s_imgTwink21}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton22" m_strTag="22" m_png="{Embeded.s_imgTwink22}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton23" m_strTag="23" m_png="{Embeded.s_imgTwink23}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton24" m_strTag="24" m_png="{Embeded.s_imgTwink24}" CLICKED="clickButton_CLICKED(event)"/>
+	</s:HGroup>
+	<s:HGroup gap="2">
+		<Button:ClickButton id="clickButton25" m_strTag="25" m_png="{Embeded.s_imgTwink25}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton26" m_strTag="26" m_png="{Embeded.s_imgTwink26}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton27" m_strTag="27" m_png="{Embeded.s_imgTwink27}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton28" m_strTag="28" m_png="{Embeded.s_imgTwink28}" CLICKED="clickButton_CLICKED(event)"/>
+	</s:HGroup>
+	<s:HGroup gap="2">
+		<Button:ClickButton id="clickButton29" m_strTag="29" m_png="{Embeded.s_imgTwink29}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton30" m_strTag="30" m_png="{Embeded.s_imgTwink30}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton31" m_strTag="31" m_png="{Embeded.s_imgTwink31}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton32" m_strTag="32" m_png="{Embeded.s_imgTwink32}" CLICKED="clickButton_CLICKED(event)"/>
+	</s:HGroup>
+	<s:HGroup gap="2">
+		<Button:ClickButton id="clickButton33" m_strTag="33" m_png="{Embeded.s_imgTwink33}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton34" m_strTag="34" m_png="{Embeded.s_imgTwink34}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton35" m_strTag="35" m_png="{Embeded.s_imgTwink35}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton37" m_strTag="37" m_png="{Embeded.s_imgTwink37}" CLICKED="clickButton_CLICKED(event)"/>
+	</s:HGroup>
+	<s:HGroup gap="2">
+		<Button:ClickButton id="clickButton38" m_strTag="38" m_png="{Embeded.s_imgTwink38}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton39" m_strTag="39" m_png="{Embeded.s_imgTwink39}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton40" m_strTag="40" m_png="{Embeded.s_imgTwink40}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton41" m_strTag="41" m_png="{Embeded.s_imgTwink41}" CLICKED="clickButton_CLICKED(event)"/>
+	</s:HGroup>
+	<s:HGroup gap="2">
+		<Button:ClickButton id="clickButton43" m_strTag="43" m_png="{Embeded.s_imgTwink43}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton44" m_strTag="44" m_png="{Embeded.s_imgTwink44}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton45" m_strTag="45" m_png="{Embeded.s_imgTwink45}" CLICKED="clickButton_CLICKED(event)"/>
+		<Button:ClickButton id="clickButton46" m_strTag="46" m_png="{Embeded.s_imgTwink46}" CLICKED="clickButton_CLICKED(event)"/>
+	</s:HGroup>
+</s:Group>

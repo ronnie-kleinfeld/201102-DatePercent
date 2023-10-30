@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns="http://rorweb.com/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <Resource rdf:about="sitemap">
+    <type>SiteMap</type>
+    <title>DatePercent</title>
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Web/user/g-css-js/ewisoft-dir.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Web/SiteMap.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Web/support.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Web/TermsOfUse.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Web/PrivacyPolicy.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Web/share.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Web/rsyebrjzadpdljrc.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Web/products.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Web/overview.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Web/index.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Web/company.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Web/ComingSoon.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Web/FacebookApp.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Web/faqs.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Web/help.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Web/Home.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Web/HowCanIShare.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Web/ContactUs.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Demo/Support/Support.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Registration/Activation.aspx</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Registration/GMail.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Public/Goodbye.aspx</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Public/RedirerctToShareOnFacebook.aspx</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Public/Unauthorised.aspx</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Registration/Unsubscribe.aspx</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Registration/GMail.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/RedirectToApp.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/index.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/default.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/default.html</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/index.aspx</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/Default.aspx</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/iisstart.htm</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+  <Resource>
+    <url>http://www.datepercent.com/index.html</url>
+    <resourceOf rdf:resource="sitemap" />
+  </Resource>
+</rdf:RDF>

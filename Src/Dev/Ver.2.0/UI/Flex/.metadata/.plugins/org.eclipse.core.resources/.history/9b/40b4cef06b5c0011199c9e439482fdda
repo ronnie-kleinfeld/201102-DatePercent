@@ -1,0 +1,16 @@
+package Data.Base
+{
+	public class ObjectBase
+	{
+		[Bindable] public var ID:int;
+		
+		public function ObjectBase(p_iID:int)
+		{
+			ID = p_iID;
+		}
+		public function Dispose():void
+		{
+			super.Dispose();
+		}
+	}
+}

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<List:ListItemBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="100%" height="60"
+				   xmlns:List="UI.List.*" xmlns:Photo="UI.Photo.*" xmlns:Label="UI.Label.*" xmlns:Sep="UI.Sep.*">
+	<fx:Script>
+		<![CDATA[
+			import Data.MemberData;
+			import Data.Presents.PresentData;
+			
+			import Handler.LocHandler;
+			
+			import Platform.TopBar.Settings.MyCredits.Payment.PresentsPaymentModalBox;
+			
+			import UI.Box.BoxMDI;
+			
+			import Utils.AS3.Filters;
+			import Handler.LocGeneratedCode;
+			
+			[Bindable] private var m_memberData:MemberData;
+			
+			protected override function get WidthTo():Number
+			{
+				return 190;
+			}
+			protected override function get HeightTo():Number
+			{
+				return 59;
+			}
+			
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (simplePhoto != null)
+				{
+					simplePhoto.Dispose();
+					simplePhoto = null;
+				}
+				
+				m_memberData = null;
+			}
+			
+			public function GetData(p_memberData:MemberData):void
+			{
+				m_memberData = p_memberData;
+			}
+			
+			protected override function rollOverHandler(event:MouseEvent):void
+			{
+				super.rollOverHandler(event);
+				if (event.buttonDown)
+				{
+					simplePhoto.filters = [Utils.AS3.Filters.Glow, Utils.AS3.Filters.Sunken];
+				}
+				else
+				{
+					simplePhoto.filters = [Utils.AS3.Filters.Glow];
+				}
+			}
+			protected override function rollOutHandler(event:MouseEvent):void
+			{
+				super.rollOutHandler(event);
+				simplePhoto.filters = null;
+			}
+			protected override function mouseDownHandler(event:MouseEvent):void
+			{
+				super.mouseDownHandler(event);
+				simplePhoto.filters = [Utils.AS3.Filters.Glow, Utils.AS3.Filters.Sunken];
+			}
+			protected override function mouseUpHandler(event:MouseEvent):void
+			{
+				super.mouseUpHandler(event);
+				simplePhoto.filters = [Utils.AS3.Filters.Glow];
+			}
+			protected override function clickHandler(event:MouseEvent):void
+			{
+				var presentsPaymentModalBox:PresentsPaymentModalBox = new PresentsPaymentModalBox();
+				BoxMDI.GetBoxMDI.AddModalBox(presentsPaymentModalBox);
+				presentsPaymentModalBox.Init(null, null);
+				presentsPaymentModalBox.GetData(m_memberData, PresentData(m_objectBase));
+			}
+		]]>
+	</fx:Script>
+	<s:VGroup width="100%" height="100%">
+		<s:HGroup width="100%" height="100%" paddingLeft="2" paddingRight="2" gap="7">
+			<Photo:SimplePhoto id="simplePhoto" m_iSize="49" Photo="{PresentData(m_objectBase).Photo}"/>
+			<s:VGroup width="100%" height="100%" gap="0">
+				<Label:HeaderLabel id="labelHeadingName" text="{PresentData(m_objectBase).Name}"/>
+				<mx:Spacer height="1"/>
+				<Label:NormalLabel id="labelNormalCredits" text="{LocHandler.GS(LocGeneratedCode.Cost)}: {PresentData(m_objectBase).Cost} {LocHandler.GS(LocGeneratedCode.Credits)}"/>
+			</s:VGroup>
+		</s:HGroup>
+		<Sep:HSep width="100%" visible="{m_bAddSep}"/>
+	</s:VGroup>
+</List:ListItemBase>

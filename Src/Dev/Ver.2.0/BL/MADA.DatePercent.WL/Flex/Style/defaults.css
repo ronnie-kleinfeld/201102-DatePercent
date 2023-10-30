@@ -1,0 +1,419 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace MX "FlexTemplates.MX.*";
+
+/* Application */
+.global
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	color: #3b5998;
+	font-size: 12;
+}
+
+/* BorderContainer */
+.BorderContainer
+{
+	background-color: #ffffff;
+	border-visible: true;
+	border-color: #3b5998;
+	border-style: none;
+	border-weight: 1;
+	corner-radius: 3;
+}
+.BorderContainerTitle
+{
+	background-color: #3b5998;
+	border-visible: false;
+	corner-radius: 3;
+}
+.BorderContainerWeak
+{
+	background-color: #ffffff;
+	border-visible: false;
+	corner-radius: 3;
+}
+.BorderContainerCrumb
+{
+	background-color: #ffffff;
+	border-visible: true;
+	border-color: #3b5998;
+	border-style: none;
+	border-weight: 2;
+	corner-radius: 3;
+}
+.BorderContainerBox
+{
+	background-color: #bdc0c5;
+	color: #3b5998;
+	border-visible: false;
+	corner-radius: 4;
+}
+.BorderContainerBoxUnSelected
+{
+	background-color: #e0e0e0;
+	color: #3b5998;
+	border-visible: false;
+	corner-radius: 3;
+}
+.BorderContainerMenu
+{
+	background-color: #ffffff;
+	border-visible: true;
+	border-color: #1d4088;
+	border-style: none;
+	border-weight: 1;
+	corner-radius: 0;
+}
+.BorderContainerPopBox
+{
+	background-color: #ffffff;
+	border-visible: true;
+	border-color: #3b5998;
+	border-style: none;
+	border-weight: 2;
+	corner-radius: 3;
+	drop-shadow-visible: true;
+}
+.BorderContainerMouseOver
+{
+	background-color: #3b5998;
+	corner-radius: 3;
+}
+.BorderContainerMouseDown
+{
+	background-color: #3b5998;
+	corner-radius: 3;
+}
+.BorderContainerTopBar
+{
+	background-color: #3b5998;
+	border-visible: false;
+}
+.BorderContainerTab
+{
+	background-color: #3b5998;
+	border-visible: false;
+	corner-radius: 0;
+}
+.BorderContainerTabAsSelected
+{
+	background-color: #ffffff;
+	border-visible: false;
+	corner-radius: 0;
+}
+.BorderContainerSliderFotter
+{
+	background-color: #bdc0c5;
+	color: #3b5998;
+	border-visible: false;
+}
+.BorderContainerFotter
+{
+	background-color: #3b5998;
+	border-visible: false;
+}
+.BorderContainerThumb
+{
+	background-color: #e0e0e0;
+	border-visible: true;
+	border-color: #c0c7cf;
+	border-style: solidl;
+	border-weight: 1;
+	corner-radius: 3;
+}
+.BorderContainerThumbMouseOver
+{
+	background-color: #e0e0e0;
+	border-visible: true;
+	border-color: #c0c7cf;
+	border-style: solidl;
+	border-weight: 1;
+	corner-radius: 3;
+}
+.BorderContainerToolTip
+{
+	background-color: #ffffff;
+	border-visible: true;
+	border-color: #029800;
+	border-style: none;
+	border-weight: 1;
+	corner-radius: 2;
+}
+
+/* clicker */
+.TaskBarClicker
+{
+	background-color: #3b5998;
+	border-visible: true;
+	border-color: #90959b;
+	border-style: none;
+	border-weight: 2;
+	corner-radius: 3;
+}
+.TaskBarClickerMouseOver
+{
+	background-color: #3b5998;
+	border-visible: true;
+	border-color: #b4e3e9;
+	border-weight: 2;
+	corner-radius: 3;
+}
+.TaskBarClickerMouseDown
+{
+	background-color: #3b5998;
+	border-visible: true;
+	border-color: #b4e3e9;
+	border-weight: 2;
+	corner-radius: 3;
+}
+
+/* Label */
+.Label
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	color: #3b5998;
+	font-size: 12;
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-top: 0;
+	text-align: center;
+	vertical-align: middle;
+}
+.LabelBold
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	color: #3b5998;
+	font-size: 12;
+	font-weight: bold;
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-top: 0;
+	text-align: center;
+	vertical-align: middle;
+}
+.LabelTitle
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	color: #ffffff;
+	font-size: 12;
+	font-weight: bold;
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-top: 0;
+	text-align: center;
+	vertical-align: middle;
+}
+.LabelBoxTitle
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	color: #3b5998;
+	font-size: 12;
+	font-weight: bold;
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-top: 0;
+	text-align: center;
+	vertical-align: middle;
+}
+.LabelSplashProgress
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	color: #3b5998;
+	font-size: 12;
+}
+
+/* DataGrid */
+.DataGrid
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	color: #3b5998;
+	font-size: 12;
+	corner-radius: 2;
+	roll-over-color: #b4e3e9;
+	text-roll-over-color: #3b5998;
+	selection-color: #3b5998;
+	text-selected-color: #ffffff;
+}
+.DataGridColumnHeader
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	color: #3b5998;
+	font-size: 12;
+	font-weight: normal;
+	text-align: center;
+}
+
+/* Input */
+.TextInput
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	color: #3b5998;
+	font-size: 12;
+}
+.TextArea
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	color: #3b5998;
+	font-size: 12;
+}
+
+/* LinkButton */
+.LinkButton
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	color: #3b5998;
+	font-size: 12;
+	font-weight: normal;
+	text-decoration: underline;
+	corner-radius: 2;
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-top: 0;
+}
+.LinkButtonTitle
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	color: #ffffff;
+	font-size: 12;
+	font-weight: normal;
+	text-decoration: underline;
+	corner-radius: 2;
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-top: 0;
+}
+.ButtonLinkAction1
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	color: #ffffff;
+	font-size: 14;
+	fontWeight: bold;
+	text-decoration: underline;
+	corner-radius: 2;
+	rollOverColor: #b4e3e9;
+	textRollOverColor: #3b5998;
+	selectionColor: #ffffff;
+	textSelectedColor: #3b5998;
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-top: 0;
+}
+.LinkButtonTab
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	color: #ffffff;
+	font-size: 12;
+	fontWeight: normal;
+	text-decoration: underline;
+	corner-radius: 2;
+	text-align: left;
+	vertical-align: middle;
+	rollOverColor: #b4e3e9;
+	textRollOverColor: #3b5998;
+	selectionColor: #ffffff;
+	textSelectedColor: #3b5998;
+	corner-radius: 0;
+}
+.LinkButtonTabAsSelected
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	color: #3b5998;
+	disabled-color: #3b5998;
+	font-size: 12;
+	fontWeight: bold;
+	corner-radius: 2;
+	text-align: right;
+	vertical-align: middle;
+	rollOverColor: #ffffff;
+	textRollOverColor: #3b5998;
+	selectionColor: #ffffff;
+	textSelectedColor: #3b5998;
+	corner-radius: 0;
+}
+
+/* Button */
+.ButtonTitle
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	color: #ffffff;
+	corner-radius: 2;
+}
+.Button
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	color: #3b5998;
+	corner-radius: 2;
+}
+.ButtonBarTitle
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	color: #3b5998;
+	fontSize: 10;
+	fontWeight: normal;
+	corner-radius: 2;
+	rollOverColor: #b4e3e9;
+	textRollOverColor: #3b5998;
+	selectionColor: #ffffff;
+	textSelectedColor: #3b5998;
+	disabled-color: #ffffff;
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-top: 0;
+	text-align: center;
+}
+
+/* DropDownList */
+.DropDownList
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	color: #3b5998;
+	font-size: 12;
+}
+
+/* RadioButton */
+.RadioButton
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	color: #3b5998;
+	fontSize: 12;
+}
+
+/* CheckBox */
+.CheckBox
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	color: #3b5998;
+	fontSize: 12;
+	fontWeight: normal;
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-top: 0;
+	text-align: left;
+	vertical-align: middle;
+}
+.BoldCount
+{
+	borderColor: #ff0000;
+	borderVisible: true;
+	borderWeight: 2;
+	cornerRadius: 72;
+	backgroundColor: #ffffff;
+}
+.BoldCountDown
+{
+	borderColor: #ffffff;
+	borderVisible: true;
+	borderWeight: 2;
+	cornerRadius: 72;
+	backgroundColor: #ff0000;
+}

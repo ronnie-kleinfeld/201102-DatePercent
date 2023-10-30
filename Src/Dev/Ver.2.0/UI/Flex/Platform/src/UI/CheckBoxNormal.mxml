@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:CheckBox xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+			fontFamily="calibri" fontSize="12" fontWeight="normal" color="0xffffff"
+			label="{m_strLabel}">
+	<fx:Script>
+		<![CDATA[
+			[Bindable] public var m_strLabel:String;
+		]]>
+	</fx:Script>
+</s:CheckBox>

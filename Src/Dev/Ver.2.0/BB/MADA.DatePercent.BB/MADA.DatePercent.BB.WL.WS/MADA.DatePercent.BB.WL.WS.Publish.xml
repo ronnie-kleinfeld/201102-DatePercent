@@ -1,0 +1,40 @@
+<publishData>
+  <publishTarget publishUrl="C:\Users\rk\Documents\Dev\DatePercent\IIS\Ver.2.0\WL\">
+    <file relUrl="bin/MADA.ContactFetcher.dll" publishTime="27/12/2011 12:02:26" />
+    <file relUrl="bin/MADA.DatePercent.BB.WL.BL.dll" publishTime="30/12/2011 15:53:46" />
+    <file relUrl="bin/MADA.DatePercent.BB.WL.WS.dll" publishTime="30/12/2011 17:22:42" />
+    <file relUrl="bin/MADA.DatePercent.BB.WL.DBS.dll" publishTime="27/12/2011 12:06:07" />
+    <file relUrl="bin/MADA.DatePercent.BB.WL.DBS.pdb" publishTime="27/12/2011 12:06:07" />
+    <file relUrl="bin/MADA.Common.dll" publishTime="29/12/2011 22:34:26" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Data.pdb" publishTime="27/12/2011 08:32:36" />
+    <file relUrl="bin/MADA.Common.pdb" publishTime="29/12/2011 22:34:26" />
+    <file relUrl="bin/MADA.Log.Api.Net.pdb" publishTime="30/12/2011 15:52:09" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Data.xml" publishTime="27/12/2011 08:32:36" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Logging.xml" publishTime="27/12/2011 08:32:36" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Common.dll" publishTime="27/12/2011 08:32:35" />
+    <file relUrl="Web.config" publishTime="30/12/2011 12:27:26" />
+    <file relUrl="bin/Microsoft.Practices.ObjectBuilder.dll" publishTime="26/12/2011 11:50:46" />
+    <file relUrl="bin/Microsoft.Practices.ObjectBuilder.pdb" publishTime="26/12/2011 11:50:46" />
+    <file relUrl="bin/MADA.DatePercent.BB.WL.BL.pdb" publishTime="30/12/2011 15:53:46" />
+    <file relUrl="bin/stescodes_eval.dll" publishTime="27/12/2011 09:55:44" />
+    <file relUrl="bin/MADA.DatePercent.BB.WL.BE.pdb" publishTime="27/12/2011 09:38:15" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Common.pdb" publishTime="27/12/2011 08:32:35" />
+    <file relUrl="bin/MADA.BE.dll" publishTime="29/12/2011 22:34:26" />
+    <file relUrl="crossdomain.xml" publishTime="27/12/2011 08:51:02" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Data.dll" publishTime="27/12/2011 08:32:36" />
+    <file relUrl="WS/GlobalWS.asmx" publishTime="27/12/2011 08:36:44" />
+    <file relUrl="bin/MADA.Data.pdb" publishTime="29/12/2011 22:38:46" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Logging.pdb" publishTime="27/12/2011 08:32:36" />
+    <file relUrl="bin/MADA.Data.dll" publishTime="29/12/2011 22:38:46" />
+    <file relUrl="Lib/stescodes_eval.dll" publishTime="27/12/2011 09:55:44" />
+    <file relUrl="bin/MADA.ContactFetcher.pdb" publishTime="27/12/2011 12:02:26" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Common.xml" publishTime="27/12/2011 08:32:35" />
+    <file relUrl="bin/MADA.DatePercent.BB.WL.WS.pdb" publishTime="30/12/2011 17:22:42" />
+    <file relUrl="bin/MADA.DatePercent.BB.WL.BE.dll" publishTime="27/12/2011 09:38:15" />
+    <file relUrl="bin/MADA.BE.pdb" publishTime="29/12/2011 22:34:26" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Logging.dll" publishTime="27/12/2011 08:32:36" />
+    <file relUrl="bin/Microsoft.Practices.ObjectBuilder.xml" publishTime="26/12/2011 11:50:46" />
+    <file relUrl="Global.asax" publishTime="27/12/2011 08:37:35" />
+    <file relUrl="bin/MADA.Log.Api.Net.dll" publishTime="30/12/2011 15:52:09" />
+  </publishTarget>
+</publishData>

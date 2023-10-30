@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="GreetingCard2012DataSet" targetNamespace="http://tempuri.org/GreetingCard2012DataSet.xsd" xmlns:mstns="http://tempuri.org/GreetingCard2012DataSet.xsd" xmlns="http://tempuri.org/GreetingCard2012DataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="datepercentcomConnectionString" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="datepercentcomConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.MADA.DatePercent.SMTP.Api.Net.Tester.Properties.Settings.GlobalReference.Default.datepercentcomConnectionString" Provider="System.Data.SqlClient">
+          </Connection>
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="V_USER_EMAILSTableAdapter" GeneratorDataComponentClassName="V_USER_EMAILSTableAdapter" Name="V_USER_EMAILS" UserDataComponentName="V_USER_EMAILSTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="datepercentcomConnectionString (Settings)" DbObjectName="datepercentcom.dbo.V_USER_EMAILS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="False">
+                    <CommandText>SELECT USR_NAME, USE_EMAIL FROM dbo.V_USER_EMAILS</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="USR_NAME" DataSetColumn="USR_NAME" />
+              <Mapping SourceColumn="USE_EMAIL" DataSetColumn="USE_EMAIL" />
+            </Mappings>
+            <Sources>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="GreetingCard2012DataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="GreetingCard2012DataSet" msprop:Generator_DataSetName="GreetingCard2012DataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="V_USER_EMAILS" msprop:Generator_UserTableName="V_USER_EMAILS" msprop:Generator_RowDeletedName="V_USER_EMAILSRowDeleted" msprop:Generator_TableClassName="V_USER_EMAILSDataTable" msprop:Generator_RowChangedName="V_USER_EMAILSRowChanged" msprop:Generator_RowClassName="V_USER_EMAILSRow" msprop:Generator_RowChangingName="V_USER_EMAILSRowChanging" msprop:Generator_RowEvArgName="V_USER_EMAILSRowChangeEvent" msprop:Generator_RowEvHandlerName="V_USER_EMAILSRowChangeEventHandler" msprop:Generator_TablePropName="V_USER_EMAILS" msprop:Generator_TableVarName="tableV_USER_EMAILS" msprop:Generator_RowDeletingName="V_USER_EMAILSRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="USR_NAME" msprop:Generator_UserColumnName="USR_NAME" msprop:Generator_ColumnPropNameInRow="USR_NAME" msprop:Generator_ColumnVarNameInTable="columnUSR_NAME" msprop:Generator_ColumnPropNameInTable="USR_NAMEColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USE_EMAIL" msprop:Generator_UserColumnName="USE_EMAIL" msprop:Generator_ColumnPropNameInRow="USE_EMAIL" msprop:Generator_ColumnVarNameInTable="columnUSE_EMAIL" msprop:Generator_ColumnPropNameInTable="USE_EMAILColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModalBox:ModalBoxBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+					   width="280" height="174"
+					   initialize="initializeHandler(event)"
+					   xmlns:ModalBox="UI.Box.ModalBox.*" xmlns:Box="UI.Box.*" xmlns:UI="UI.*" xmlns:Label="UI.Label.*" xmlns:Button="UI.Button.*" xmlns:flexws="services.flexws.*">
+	<fx:Metadata>
+		[Event(name=CLOSE, type="flash.events.Event")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import Handler.LocHandler;
+			import Handler.SesHandler;
+			
+			import UI.Box.BoxMDI;
+			import UI.Box.MessageBox.MessageBox;
+			import UI.Box.MessageBox.MessageBoxEvent;
+			import UI.Button.ButtonBase;
+			import UI.Button.ButtonEvent;
+			import UI.Photo.PhotoBase;
+			
+			import Utils.AS3.Embeded;
+			import Handler.LocGeneratedCode;
+			import Utils.Log.Logger;
+			
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			import mx.managers.CursorManager;
+			import mx.validators.StringValidator;
+			import mx.validators.ValidationResult;
+			
+			[Bindable]
+			private var m_acLanguage:ArrayCollection;
+			private var m_nickNameValidator:StringValidator;
+			
+			//class
+			protected function initializeHandler(event:FlexEvent):void
+			{
+				m_nickNameValidator = new StringValidator();
+				m_nickNameValidator.required = true;
+				
+				boxBC.ShowTitle(LocHandler.GS(LocGeneratedCode.Edit_My_Profile));
+				
+				m_acLanguage = new ArrayCollection([
+					{label:"Afrikaans", data:"af"},
+					{label:"العربية", data:"ar"},
+					{label:"azərbaycan", data:"az"},
+					{label:"Беларуская", data:"be"},
+					{label:"Български", data:"bg"},
+					{label:"Bangali", data:"bn"},
+					{label:"Català", data:"ca"},
+					{label:"čeština", data:"cs"},
+					{label:"Cymraeg", data:"cy"},
+					{label:"Dansk", data:"da"},
+					{label:"Deutsch", data:"de"},
+					{label:"Ελληνικά", data:"el"},
+					{label:"English", data:"en"},
+					{label:"Esperanto", data:"eo"},
+					{label:"Español", data:"es"},
+					{label:"Eesti", data:"et"},
+					{label:"euskera", data:"eu"},
+					{label:"فارسی", data:"fa"},
+					{label:"suomi", data:"fi"},
+					{label:"français", data:"fr"},
+					{label:"Gaeilge", data:"ga"},
+					{label:"Galego", data:"gl"},
+					{label:"עברית", data:"he"},
+					{label:"हिंदी", data:"hi"},
+					{label:"Hrvatski", data:"hr"},
+					{label:"Magyar", data:"hu"},
+					{label:"Հայերեն", data:"hy"},
+					{label:"Bahasa indonesia", data:"id"},
+					{label:"Íslenska", data:"is"},
+					{label:"italiano", data:"it"},
+					{label:"日本語", data:"ja"},
+					{label:"Georgian", data:"ka"},
+					{label:"한국어", data:"ko"},
+					{label:"Latin", data:"la"},
+					{label:"Lietuviškai", data:"lt"},
+					{label:"Latviešu", data:"lv"},
+					{label:"Македонски", data:"mk"},
+					{label:"Bahasa melayu", data:"ms"},
+					{label:"Norsk", data:"nb/nn"},
+					{label:"Nederlands", data:"nl"},
+					{label:"polski", data:"pl"},
+					{label:"português", data:"pt"},
+					{label:"Română", data:"ro"},
+					{label:"Pyccĸий", data:"ru"},
+					{label:"Slovenčina", data:"sk"},
+					{label:"Slovenščina", data:"sl"},
+					{label:"shqip", data:"sq"},
+					{label:"Srpski", data:"sr"},
+					{label:"svenska", data:"sv"},
+					{label:"Kiswahili", data:"sw"},
+					{label:"Tamili", data:"ta"},
+					{label:"తెలుగు", data:"te"},
+					{label:"ภาษาไทย", data:"th"},
+					{label:"Philipins", data:"tl"},
+					{label:"Tϋrkçe", data:"tr"},
+					{label:"Українська", data:"uk"},
+					{label:"Tiếng Việt", data:"vi"},
+					{label:"中文", data:"zh_ch"},
+					{label:"简体中文", data:"zh_hk"},
+					{label:"繁體中文", data:"zh_tw"}]);
+			}
+			public override function Init(p_buttonOpener:ButtonBase, p_photoOpener:PhotoBase):void
+			{
+				super.Init(p_buttonOpener, p_photoOpener);
+				DoShowBox(boxCanvas);
+			}
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (boxBC != null)
+				{
+					boxBC.Dispose();
+				}
+				if (boxCanvas != null)
+				{
+					boxCanvas.Dispose();
+				}
+				
+				if (clickButtonYes != null)
+				{
+					clickButtonYes.Dispose();
+					clickButtonYes = null;
+				}
+				if (clickButtonNo != null)
+				{
+					clickButtonNo.Dispose();
+					clickButtonNo = null;
+				}
+				
+				m_nickNameValidator = null;
+			}
+			
+			public function GetData(p_strNickName:String, p_iDistanceUnitsCode:int):void
+			{
+				textInputNormalNickName.text = p_strNickName;
+				switch (p_iDistanceUnitsCode)
+				{
+					case 2:
+						radioButtonMiles.selected = true;
+						break;
+					default:
+						radioButtonKilometers.selected = true;
+						break;
+				}
+				
+				DoPaint();
+			}
+			public function DoPaint():void
+			{
+				DoShowContent(boxContent);
+			}
+			
+			// events
+			protected function clickButtonYes_CLICKED(event:ButtonEvent):void
+			{
+				var iDistanceUnitsTypeCode:int;
+				
+				if (radioButtonKilometers.selected)
+				{
+					iDistanceUnitsTypeCode = 1;
+				}
+				else
+				{
+					iDistanceUnitsTypeCode = 2;
+				}
+				
+				if (m_nickNameValidator.validate(textInputNormalNickName.text).results == null)
+				{
+					callResponderSetProfile.token = wsFlex.SetProfile(SesHandler.Instance.Session.SID, textInputNormalNickName.text, iDistanceUnitsTypeCode);
+					SesHandler.Instance.Session.Me.NickName = textInputNormalNickName.text;
+					SesHandler.Instance.Session.Me.DistanceUnitsCode = iDistanceUnitsTypeCode;
+					if (SesHandler.Instance.Session.Me.DontAskProfileUpdated)
+					{
+						dispatchEvent(new Event(CLOSE));
+					}
+					else
+					{
+						BoxMDI.GetBoxMDI.AddMessageBox("", LocHandler.GS(LocGeneratedCode.Your_profile_was_updated), LocHandler.GS(LocGeneratedCode.Do_not_tell_me_again), null, MessageBox.YES, clickButtonYesPostModalBox);
+					}
+				}
+				else
+				{
+					var validationResult:ValidationResult = ValidationResult(m_nickNameValidator.validate(textInputNormalNickName.text).results[0]);
+					textInputNormalNickName.errorString = validationResult.errorMessage;
+				}
+			}
+			public function clickButtonYesPostModalBox(event:MessageBoxEvent):void
+			{
+				if (event.DontAsk)
+				{
+					SesHandler.Instance.Session.Me.DontAskProfileUpdated = true;
+					wsFlex.DontAskProfileUpdated(SesHandler.Instance.Session.SID);
+				}
+				dispatchEvent(new Event(CLOSE));
+			}
+			
+			protected function clickButtonNo_CLICKED(event:ButtonEvent):void
+			{
+				dispatchEvent(new Event(CLOSE));
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:CallResponder id="callResponderSetProfile"
+						 result="Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"
+						 fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+		<flexws:FlexWS id="wsFlex"
+					   fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+	</fx:Declarations>
+	<Box:BoxCanvas id="boxCanvas" width="100%" height="100%">
+		<Box:BoxGroup id="boxGroup" width="100%" height="100%">
+			<Box:BoxBC id="boxBC" width="100%" height="100%" CLOSE="dispatchEvent(new Event(CLOSE))">
+				<Box:BoxContent id="boxContent" width="100%" height="100%">
+					<mx:Spacer height="15"/>
+					<mx:Canvas width="100%" height="20">
+						<UI:InnerShadow m_strGrayedText="{LocHandler.GS(LocGeneratedCode.Nick_Name__required_)}" m_strLiveText="{textInputNormalNickName.text}"/>
+						<UI:TextInputNormal id="textInputNormalNickName"/>
+					</mx:Canvas>
+					<mx:Spacer height="5"/>
+					<Label:NormalLabel text="{LocHandler.GS(LocGeneratedCode.Distance_Units)}:"/>
+					<s:HGroup width="100%">
+						<mx:Spacer width="5"/>
+						<s:RadioButton id="radioButtonKilometers" groupName="DistanceUnits" label="{LocHandler.GS(LocGeneratedCode.Km)}" fontFamily="calibri" fontSize="12" fontWeight="normal" color="0xffffff"/>
+					</s:HGroup>
+					<s:HGroup width="100%">
+						<mx:Spacer width="5"/>
+						<s:RadioButton id="radioButtonMiles" groupName="DistanceUnits" label="{LocHandler.GS(LocGeneratedCode.Miles)}" fontFamily="calibri" fontSize="12" fontWeight="normal" color="0xffffff"/>
+					</s:HGroup>
+					<s:HGroup width="100%">
+						<mx:Spacer width="100%"/>
+						<Button:ClickButton id="clickButtonYes" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Yes)}" m_png="{Embeded.s_imgYes}" CLICKED="clickButtonYes_CLICKED(event)"/>
+						<Button:ClickButton id="clickButtonNo" m_strTooltip="{LocHandler.GS(LocGeneratedCode.No)}" m_png="{Embeded.s_imgNo}" CLICKED="clickButtonNo_CLICKED(event)"/>
+					</s:HGroup>
+				</Box:BoxContent>
+			</Box:BoxBC>
+		</Box:BoxGroup>
+	</Box:BoxCanvas>
+</ModalBox:ModalBoxBase>

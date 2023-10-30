@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MailComposerDataSet" targetNamespace="http://www.datepercent.com/MailComposerDataSet.xsd" xmlns:mstns="http://www.datepercent.com/MailComposerDataSet.xsd" xmlns="http://www.datepercent.com/MailComposerDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="DatePercentDBConnectionString" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="DatePercentDBConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.MADA.DatePercent.Worker.Properties.Settings.GlobalReference.Default.DatePercentDBConnectionString" Provider="System.Data.SqlClient">
+          </Connection>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="MailComposerDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="MailComposerDataSet" msprop:Generator_DataSetName="MailComposerDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="T_EMAIL_BOX" msprop:Generator_UserTableName="T_EMAIL_BOX" msprop:Generator_RowDeletedName="T_EMAIL_BOXRowDeleted" msprop:Generator_RowChangedName="T_EMAIL_BOXRowChanged" msprop:Generator_RowClassName="T_EMAIL_BOXRow" msprop:Generator_RowChangingName="T_EMAIL_BOXRowChanging" msprop:Generator_RowEvArgName="T_EMAIL_BOXRowChangeEvent" msprop:Generator_RowEvHandlerName="T_EMAIL_BOXRowChangeEventHandler" msprop:Generator_TableClassName="T_EMAIL_BOXDataTable" msprop:Generator_TableVarName="tableT_EMAIL_BOX" msprop:Generator_RowDeletingName="T_EMAIL_BOXRowDeleting" msprop:Generator_TablePropName="T_EMAIL_BOX">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EMB_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="EMB_ID" msprop:Generator_ColumnVarNameInTable="columnEMB_ID" msprop:Generator_ColumnPropNameInRow="EMB_ID" msprop:Generator_ColumnPropNameInTable="EMB_IDColumn" type="xs:int" />
+              <xs:element name="EMB_PUBLISH_DATETIME" msprop:Generator_UserColumnName="EMB_PUBLISH_DATETIME" msprop:Generator_ColumnVarNameInTable="columnEMB_PUBLISH_DATETIME" msprop:Generator_ColumnPropNameInRow="EMB_PUBLISH_DATETIME" msprop:Generator_ColumnPropNameInTable="EMB_PUBLISH_DATETIMEColumn" type="xs:dateTime" />
+              <xs:element name="EMB_SENDER_EMAIL" msprop:Generator_UserColumnName="EMB_SENDER_EMAIL" msprop:Generator_ColumnVarNameInTable="columnEMB_SENDER_EMAIL" msprop:Generator_ColumnPropNameInRow="EMB_SENDER_EMAIL" msprop:Generator_ColumnPropNameInTable="EMB_SENDER_EMAILColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMB_SENDER_NAME" msprop:Generator_UserColumnName="EMB_SENDER_NAME" msprop:Generator_ColumnVarNameInTable="columnEMB_SENDER_NAME" msprop:Generator_ColumnPropNameInRow="EMB_SENDER_NAME" msprop:Generator_ColumnPropNameInTable="EMB_SENDER_NAMEColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMB_GETTER_USER_UID" msprop:Generator_UserColumnName="EMB_GETTER_USER_UID" msprop:Generator_ColumnVarNameInTable="columnEMB_GETTER_USER_UID" msprop:Generator_ColumnPropNameInRow="EMB_GETTER_USER_UID" msprop:Generator_ColumnPropNameInTable="EMB_GETTER_USER_UIDColumn" type="xs:string" />
+              <xs:element name="EMB_GETTER_EMAIL" msprop:Generator_UserColumnName="EMB_GETTER_EMAIL" msprop:Generator_ColumnVarNameInTable="columnEMB_GETTER_EMAIL" msprop:Generator_ColumnPropNameInRow="EMB_GETTER_EMAIL" msprop:Generator_ColumnPropNameInTable="EMB_GETTER_EMAILColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMB_GETTER_NAME" msprop:Generator_UserColumnName="EMB_GETTER_NAME" msprop:Generator_ColumnVarNameInTable="columnEMB_GETTER_NAME" msprop:Generator_ColumnPropNameInRow="EMB_GETTER_NAME" msprop:Generator_ColumnPropNameInTable="EMB_GETTER_NAMEColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMB_BOX_HTML" msprop:Generator_UserColumnName="EMB_BOX_HTML" msprop:Generator_ColumnVarNameInTable="columnEMB_BOX_HTML" msprop:Generator_ColumnPropNameInRow="EMB_BOX_HTML" msprop:Generator_ColumnPropNameInTable="EMB_BOX_HTMLColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMB_SUBJECT" msprop:Generator_UserColumnName="EMB_SUBJECT" msprop:Generator_ColumnVarNameInTable="columnEMB_SUBJECT" msprop:Generator_ColumnPropNameInRow="EMB_SUBJECT" msprop:Generator_ColumnPropNameInTable="EMB_SUBJECTColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:T_EMAIL_BOX" />
+      <xs:field xpath="mstns:EMB_ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

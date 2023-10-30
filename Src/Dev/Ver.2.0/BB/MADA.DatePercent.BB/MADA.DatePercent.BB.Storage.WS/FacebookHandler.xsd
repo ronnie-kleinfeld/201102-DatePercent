@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="FacebookHandler" targetNamespace="http://tempuri.org/FacebookHandler.xsd" xmlns:mstns="http://tempuri.org/FacebookHandler.xsd" xmlns="http://tempuri.org/FacebookHandler.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="FacebookHandler" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="FacebookHandler" msprop:Generator_DataSetName="FacebookHandler">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="T_INCOMING_USERS" msprop:Generator_UserTableName="T_INCOMING_USERS" msprop:Generator_RowDeletedName="T_INCOMING_USERSRowDeleted" msprop:Generator_TableClassName="T_INCOMING_USERSDataTable" msprop:Generator_RowChangedName="T_INCOMING_USERSRowChanged" msprop:Generator_RowClassName="T_INCOMING_USERSRow" msprop:Generator_RowChangingName="T_INCOMING_USERSRowChanging" msprop:Generator_RowEvArgName="T_INCOMING_USERSRowChangeEvent" msprop:Generator_RowEvHandlerName="T_INCOMING_USERSRowChangeEventHandler" msprop:Generator_TablePropName="T_INCOMING_USERS" msprop:Generator_TableVarName="tableT_INCOMING_USERS" msprop:Generator_RowDeletingName="T_INCOMING_USERSRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="INU_USER_ID" msprop:Generator_UserColumnName="INU_USER_ID" msprop:Generator_ColumnPropNameInRow="INU_USER_ID" msprop:Generator_ColumnVarNameInTable="columnINU_USER_ID" msprop:Generator_ColumnPropNameInTable="INU_USER_IDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="INU_TOKEN" msprop:Generator_UserColumnName="INU_TOKEN" msprop:Generator_ColumnPropNameInRow="INU_TOKEN" msprop:Generator_ColumnVarNameInTable="columnINU_TOKEN" msprop:Generator_ColumnPropNameInTable="INU_TOKENColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MADA.DatePercent.BB.NLB.WS.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LogProcess" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="MaxIISServers" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="MaxBLServers" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="TimerInterval" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">10000</Value>
+    </Setting>
+    <Setting Name="DoValidateIPLatLng" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="MADA_DatePercent_BB_NLB_WS_com_dp38745_www_LoggerWS" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www.dp38745.com/LoggerWS.asmx</Value>
+    </Setting>
+    <Setting Name="MADA_DatePercent_BB_NLB_WS_com_dp68457_www_SmtpWS" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www.dp68457.com/SmtpWS.asmx</Value>
+    </Setting>
+    <Setting Name="LogInformation" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="MADA_DatePercent_BB_NLB_WS_NLBWS_info_datepercent_www_NLBWS" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www.datepercent.info/WS/NLBWS.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

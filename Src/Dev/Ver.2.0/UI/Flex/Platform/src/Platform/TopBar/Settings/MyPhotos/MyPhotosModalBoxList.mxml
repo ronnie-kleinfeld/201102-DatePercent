@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<List:HListBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				width="100%" height="100%"
+				initialize="initializeHandler(event)"
+				xmlns:List="UI.List.*" xmlns:Button="UI.Button.*">
+	<fx:Script>
+		<![CDATA[
+			import Data.Base.CollectionEvent;
+			import Data.Member.PhotoData;
+			
+			import Handler.SesHandler;
+			
+			import mx.events.FlexEvent;
+			
+			protected override function get DoFillByTimer():Boolean
+			{
+				return false;
+			}
+			protected override function get AddItemByCollectionEvent():Boolean
+			{
+				return false;
+			}
+			
+			private function initializeHandler(event:FlexEvent):void
+			{
+				m_scroller = scroller;
+				m_hvGroup = hGroup;
+			}
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (clickButtonNext != null)
+				{
+					clickButtonNext.Dispose();
+					clickButtonNext = null;
+				}
+				if (clickButtonPrev != null)
+				{
+					clickButtonPrev.Dispose();
+					clickButtonPrev = null;
+				}
+			}
+
+			protected override function DoFillStep():void
+			{
+				for (var i:int = 0; i < m_iPaintedListItemCount; i++)
+				{
+					var photoData:PhotoData = SesHandler.Instance.Session.Me.Photos.FindItemPhotoDataByIndex(i);
+					if (FindListItemByID(photoData.ID) == null)
+					{
+						AddMyPhotosListItem(photoData);
+					}
+				}
+				
+				InvalidatePrevNext();
+			}
+			
+			protected override function collectionBase_OBJECT_ADDED(event:CollectionEvent):void
+			{
+				if (AddItemByCollectionEvent)
+				{
+					AddMyPhotosListItem(PhotoData(event.ObjectData));
+				}
+			}
+			
+			private function AddMyPhotosListItem(p_photoData:PhotoData):void
+			{
+				var myPhotosListItem:MyPhotosModalBoxListItem = new MyPhotosModalBoxListItem();
+				myPhotosListItem.Init(p_photoData);
+				AddListItem(myPhotosListItem, false);
+			}
+			
+			public function DoShowRemove():void
+			{
+				for (var i:int = 0; i < hGroup.numElements; i++)
+				{
+					var myPhotosListItem:MyPhotosModalBoxListItem = MyPhotosModalBoxListItem(hGroup.getElementAt(i));
+					myPhotosListItem.clickPhoto.DoShowRemove();
+				}
+			}
+		]]>
+	</fx:Script>
+	<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+		<Button:ClickButton id="clickButtonPrev" visible="{m_bPrevVisible}" m_png="{m_classPrevPng}" CLICKED="DoMovePrev()" m_strTooltip="{m_strToolTipPrev}"/>
+		<s:Scroller id="scroller" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+			<s:Group width="100%" height="100%">
+				<s:HGroup id="hGroup" width="100%" height="100%" clipAndEnableScrolling="false" paddingLeft="2" paddingRight="2" gap="2"/>
+			</s:Group>
+		</s:Scroller>
+		<Button:ClickButton id="clickButtonNext" visible="{m_bNextVisible}" m_png="{m_classNextPng}" CLICKED="DoMoveNext()" m_strTooltip="{m_strToolTipNext}"/>
+	</s:HGroup>
+</List:HListBase>

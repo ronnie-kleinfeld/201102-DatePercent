@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Image xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+		  source="{m_png}" scaleContent="true" verticalAlign="middle" horizontalAlign="center"
+		  toolTip="{m_strTooltip}">
+	<fx:Script>
+		<![CDATA[
+			[Bindable] public var m_png:Class;
+			[Bindable] public var m_strTooltip:String;
+			
+			public function Dispose():void
+			{
+				m_png = null;
+			}
+		]]>
+	</fx:Script>
+</mx:Image>

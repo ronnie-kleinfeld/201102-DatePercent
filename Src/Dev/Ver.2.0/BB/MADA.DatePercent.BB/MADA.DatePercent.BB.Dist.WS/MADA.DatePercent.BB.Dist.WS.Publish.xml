@@ -1,0 +1,27 @@
+<publishData>
+  <publishTarget publishUrl="C:\Users\rk\Documents\Dev\DatePercent\IIS\Ver.2.0\Dist\">
+    <file relUrl="bin/MADA.DatePercent.SMTP.Api.Net.pdb" publishTime="21/12/2011 16:32:54" />
+    <file relUrl="bin/Microsoft.Practices.ObjectBuilder.dll" publishTime="11/12/2011 23:24:57" />
+    <file relUrl="bin/MADA.Log.Api.Net.pdb" publishTime="20/12/2011 18:11:53" />
+    <file relUrl="Web.config" publishTime="21/12/2011 21:44:37" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Logging.pdb" publishTime="11/12/2011 23:24:58" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Common.pdb" publishTime="11/12/2011 23:24:57" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Common.dll" publishTime="11/12/2011 23:24:57" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Common.xml" publishTime="20/12/2011 10:15:20" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Logging.xml" publishTime="20/12/2011 10:15:21" />
+    <file relUrl="bin/MADA.DatePercent.BB.Dist.DBS.dll" publishTime="21/12/2011 21:32:56" />
+    <file relUrl="bin/MADA.Common.dll" publishTime="13/12/2011 15:39:45" />
+    <file relUrl="bin/MADA.Common.pdb" publishTime="13/12/2011 15:39:45" />
+    <file relUrl="Global.asax" publishTime="21/12/2011 21:46:16" />
+    <file relUrl="bin/MADA.DatePercent.SMTP.Api.Net.dll" publishTime="21/12/2011 16:32:54" />
+    <file relUrl="bin/MADA.BE.pdb" publishTime="11/12/2011 23:24:57" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Logging.dll" publishTime="11/12/2011 23:24:58" />
+    <file relUrl="bin/MADA.DatePercent.BB.Dist.WS.pdb" publishTime="21/12/2011 22:00:27" />
+    <file relUrl="bin/MADA.BE.dll" publishTime="11/12/2011 23:24:58" />
+    <file relUrl="bin/MADA.Log.Api.Net.dll" publishTime="20/12/2011 18:11:53" />
+    <file relUrl="bin/MADA.DatePercent.BB.Dist.WS.dll" publishTime="21/12/2011 22:00:27" />
+    <file relUrl="bin/MADA.DatePercent.BB.Dist.DBS.pdb" publishTime="21/12/2011 21:32:56" />
+    <file relUrl="bin/Microsoft.Practices.ObjectBuilder.xml" publishTime="20/12/2011 10:15:20" />
+    <file relUrl="bin/Microsoft.Practices.ObjectBuilder.pdb" publishTime="11/12/2011 23:24:57" />
+  </publishTarget>
+</publishData>

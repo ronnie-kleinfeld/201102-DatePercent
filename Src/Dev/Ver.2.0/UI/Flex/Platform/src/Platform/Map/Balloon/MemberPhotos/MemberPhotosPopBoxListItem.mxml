@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<List:ListItemBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="41" height="41"
+				   xmlns:List="UI.List.*" xmlns:Photo="UI.Photo.*">
+	<fx:Script>
+		<![CDATA[
+			import Utils.AS3.Filters;
+			
+			protected override function get WidthTo():Number
+			{
+				return 41;
+			}
+			protected override function get HeightTo():Number
+			{
+				return 41;
+			}
+			
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (simplePhoto != null)
+				{
+					simplePhoto.Dispose();
+					simplePhoto = null;
+				}
+			}
+			
+			protected override function rollOverHandler(event:MouseEvent):void
+			{
+				super.rollOverHandler(event);
+				if (event.buttonDown)
+				{
+					simplePhoto.filters = [Utils.AS3.Filters.Glow, Utils.AS3.Filters.Sunken];
+				}
+				else
+				{
+					simplePhoto.filters = [Utils.AS3.Filters.Glow];
+				}
+			}
+			protected override function rollOutHandler(event:MouseEvent):void
+			{
+				super.rollOutHandler(event);
+				simplePhoto.filters = null;
+			}
+			protected override function mouseDownHandler(event:MouseEvent):void
+			{
+				super.mouseDownHandler(event);
+				simplePhoto.filters = [Utils.AS3.Filters.Glow, Utils.AS3.Filters.Sunken];
+			}
+			protected override function mouseUpHandler(event:MouseEvent):void
+			{
+				super.mouseUpHandler(event);
+				simplePhoto.filters = [Utils.AS3.Filters.Glow];
+			}
+		]]>
+	</fx:Script>
+	<s:HGroup width="100%" height="100%" paddingLeft="2" paddingRight="2">
+		<Photo:SimplePhoto id="simplePhoto" m_iSize="39" Photo="{PhotoData(m_objectBase)}"/>
+	</s:HGroup>
+</List:ListItemBase>

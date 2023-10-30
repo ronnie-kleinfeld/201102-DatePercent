@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="453" key="DIALOG_WIDTH"/>
+		<item value="207" key="DIALOG_Y_ORIGIN"/>
+		<item value="380" key="DIALOG_HEIGHT"/>
+		<item value="1306" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="wrap"/>
+		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="false" key="wholeword"/>
+		<item value="m_timerPS" key="selection"/>
+		<list key="findhistory">
+			<item value="RedirectToApp"/>
+			<item value="m_timerPS"/>
+			<item value="stop"/>
+			<item value="m_timerPS_TIMER"/>
+			<item value="m_iSelectedCost"/>
+			<item value="m_timerLinked"/>
+			<item value="private static function get "/>
+			<item value="m_aLocale = Fill"/>
+		</list>
+		<list key="replacehistory">
+			<item value="public static function get "/>
+			<item value="m_aLocale = LocGeneratedCode.Fill"/>
+			<item value="private static function get "/>
+			<item value="&quot;, flag:&quot;.png&quot;},"/>
+			<item value="&quot;, flag:&quot;&quot;},"/>
+			<item value="\n"/>
+			<item value="\ n"/>
+			<item value="strHoroscopeLabel = LocHandler.SGT.GT(LocCodes."/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item value="385" key="DIALOG_Y_ORIGIN"/>
+		<item value="241" key="DIALOG_X_ORIGIN"/>
+	</section>
+</section>

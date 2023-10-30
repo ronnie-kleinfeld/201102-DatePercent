@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PopBox:PopBoxBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="295" height="348"
+				   preinitialize="preinitializeHandler(event)" creationComplete="creationCompleteHandler(event)"
+				   xmlns:PopBox="UI.Box.PopBox.*" xmlns:Box="UI.Box.*" xmlns:Label="UI.Label.*" xmlns:MemberPhotos="Platform.Map.Balloon.MemberPhotos.*" xmlns:Photo="UI.Photo.*">
+	<fx:Script>
+		<![CDATA[
+			import Data.MemberData;
+			
+			import Handler.LocHandler;
+			
+			import UI.Box.PopBox.NodgePositionEnum;
+			import UI.Button.ButtonBase;
+			import UI.List.ListItemEvent;
+			import UI.Photo.PhotoBase;
+			
+			import Handler.LocGeneratedCode;
+			
+			import mx.events.FlexEvent;
+			
+			[Bindable] public var m_memberData:MemberData;
+			
+			//class
+			protected function preinitializeHandler(event:FlexEvent):void
+			{
+				m_enumNodgePosition = NodgePositionEnum.LEFT_BOTTOM;
+			}
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				boxGroup.InitPadding(m_enumNodgePosition);
+				boxCanvas.InidNodge(m_enumNodgePosition);
+				boxBC.ShowCloseButton();
+			}
+			public override function Init(p_buttonOpener:ButtonBase, p_photoOpener:PhotoBase):void
+			{
+				super.Init(p_buttonOpener, p_photoOpener);
+				DoShowBox(boxCanvas);
+			}
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (boxBC != null)
+				{
+					boxBC.Dispose();
+				}
+				if (boxCanvas != null)
+				{
+					boxCanvas.Dispose();
+				}
+				
+				if (memberPhotosList != null)
+				{
+					memberPhotosList.Dispose();
+					memberPhotosList = null;
+				}
+				if (clickPhotoSelected != null)
+				{
+					clickPhotoSelected.Dispose();
+					clickPhotoSelected = null;
+				}
+				
+				m_memberData = null;
+			}
+			
+			public function GetData(p_memberData:MemberData):void
+			{
+				m_memberData = p_memberData;
+				DoPaint();
+			}
+			public function DoPaint():void
+			{
+				DoShowContent(boxContent);
+				memberPhotosList.Init(m_memberData.Photos);
+				memberPhotosList.DoFill();
+				if (m_memberData.Photos.Length > 0)
+				{
+					clickPhotoSelected.Photo = m_memberData.Photos.FindItemPhotoDataByIndex(0);
+				}
+			}
+			
+			protected function memberPhotosList_LIST_ITEM_CLICKED(event:ListItemEvent):void
+			{
+				clickPhotoSelected.Photo = MemberData(MemberPhotosPopBoxListItem(event.ListItem).m_objectBase).Photo;
+			}
+		]]>
+	</fx:Script>
+	<Box:BoxCanvas id="boxCanvas" width="100%" height="100%">
+		<Box:BoxGroup id="boxGroup" width="100%" height="100%">
+			<Box:BoxBC id="boxBC" width="100%" height="100%" CLOSE="dispatchEvent(new Event(CLOSE))">
+				<Box:BoxContent id="boxContent" width="100%" height="100%">
+					<Label:HeaderLabel text="{m_memberData.NickName} {LocHandler.GS(LocGeneratedCode.Photos)}"/>
+					<MemberPhotos:MemberPhotosPopBoxList id="memberPhotosList" width="100%" height="41"
+														 m_bAddSep="false" m_iPaintedListItemCount="6" m_iPaintedListItemStpes="6"
+														 LIST_ITEM_CLICKED="memberPhotosList_LIST_ITEM_CLICKED(event)"/>
+					<Photo:ClickPhoto id="clickPhotoSelected" m_iSize="261"/>
+				</Box:BoxContent>
+			</Box:BoxBC>
+		</Box:BoxGroup>
+	</Box:BoxCanvas>
+</PopBox:PopBoxBase>

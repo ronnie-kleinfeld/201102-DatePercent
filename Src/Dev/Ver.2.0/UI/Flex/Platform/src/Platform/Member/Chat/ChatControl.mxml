@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:HGroup xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+		  width="100%" height="24"
+		  currentState="Null"
+		  creationComplete="creationCompleteHandler(event)"
+		  xmlns:UI="UI.*" xmlns:flexws="services.flexws.*" xmlns:Button="UI.Button.*" xmlns:Label="UI.Label.*">
+	<fx:Metadata>
+		[Event(name=TEXT_ADD, type="Platform.Member.Chat.ChatEvent")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import Data.Member.CommData;
+			import Data.MemberData;
+			
+			import Enum.CommTypeEnum;
+			
+			import Handler.LocGeneratedCode;
+			import Handler.LocHandler;
+			import Handler.SesHandler;
+			
+			import Platform.TopBar.Settings.MyCredits.Payment.ChatPaymentModalBox;
+			
+			import UI.Box.BoxMDI;
+			import UI.Button.ButtonEvent;
+			
+			import Utils.AS3.Embeded;
+			import Utils.Log.Logger;
+			
+			import mx.events.FlexEvent;
+			import mx.managers.CursorManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			public var m_memberData:MemberData;
+			private var m_timerLinked:Timer;
+			
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				if (m_memberData.IsLinked)
+				{
+					currentState = "Payed";
+				}
+				else
+				{
+					currentState = "Null";
+					DoStartTimerLinked();
+				}
+			}
+			public function Dispose():void
+			{
+				if (clickButtonStartChat != null)
+				{
+					clickButtonStartChat.Dispose();
+					clickButtonStartChat = null;
+				}
+				if (clickButtonSendText != null)
+				{
+					clickButtonSendText.Dispose();
+					clickButtonSendText = null;
+				}
+				
+				if (m_timerLinked != null)
+				{
+					m_timerLinked.removeEventListener(TimerEvent.TIMER, m_timerLinked_TIMER);
+					m_timerLinked = null;
+				}
+				m_memberData = null;
+			}
+			
+			protected function clickButtonStartChat_CLICKED(event:ButtonEvent):void
+			{
+				DoShowChatPaymentModalBox();
+			}
+			public function DoShowChatPaymentModalBox():void
+			{
+				var chatPaymentModalBox:ChatPaymentModalBox = new ChatPaymentModalBox();
+				BoxMDI.GetBoxMDI.AddModalBox(chatPaymentModalBox);
+				chatPaymentModalBox.Init(null, null);
+				chatPaymentModalBox.GetData(m_memberData);
+				
+				DoStartTimerLinked();
+			}
+			
+			protected function textInputNormalText_keyDownHandler(event:KeyboardEvent):void
+			{
+				if (event.charCode == 13)
+				{
+					SendText();
+				}
+			}
+			protected function clickButtonSendText_CLICKED(event:ButtonEvent):void
+			{
+				SendText();
+			}
+			private function SendText():void
+			{
+				if (textInputNormalText.text.length > 0)
+				{
+					dispatchEvent(new ChatEvent(ChatEvent.TEXT_ADD));
+					m_memberData.Comms.AddItemCommData(new CommData(
+						-1, SesHandler.Instance.Session.Me.ID, m_memberData.ID, CommTypeEnum.TEXT, new Date(), textInputNormalText.text.substring(0, 255), -1, -1, true));
+					callResponderSendText.token = wsFlex.SendText(SesHandler.Instance.Session.SID, m_memberData.ID, textInputNormalText.text);
+					textInputNormalText.text = "";
+				}
+			}
+			
+			// timer linked
+			private function DoStartTimerLinked():void
+			{
+				if (m_timerLinked == null)
+				{
+					m_timerLinked = new Timer(1000);
+					m_timerLinked.addEventListener(TimerEvent.TIMER, m_timerLinked_TIMER);
+				}
+				m_timerLinked.start();
+			}
+			private function m_timerLinked_TIMER(event:TimerEvent):void
+			{
+				try
+				{
+					m_timerLinked.stop();
+					callResponderIsLinked.token = wsFlex.IsLinked(SesHandler.Instance.Session.SID, m_memberData.ID);
+				}
+				catch (error:Error)
+				{
+					Logger.Instance.WriteError(error, flash.utils.getQualifiedClassName(this));
+					m_timerLinked.start();
+				}
+			}
+			protected function callResponderIsLinked_resultHandler(event:ResultEvent):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+				
+				try
+				{
+					m_memberData.IsLinked = event.result;
+					Logger.Instance.WriteInformation("Member link:" + m_memberData.IsLinked + " updated", flash.utils.getQualifiedClassName(this));
+					if (m_memberData.IsLinked)
+					{
+						currentState = "Payed";
+						m_timerLinked.stop();
+					}
+					else
+					{
+						currentState = "Null";
+						m_timerLinked.start();
+					}
+				}
+				catch (error:Error)
+				{
+					Logger.Instance.WriteError(error, flash.utils.getQualifiedClassName(this));
+					m_timerLinked.start();
+				}
+			}
+			protected function callResponderIsLinked_faultHandler(event:FaultEvent):void
+			{
+				m_timerLinked.start();
+			}
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="Null"/>
+		<s:State name="Payed"/>
+	</s:states>
+	<fx:Declarations>
+		<s:Transition fromState="Null" toState="Payed">
+			<s:Parallel>
+				<s:Fade target="{hGroupClickButton}" alphaFrom="0" alphaTo="1" duration="200"/>
+				<s:Fade target="{hGroupTextBox}" alphaFrom="1" alphaTo="0" duration="200"/>
+			</s:Parallel>
+		</s:Transition>
+		
+		<s:CallResponder id="callResponderIsLinked"
+						 result="Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor();callResponderIsLinked_resultHandler(event)"
+						 fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor();callResponderIsLinked_faultHandler(event)"/>
+		<s:CallResponder id="callResponderSendText"
+						 result="Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"
+						 fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+		<flexws:FlexWS id="wsFlex"
+					   fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+	</fx:Declarations>
+	<mx:Canvas width="100%" height="100%">
+		<s:HGroup id="hGroupClickButton" width="100%" height="100%" includeIn="Null" horizontalAlign="center" verticalAlign="middle" gap="5">
+			<Label:NormalLabel text="{LocHandler.GS(LocGeneratedCode.Click_to_chat)}" height="100%" paddingTop="7"/>
+			<Button:ClickButton id="clickButtonStartChat" m_strText="{LocHandler.GS(LocGeneratedCode.Chat)}" m_iLabelPaddingLeft="8" m_iLabelPaddingTop="-2" m_iFontSize="12" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Click_to_chat_with_this_member)}"
+								m_png="{Embeded.s_imgStartChatBig}"
+								CLICKED="clickButtonStartChat_CLICKED(event)"/>
+		</s:HGroup>
+		<s:HGroup id="hGroupTextBox" width="100%" height="100%" includeIn="Payed">
+			<mx:Canvas width="100%" height="100%">
+				<UI:InnerShadow m_strGrayedText="{LocHandler.GS(LocGeneratedCode.Type_your_message)}" m_strLiveText="{textInputNormalText.text}"/>
+				<UI:TextInputNormal id="textInputNormalText" keyDown="textInputNormalText_keyDownHandler(event)"/>
+			</mx:Canvas>
+			<Button:ClickButton id="clickButtonSendText" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Send_the_message)}"
+								enabled="{textInputNormalText.text.length > 0}"
+								m_png="{Embeded.s_imgSendText}"
+								CLICKED="clickButtonSendText_CLICKED(event)"/>		
+		</s:HGroup>
+	</mx:Canvas>
+</s:HGroup>

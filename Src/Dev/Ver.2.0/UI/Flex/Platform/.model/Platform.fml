@@ -1,0 +1,1376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model xmlns="http://ns.adobe.com/Fiber/1.0">
+  <annotation name="ActionScriptGeneration">
+    <item name="FullyQualifyReferences">true</item>
+  </annotation>
+  <entity name="DeletePhoto">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">DeletePhoto</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="ShareMemberWithAFriendResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">ShareMemberWithAFriendResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="SetRadius">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SetRadius</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="BlockMember">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">BlockMember</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="SetOffLineResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SetOffLineResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="FillApplicationResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">FillApplicationResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="SetOffLine">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SetOffLine</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="SendReport">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SendReport</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="FillMembersResult_type">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">FillMembersResult_type</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="schema" type="opaque" required="true"/>
+    <property name="anyElement" type="opaque" required="true"/>
+  </entity>
+  <entity name="SetLocation">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SetLocation</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="DeleteMessageResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">DeleteMessageResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="FillSessionResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">FillSessionResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="SetMessageAsUnRead">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SetMessageAsUnRead</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="BlockMemberResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">BlockMemberResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="UpdateFeedbackResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">UpdateFeedbackResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="ShareWithAFriend">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">ShareWithAFriend</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="SendTwink">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SendTwink</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="SetMessageAsReadResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SetMessageAsReadResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="SetMessageAsUnReadResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SetMessageAsUnReadResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="SendFeedbackResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SendFeedbackResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="SendReportResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SendReportResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="DeleteMessage">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">DeleteMessage</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="RemoveMemberFromFavorites">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">RemoveMemberFromFavorites</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="SampleResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SampleResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="SendTwinkResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SendTwinkResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="SetRadiusResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SetRadiusResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="SendFeedback">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SendFeedback</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="Sample">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Sample</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="FillSessionResult_type">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">FillSessionResult_type</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="schema" type="opaque" required="true"/>
+    <property name="anyElement" type="opaque" required="true"/>
+  </entity>
+  <entity name="SetOnLine">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SetOnLine</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="AddMemberToFavoritesResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">AddMemberToFavoritesResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="ShareWithAFriendResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">ShareWithAFriendResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="FillApplication">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">FillApplication</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="UpdateFeedback">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">UpdateFeedback</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="SetOnLineResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SetOnLineResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="ShareMemberWithAFriend">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">ShareMemberWithAFriend</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="FillSession">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">FillSession</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="SetLocationResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SetLocationResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="AddMemberToFavorites">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">AddMemberToFavorites</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="SetMessageAsRead">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SetMessageAsRead</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="RemoveMemberFromFavoritesResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">RemoveMemberFromFavoritesResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="DeletePhotoResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">DeletePhotoResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="InitSessionResult_type">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">InitSessionResult_type</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="InitSession">
+      <item name="propertySpecifier">schema,anyElement</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="schema" type="opaque" required="true"/>
+    <property name="anyElement" type="opaque" required="true"/>
+  </entity>
+  <entity name="FillApplicationResult_type">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">FillApplicationResult_type</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="schema" type="opaque" required="true"/>
+    <property name="anyElement" type="opaque" required="true"/>
+  </entity>
+  <entity name="FillSessionMembersResult_type">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">FillSessionMembersResult_type</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="schema" type="opaque" required="true"/>
+    <property name="anyElement" type="opaque" required="true"/>
+  </entity>
+  <entity name="FillSessionMeResult_type">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">FillSessionMeResult_type</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="schema" type="opaque" required="true"/>
+    <property name="anyElement" type="opaque" required="true"/>
+  </entity>
+  <entity name="SessionInitMeResult_type">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SessionInitMeResult_type</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="schema" type="opaque" required="true"/>
+    <property name="anyElement" type="opaque" required="true"/>
+  </entity>
+  <entity name="PreFillSessionResult_type">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">PreFillSessionResult_type</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="schema" type="opaque" required="true"/>
+    <property name="anyElement" type="opaque" required="true"/>
+  </entity>
+  <entity name="SessionFillMessagesResult_type">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SessionFillMessagesResult_type</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="schema" type="opaque" required="true"/>
+    <property name="anyElement" type="opaque" required="true"/>
+  </entity>
+  <entity name="SessionFillMeResult_type">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SessionFillMeResult_type</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="schema" type="opaque" required="true"/>
+    <property name="anyElement" type="opaque" required="true"/>
+  </entity>
+  <entity name="SessionFillMembersResult_type">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SessionFillMembersResult_type</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="schema" type="opaque" required="true"/>
+    <property name="anyElement" type="opaque" required="true"/>
+  </entity>
+  <service name="FlexWS">
+    <annotation name="ActionScriptGeneration">
+      <item name="WSDL-service">FlexWS</item>
+      <item name="ServiceType">WebService</item>
+      <item name="WSDL">http://www.datepercent.info/WS/FlexWS.asmx?WSDL</item>
+      <item name="Package">services.flexws</item>
+      <item name="WSDL-port">FlexWSSoap</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">WebService</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
+      <item name="WSDL-endpoint">http://www.datepercent.info/WS/FlexWS.asmx</item>
+      <item name="LINKED_FILE"></item>
+    </annotation>
+    <function name="Ping" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://www.datepercent.com/Ping</item>
+        <item name="Ping">http://www.datepercent.com/,Ping</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="SetLocation" arguments="p_strSID:string,p_decLat:float,p_decLng:float" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SetLocation">http://www.datepercent.com/,SetLocation</item>
+        <item name="SOAPAction">http://www.datepercent.com/SetLocation</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,float,float</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="DontAskRemoveFromBlackList" arguments="p_strSID:string" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="DontAskRemoveFromBlackList">http://www.datepercent.com/,DontAskRemoveFromBlackList</item>
+        <item name="SOAPAction">http://www.datepercent.com/DontAskRemoveFromBlackList</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="DontAskReportSent" arguments="p_strSID:string" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://www.datepercent.com/DontAskReportSent</item>
+        <item name="DontAskReportSent">http://www.datepercent.com/,DontAskReportSent</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="DontAskBlockMember" arguments="p_strSID:string" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://www.datepercent.com/DontAskBlockMember</item>
+        <item name="DontAskBlockMember">http://www.datepercent.com/,DontAskBlockMember</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="DeletePhoto" arguments="p_strSID:string,p_iPhotoID:integer" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="DeletePhoto">http://www.datepercent.com/,DeletePhoto</item>
+        <item name="SOAPAction">http://www.datepercent.com/DeletePhoto</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,integer</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="AddMemberFromBlackList" arguments="p_strSID:string,p_iMemberID:integer" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://www.datepercent.com/AddMemberFromBlackList</item>
+        <item name="AddMemberFromBlackList">http://www.datepercent.com/,AddMemberFromBlackList</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,integer</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="DontAskRemoveFromMyPhotos" arguments="p_strSID:string" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="DontAskRemoveFromMyPhotos">http://www.datepercent.com/,DontAskRemoveFromMyPhotos</item>
+        <item name="SOAPAction">http://www.datepercent.com/DontAskRemoveFromMyPhotos</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="AddMemberToFavorites" arguments="p_strSID:string,p_iMemberID:integer" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://www.datepercent.com/AddMemberToFavorites</item>
+        <item name="AddMemberToFavorites">http://www.datepercent.com/,AddMemberToFavorites</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,integer</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="SendReport" arguments="p_strSID:string,p_strName:string,p_strEMail:string,p_strBody:string" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://www.datepercent.com/SendReport</item>
+        <item name="SendReport">http://www.datepercent.com/,SendReport</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,string,string,string</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="DontAskInvitationSend" arguments="p_strSID:string" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://www.datepercent.com/DontAskInvitationSend</item>
+        <item name="DontAskInvitationSend">http://www.datepercent.com/,DontAskInvitationSend</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="SetProfile" arguments="p_strSID:string,p_strNickName:string,p_iDistanceUnitsTypeCode:integer" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SetProfile">http://www.datepercent.com/,SetProfile</item>
+        <item name="SOAPAction">http://www.datepercent.com/SetProfile</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,string,integer</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="SetOnLine" arguments="p_strSID:string" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://www.datepercent.com/SetOnLine</item>
+        <item name="SetOnLine">http://www.datepercent.com/,SetOnLine</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="BuyUnlimitedChat" arguments="p_strSID:string,p_iMemberID:integer" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="BuyUnlimitedChat">http://www.datepercent.com/,BuyUnlimitedChat</item>
+        <item name="SOAPAction">http://www.datepercent.com/BuyUnlimitedChat</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,integer</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="SessionFillInbox" arguments="p_strSID:string" return-type="SessionFillInboxResult_type">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SessionFillInbox">http://www.datepercent.com/,SessionFillInbox</item>
+        <item name="SOAPAction">http://www.datepercent.com/SessionFillInbox</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string</item>
+        <item name="returnType">SessionFillInboxResult_type</item>
+      </annotation>
+    </function>
+    <function name="SendPresent" arguments="p_strSID:string,p_iMemberID:integer,p_iPresentTypeCode:integer" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SendPresent">http://www.datepercent.com/,SendPresent</item>
+        <item name="SOAPAction">http://www.datepercent.com/SendPresent</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,integer,integer</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="DontAskFeedbackSent" arguments="p_strSID:string" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="DontAskFeedbackSent">http://www.datepercent.com/,DontAskFeedbackSent</item>
+        <item name="SOAPAction">http://www.datepercent.com/DontAskFeedbackSent</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="RemoveMemberFromFavorites" arguments="p_strSID:string,p_iMemberID:integer" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="RemoveMemberFromFavorites">http://www.datepercent.com/,RemoveMemberFromFavorites</item>
+        <item name="SOAPAction">http://www.datepercent.com/RemoveMemberFromFavorites</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,integer</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="SetLocale" arguments="p_strSID:string,p_iLocaleCode:integer" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://www.datepercent.com/SetLocale</item>
+        <item name="SetLocale">http://www.datepercent.com/,SetLocale</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,integer</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="GetPS" arguments="p_strSID:string" return-type="PS">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://www.datepercent.com/GetPS</item>
+        <item name="GetPS">http://www.datepercent.com/,GetPS</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string</item>
+        <item name="returnType">PS</item>
+      </annotation>
+    </function>
+    <function name="ApplicationFill" arguments="p_strSID:string" return-type="ApplicationFillResult_type">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://www.datepercent.com/ApplicationFill</item>
+        <item name="ApplicationFill">http://www.datepercent.com/,ApplicationFill</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string</item>
+        <item name="returnType">ApplicationFillResult_type</item>
+      </annotation>
+    </function>
+    <function name="ShareMemberWithAFriend" arguments="p_strSID:string,p_strMemberUID:string,p_strEMail:string,p_strBody:string" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="ShareMemberWithAFriend">http://www.datepercent.com/,ShareMemberWithAFriend</item>
+        <item name="SOAPAction">http://www.datepercent.com/ShareMemberWithAFriend</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,string,string,string</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="SessionFillOnlineMembers" arguments="p_strSID:string" return-type="SessionFillOnlineMembersResult_type">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SessionFillOnlineMembers">http://www.datepercent.com/,SessionFillOnlineMembers</item>
+        <item name="SOAPAction">http://www.datepercent.com/SessionFillOnlineMembers</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string</item>
+        <item name="returnType">SessionFillOnlineMembersResult_type</item>
+      </annotation>
+    </function>
+    <function name="SessionInit" arguments="p_strSID:string,p_strToken:string" return-type="SessionInitResult_type">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SessionInit">http://www.datepercent.com/,SessionInit</item>
+        <item name="SOAPAction">http://www.datepercent.com/SessionInit</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,string</item>
+        <item name="returnType">SessionInitResult_type</item>
+      </annotation>
+    </function>
+    <function name="DontAskTwinkSent" arguments="p_strSID:string" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="DontAskTwinkSent">http://www.datepercent.com/,DontAskTwinkSent</item>
+        <item name="SOAPAction">http://www.datepercent.com/DontAskTwinkSent</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="DontAskProfileUpdated" arguments="p_strSID:string" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="DontAskProfileUpdated">http://www.datepercent.com/,DontAskProfileUpdated</item>
+        <item name="SOAPAction">http://www.datepercent.com/DontAskProfileUpdated</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="DeleteMemberInbox" arguments="p_strSID:string,p_iMemberID:integer" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="DeleteMemberInbox">http://www.datepercent.com/,DeleteMemberInbox</item>
+        <item name="SOAPAction">http://www.datepercent.com/DeleteMemberInbox</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,integer</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="SessionFillCredits" arguments="p_strSID:string" return-type="SessionFillCreditsResult_type">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SessionFillCredits">http://www.datepercent.com/,SessionFillCredits</item>
+        <item name="SOAPAction">http://www.datepercent.com/SessionFillCredits</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string</item>
+        <item name="returnType">SessionFillCreditsResult_type</item>
+      </annotation>
+    </function>
+    <function name="SessionFillCreditsBalance" arguments="p_strSID:string" return-type="SessionFillCreditsBalanceResult_type">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SessionFillCreditsBalance">http://www.datepercent.com/,SessionFillCreditsBalance</item>
+        <item name="SOAPAction">http://www.datepercent.com/SessionFillCreditsBalance</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string</item>
+        <item name="returnType">SessionFillCreditsBalanceResult_type</item>
+      </annotation>
+    </function>
+    <function name="SendFeedback" arguments="p_strSID:string,p_strName:string,p_strEMail:string,p_strBody:string" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://www.datepercent.com/SendFeedback</item>
+        <item name="SendFeedback">http://www.datepercent.com/,SendFeedback</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,string,string,string</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="SetOffLine" arguments="p_strSID:string" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://www.datepercent.com/SetOffLine</item>
+        <item name="SetOffLine">http://www.datepercent.com/,SetOffLine</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="SessionFill" arguments="p_strSID:string" return-type="SessionFillResult_type">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://www.datepercent.com/SessionFill</item>
+        <item name="SessionFill">http://www.datepercent.com/,SessionFill</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string</item>
+        <item name="returnType">SessionFillResult_type</item>
+      </annotation>
+    </function>
+    <function name="SetMemberCommAsRead" arguments="p_strSID:string,p_iMemberID:integer" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://www.datepercent.com/SetMemberCommAsRead</item>
+        <item name="SetMemberCommAsRead">http://www.datepercent.com/,SetMemberCommAsRead</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,integer</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="SessionFillLocalMembers" arguments="p_strSID:string" return-type="SessionFillLocalMembersResult_type">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://www.datepercent.com/SessionFillLocalMembers</item>
+        <item name="SessionFillLocalMembers">http://www.datepercent.com/,SessionFillLocalMembers</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string</item>
+        <item name="returnType">SessionFillLocalMembersResult_type</item>
+      </annotation>
+    </function>
+    <function name="ShareWithAFriend" arguments="p_strSID:string,p_strEMail:string,p_strBody:string" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://www.datepercent.com/ShareWithAFriend</item>
+        <item name="ShareWithAFriend">http://www.datepercent.com/,ShareWithAFriend</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,string,string</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="IsLinked" arguments="p_strSID:string,p_iMemberID:integer" return-type="boolean">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="IsLinked">http://www.datepercent.com/,IsLinked</item>
+        <item name="SOAPAction">http://www.datepercent.com/IsLinked</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,integer</item>
+        <item name="returnType">boolean</item>
+      </annotation>
+    </function>
+    <function name="BuyAPresent" arguments="p_strSID:string,p_iMemberID:integer,p_iPresentCode:integer,p_iPresentCost:integer" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://www.datepercent.com/BuyAPresent</item>
+        <item name="BuyAPresent">http://www.datepercent.com/,BuyAPresent</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,integer,integer,integer</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="GetLocation" arguments="p_strSID:string,p_strAddress:string" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://www.datepercent.com/GetLocation</item>
+        <item name="GetLocation">http://www.datepercent.com/,GetLocation</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,string</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="DontAskRemoveFromFavorites" arguments="p_strSID:string" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://www.datepercent.com/DontAskRemoveFromFavorites</item>
+        <item name="DontAskRemoveFromFavorites">http://www.datepercent.com/,DontAskRemoveFromFavorites</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="SetRadius" arguments="p_strSID:string,p_iRadiusKm:integer" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SetRadius">http://www.datepercent.com/,SetRadius</item>
+        <item name="SOAPAction">http://www.datepercent.com/SetRadius</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,integer</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="SendText" arguments="p_strSID:string,p_iMemberID:integer,p_strText:string" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SendText">http://www.datepercent.com/,SendText</item>
+        <item name="SOAPAction">http://www.datepercent.com/SendText</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,integer,string</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="SendTwink" arguments="p_strSID:string,p_iMemberID:integer,p_iTwinkTypeCode:integer" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://www.datepercent.com/SendTwink</item>
+        <item name="SendTwink">http://www.datepercent.com/,SendTwink</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,integer,integer</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="DontAskAddToFavorites" arguments="p_strSID:string" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="DontAskAddToFavorites">http://www.datepercent.com/,DontAskAddToFavorites</item>
+        <item name="SOAPAction">http://www.datepercent.com/DontAskAddToFavorites</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+    <function name="RemoveMemberFromBlackList" arguments="p_strSID:string,p_iMemberID:integer" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="RemoveMemberFromBlackList">http://www.datepercent.com/,RemoveMemberFromBlackList</item>
+        <item name="SOAPAction">http://www.datepercent.com/RemoveMemberFromBlackList</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,integer</item>
+        <item name="returnType">string</item>
+      </annotation>
+    </function>
+  </service>
+  <entity name="SessionFillResult_type">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SessionFillResult_type</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">FlexWS</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="schema" type="opaque" required="true"/>
+    <property name="anyElement" type="opaque" required="true"/>
+  </entity>
+  <entity name="ApplicationFillResult_type">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">ApplicationFillResult_type</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">FlexWS</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="schema" type="opaque" required="true"/>
+    <property name="anyElement" type="opaque" required="true"/>
+  </entity>
+  <entity name="SessionFillLocalMembersResult_type">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SessionFillLocalMembersResult_type</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">FlexWS</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="schema" type="opaque" required="true"/>
+    <property name="anyElement" type="opaque" required="true"/>
+  </entity>
+  <entity name="SessionFillInboxResult_type">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SessionFillInboxResult_type</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">FlexWS</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="schema" type="opaque" required="true"/>
+    <property name="anyElement" type="opaque" required="true"/>
+  </entity>
+  <entity name="SessionInitResult_type">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SessionInitResult_type</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">FlexWS</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="schema" type="opaque" required="true"/>
+    <property name="anyElement" type="opaque" required="true"/>
+  </entity>
+  <entity name="SessionFillCreditsBalanceResult_type">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SessionFillCreditsBalanceResult_type</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">FlexWS</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="schema" type="opaque" required="true"/>
+    <property name="anyElement" type="opaque" required="true"/>
+  </entity>
+  <entity name="SessionFillCreditsResult_type">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SessionFillCreditsResult_type</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">FlexWS</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="schema" type="opaque" required="true"/>
+    <property name="anyElement" type="opaque" required="true"/>
+  </entity>
+  <entity name="SessionFillOnlineMembersResult_type">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SessionFillOnlineMembersResult_type</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">FlexWS</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="schema" type="opaque" required="true"/>
+    <property name="anyElement" type="opaque" required="true"/>
+  </entity>
+  <entity name="PS">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">PS</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">FlexWS</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="_BW" type="integer" required="true"/>
+    <property name="_C" type="integer" required="true"/>
+  </entity>
+</model>

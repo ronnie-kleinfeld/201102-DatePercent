@@ -1,0 +1,372 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{95737BA3-166A-4EBD-902F-13BFAA130409}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MADA.DatePercent.BB.WL.DBS</RootNamespace>
+    <AssemblyName>MADA.DatePercent.BB.WL.DBS</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="dbDatePercentDB20\DatePercentDB20.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_ADS_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_CULTURE_DATE_FORMAT_TYPE_ENUMSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_DOMAIN_TYPE_ENUMInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_DOMAIN_TYPE_ENUMSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_EMAILDeleteByEML_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_EMAILInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_EMAILSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_EMAIL_BOXDeleteByEMB_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_EMAIL_BOXInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_EMAIL_BOX_TYPE_ENUMSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_EMAIL_BOX_TYPE_ENUMSelectByEBT_CODE.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_EMAIL_UNTISPAMDeleteByEMM_EMAIL.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_FAQSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_LINK_ACTION_TYPE_ENUMSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_LINK_ACTION_TYPE_ENUMSelectByLAT_CODE.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_LINK_TYPE_ENUMSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_LISTDeleteByLST_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_LISTInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_LISTSelectByLST_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_LISTSelectByLST_SESSION_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_LISTSelectByLST_SESSION_USER_IDLST_TYPE_CODE.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_LISTUpdateByLST_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_LIST_USERDeleteByLSU_DETAILS_USER_IDLSU_LIST_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_LIST_USERInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_LIST_USERSelectByLSU_DETAILS_USER_IDLSU_LIST_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_LIST_USERSelectByLSU_LIST_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_MAX_MIND_TRACKINGInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_AGE_RANGE_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_BODY_STYLE_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_CUSTODY_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_DRINK_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_EDUCATION_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_EYE_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_HAIR_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_HAVE_KIDS_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_HEIGHT_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_INTERESTS_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_LANGUAGE_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_LOCATION_VISIBILITY_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_MATCH_SEX_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_OCCUPATION_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_RACE_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_RELATIONSHIP_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_RELIGION_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_SEX_TYPE_ENUMSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_SMOKE_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_STATUS_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_WANT_KIDS_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_WEIGHT_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_PROP_ZODIAC_SIGN_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_RANDOM_LAT_LNGSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_RMNDeleteByRMN_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_RMN_TYPE_ENUMSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_RMN_TYPE_TYPE_ENUMSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_SERIALIZERInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_SERIALIZERSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_SETTINGSelectBySET_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_TICKETInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_TICKETSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_TICKETSelectByTKT_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_TICKETSelectByTKT_OPENER_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_TICKET_THREADInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_TICKET_THREADSelectByTTT_TICKET_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_TWINK_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USERDeleteByUSR_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USERInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USERInsertIntoUpdateByUSR_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USERSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USERSelectByUSR_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USERSelectByUSR_UID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USERUpdateByUSR_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_EMAILInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_EMAILInsertIntoUpdateByUSE_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_EMAILSelectByUSE_EMAIL.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_EMAILSelectByUSE_EMAILUSE_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_EMAILSelectByUSE_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_EMAILSelectByUSE_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_FACEBOOKInsertIntoUpdateByUSF_FB_UID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_FACEBOOKSelectByUSF_FB_UID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_FACEBOOKSelectByUSF_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_GENIUS_LINKInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_INVITEESelectByUSI_EMAIL.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_INVITEESelectByUSI_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_INVITEE_TYPE_ENUMSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_LINKInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_LINKSelectByULK_DETAILS_USER_IDULK_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_LINKSelectByULK_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_LINKUpdateByULK_DETAILS_USER_IDULK_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_LOCATIONInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_LOCATIONInsertIntoUpdateByUSL_USER_IDUSL_USER_LOCATION_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_LOCATIONSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_LOCATIONSelectByUSL_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_LOCATIONSelectByUSL_USER_IDUSL_USER_LOCATION_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_LOCATION_TYPE_ENUMSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_PHOTODeleteByUPH_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_PHOTOInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_PHOTOSelectByUPH_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_PHOTOSelectByUPH_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_PROP_INTERESTSDeleteByUIT_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_PROP_INTERESTSInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_PROP_INTERESTSSelectByUIT_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_PROP_LANGUAGEDeleteByULG_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_PROP_LANGUAGEInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_PROP_LANGUAGESelectByULG_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_PROP_RELATIONSHIPDeleteByURL_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_PROP_RELATIONSHIPInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_PROP_RELATIONSHIPSelectByURL_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_SESSIONDeleteByUSD_SID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_SESSIONInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_SESSIONSelectByUSD_SID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_SESSIONSelectByUSD_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_SETTINGDeleteByUSS_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_SETTINGDeleteByUSS_USER_IDUSS_USER_SETTING_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_SETTINGInsertIntoUpdateByUSS_USER_IDUSS_USER_SETTING_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_SETTINGSelectByUSS_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_SETTINGSelectByUSS_USER_IDUSS_USER_SETTING_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\APT_USER_SETTING_TYPE_ENUMSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\Enum.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_CULTURE_DATE_FORMAT_TYPE_ENUMSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_DISTANCE_UNITS_TYPE_ENUMSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_DOMAIN_TYPE_ENUMUpdateDMT_FETCHERByDMT_CODE.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_EMAILDeleteUntiSpam.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_EMAILSelectTop1.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_EMAIL_BOXSelectLtEMB_PUBLISH_DATETIME.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_EMAIL_BOX_TYPE_ENUMIncrementCounter.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_EMAIL_HISTORYInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_EMAIL_UNTISPAMInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_FAQ_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_LINK_TYPE_ENUMSelectByLKT_SMAP_PARAMETER_VISIBLETrue.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_LISTSelectByLST_SESSION_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_LISTSelectByLSU_DETAILS_USER_IDLST_SESSION_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_LISTsSelectByLST_SESSION_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_LISTUpdateResultView.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_LIST_USERDeleteByLST_SESSION_USER_IDLSU_DETAILS_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_LIST_USERSelectBySessionIDListIDBatch.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_LOGONCount.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_LOGONDeleteAged.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_LOGONDeleteAndInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_LOGONInsertIntoUpdateByLGN_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_LOGONSelectRMNByLGN_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_LOGONUpdateAgeByLGN_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_LOGONUpdateIncreaseAge.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_LOGONUpdateRMNCounters.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_AGE_RANGE_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_BODY_STYLE_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_CUSTODY_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_DRINK_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_EDUCATION_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_EYE_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_HAIR_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_HAVE_KIDS_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_HEIGHT_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_INTERESTS_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_LANGUAGE_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_MATCH_SEX_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_OCCUPATION_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_RACE_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_RELATIONSHIP_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_RELIGION_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_SEX_TYPE_ENUMSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_SMOKE_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_STATUS_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_WANT_KIDS_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_WEIGHT_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_PROP_ZODIAC_SIGN_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_RMNDeleteLost.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_RMNInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_RMNMarkAsReadByRMN_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_RMNMarkAsUnReadByRMN_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_RMNSelectCommunicateBatch.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_RMNSelectCommunicateToNotifyByRMN_SENT_DATETIME.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_RMNSelectCommunicateUnread.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_RMNSelectRMNByRMNTypeTypeSessionIDBatch.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_RMNUpdateRMN_GETTER_EMAILEDToTrueByRMN_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_TICKETSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_TICKETSelectByTKT_OPENER_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_TICKETUpdateIsClosedByTKT_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_TICKETUpdateIsOpenedByTKT_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_TICKET_THREADSelectByTTT_TICKET_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_TWINKSelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_TWINK_TYPESelect.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USERInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USERSelectByUSE_EMAIL.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USERSelectByUSR_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USERSelectGeniusLinked.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USERSelectPropByUSR_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USERSelectUSR_IDByUSR_UID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USERSelectUSR_UIDByUSR_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USERUpdateAsUnsubscribedByUSR_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USERUpdateDisableUserByUSR_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USERUpdateFromFqlUserByUSR_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USERUpdateProfileByUSR_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USERUpdateUSR_V_NAMEByUSR_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_EMAILCountByUSE_EMAIL.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_GENIUS_LINKInsertIntoByUID_DETAILS_UID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_INVITEEInsertInto.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_INVITEEProcessInvitees.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_INVITEESelectCountByUSI_INVITER_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_INVITEESelectInvitedByUSI_EMAIL.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_INVITEEUpdateAsRegistered.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_INVITEEUpdateAsUnsubscribedByUSI_EMAIL.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_INVITEEUpdateInvitationMailOpenedByUSI_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_INVITEEUpdateUSI_INVITER_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_LINKDeleteLost.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_LINKInsertIntoUpdateByULK_DETAILS_USER_IDULK_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_LOCATIONSelectByUSL_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_LOCATIONSelectEmpty.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_LOCATIONUpdaet00.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_PHOTODeleteWhereUPH_IO_ERRORIsTrue.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_PHOTOSelectByUPH_USER_ID_Batch.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_PHOTOSetIOErrorByUPH_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_PROP_INTERESTSSelectByUIT_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_PROP_LANGUAGESelectByULG_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_PROP_RELATIONSHIPSelectByURL_USER_ID.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_SETTINGCreateDefaultUSS_BIT.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_SETTINGCreateDefaultUSS_DATETIME.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_SETTINGCreateDefaultUSS_INT.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_SETTINGCreateDefaultUSS_NVARCHAR.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_SETTINGInsertIntoUpdateGeniusByUSS_USER_IDInterval.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_SETTINGInsertNewGeniusInterval.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\PT_USER_SETTINGSelectGeniusDueGetDate.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\sp_alterdiagram.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\sp_creatediagram.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\sp_dropdiagram.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\sp_helpdiagramdefinition.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\sp_helpdiagrams.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\sp_renamediagram.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\sp_upgraddiagrams.cs" />
+    <Compile Include="dbDatePercentDB20\SPs\_Dashboard.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\CodeTables.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\Enum.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\sysdiagrams.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_ADS_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_BUTTON_SIZE_TYPE_ENUM.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_CONTACT_FETCHER_TYPE_ENUM.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_CULTURE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_CULTURE_DATE_FORMAT_TYPE_ENUM.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_DISTANCE_UNITS_TYPE_ENUM.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_DOMAIN_TYPE_ENUM.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_EMAIL.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_EMAIL_BOX.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_EMAIL_BOX_TYPE_ENUM.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_EMAIL_HISTORY.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_EMAIL_UNTISPAM.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_FAQ.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_FAQ_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_LINK_ACTION_TYPE_ENUM.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_LINK_TYPE_ENUM.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_LIST.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_LIST_TYPE_ENUM.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_LIST_USER.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_LOGON.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_MAX_MIND_TRACKING.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_AGE_RANGE_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_BODY_STYLE_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_CUSTODY_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_DRINK_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_EDUCATION_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_EYE_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_HAIR_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_HAVE_KIDS_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_HEIGHT_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_INTERESTS_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_LANGUAGE_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_LOCATION_VISIBILITY_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_MATCH_SEX_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_OCCUPATION_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_RACE_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_RELATIONSHIP_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_RELIGION_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_SEX_TYPE_ENUM.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_SMOKE_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_STATUS_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_WANT_KIDS_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_WEIGHT_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_PROP_ZODIAC_SIGN_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_RANDOM_LAT_LNG.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_RESULT_CODE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_RESULT_VIEW_TYPE_ENUM.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_RMN.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_RMN_TYPE_ENUM.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_RMN_TYPE_TYPE_ENUM.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_SERIALIZER.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_SETTING.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_TICKET.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_TICKET_THREAD.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_TRANSLATION.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_TWINK.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_TWINK_TYPE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_USER.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_USER_EMAIL.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_USER_FACEBOOK.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_USER_GENIUS_LINK.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_USER_INVITEE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_USER_INVITEE_TYPE_ENUM.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_USER_LINK.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_USER_LOCATION.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_USER_LOCATION_TYPE_ENUM.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_USER_PHOTO.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_USER_PROP_INTERESTS.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_USER_PROP_LANGUAGE.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_USER_PROP_RELATIONSHIP.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_USER_SESSION.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_USER_SETTING.cs" />
+    <Compile Include="dbDatePercentDB20\Tables\T_USER_SETTING_TYPE_ENUM.cs" />
+    <Compile Include="dbDatePercentDB20\Views\Enum.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\Framework\Dev\Ver.1.0\EnterpriseLibrary\Common\Common.csproj">
+      <Project>{A09297C8-2C40-470B-8856-D856676DDFFA}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Framework\Dev\Ver.1.0\EnterpriseLibrary\Data\Data.csproj">
+      <Project>{D349B6D8-992F-443F-BB57-57E50DD98794}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Framework\Dev\Ver.1.0\EnterpriseLibrary\Logging\Logging.csproj">
+      <Project>{6AC97717-899D-4F72-BC5B-2C37959CD4FF}</Project>
+      <Name>Logging</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

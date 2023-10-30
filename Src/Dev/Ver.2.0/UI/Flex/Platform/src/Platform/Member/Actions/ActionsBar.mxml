@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="43" minHeight="0"
+				   backgroundColor="0x000000" backgroundAlpha="0.77" borderVisible="false"
+				   xmlns:Photo="UI.Photo.*" xmlns:UI="UI.*" xmlns:Button="UI.Button.*" xmlns:flexws="services.flexws.*">
+	<fx:Metadata>
+		[Event(name=DO_ACTION, type="Platform.Member.Actions.ActionsBarEvent")]
+		[Event(name=ACTION_BOX_SHOWN, type="flash.events.Event")]
+		[Event(name=ACTION_BOX_HIDDEN, type="flash.events.Event")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import Data.Member.BlackListedData;
+			import Data.Member.FavoriteData;
+			import Data.MemberData;
+			
+			import Handler.LocHandler;
+			import Handler.SesHandler;
+			
+			import Platform.Map.MapBox;
+			
+			import UI.Box.BoxMDI;
+			import UI.Box.MessageBox.MessageBox;
+			import UI.Box.MessageBox.MessageBoxEvent;
+			import UI.Button.ButtonEvent;
+			import UI.Photo.PhotoEvent;
+			
+			import Utils.AS3.Embeded;
+			import Utils.AS3.Filters;
+			import Handler.LocGeneratedCode;
+			import Utils.Log.Logger;
+			
+			import mx.events.EffectEvent;
+			import mx.managers.CursorManager;
+			
+			public static const ACTION_BOX_SHOWN:String = "ACTION_BOX_SHOWN";
+			public static const ACTION_BOX_HIDDEN:String = "ACTION_BOX_HIDDEN";
+			
+			public static const MEMBER_DETAILS:String = "MEMBER_DETAILS";
+			public static const SEND_PRESENT:String = "SEND_PRESENT";
+			public static const SEND_WINK:String = "SEND_WINK";
+			public static const SHARE_MEMBER:String = "SHARE_MEMBER";
+			public static const MEMBER_PHOTOS:String = "MEMBER_PHOTOS";
+			public static const MEMBER_LIKES:String = "MEMBER_LIKES";
+			
+			[Bindable] private var m_memberData:MemberData;
+			
+			public function Dispose():void
+			{
+				if (selectPhotoDetails != null)
+				{
+					selectPhotoDetails.Dispose();
+					selectPhotoDetails = null;
+				}
+				if (simpleImageOnline != null)
+				{
+					simpleImageOnline.Dispose();
+					simpleImageOnline = null;
+				}
+				if (simpleImageOffline != null)
+				{
+					simpleImageOffline.Dispose();
+					simpleImageOffline = null;
+				}
+				if (clickButtonPoke != null)
+				{
+					clickButtonPoke.Dispose();
+					clickButtonPoke = null;
+				}
+				if (selectButtonFavorites != null)
+				{
+					selectButtonFavorites.Dispose();
+					selectButtonFavorites = null;
+				}
+				if (selectButtonSendPresent != null)
+				{
+					selectButtonSendPresent.Dispose();
+					selectButtonSendPresent = null;
+				}
+				if (selectButtonSendWink != null)
+				{
+					selectButtonSendWink.Dispose();
+					selectButtonSendWink = null;
+				}
+				if (selectButtonShareMember != null)
+				{
+					selectButtonShareMember.Dispose();
+					selectButtonShareMember = null;
+				}
+				if (selectButtonMemberPhotos != null)
+				{
+					selectButtonMemberPhotos.Dispose();
+					selectButtonMemberPhotos = null;
+				}
+				if (selectButtonMemberLikes != null)
+				{
+					selectButtonMemberLikes.Dispose();
+					selectButtonMemberLikes = null;
+				}
+				if (clickButtonBlock != null)
+				{
+					clickButtonBlock.Dispose();
+					clickButtonBlock = null;
+				}
+				
+				m_memberData = null;
+			}
+			
+			public function GetData(p_memberData:MemberData):void
+			{
+				m_memberData = p_memberData;
+			}
+			
+			// show
+			public function Show():void
+			{
+				fadeShow.play();
+			}
+			protected function fadeShow_effectEndHandler(event:EffectEvent):void
+			{
+				dispatchEvent(new Event(ACTION_BOX_SHOWN));
+			}
+			
+			public function Hide():void
+			{
+				fadeHide.play();
+			}
+			protected function fadeHide_effectEndHandler(event:EffectEvent):void
+			{
+				dispatchEvent(new Event(ACTION_BOX_HIDDEN));
+			}
+			
+			// interaction
+			private function selectPhotoDetails_CLICKED(event:PhotoEvent):void
+			{
+				//selectPhotoDetails.Selected = false;
+				selectButtonSendPresent.Selected = false;
+				selectButtonSendWink.Selected = false;
+				selectButtonShareMember.Selected = false;
+				selectButtonMemberPhotos.Selected = false;
+				selectButtonMemberLikes.Selected = false;
+				dispatchEvent(new ActionsBarEvent(ActionsBarEvent.DO_ACTION, MEMBER_DETAILS, event.PhotoUI.Selected, 101));
+			}
+			
+			private function clickButtonPoke_CLICKED(event:ButtonEvent):void
+			{
+				MapBox.GetMapBox.PanToByID(m_memberData.ID);
+			}
+			
+			private function selectButtonFavorites_CLICKED(event:ButtonEvent):void
+			{
+				if (event.GetButton.Selected)
+				{
+					if (SesHandler.Instance.Session.Me.DontAskAddToFavorites)
+					{
+						SesHandler.Instance.Session.Favorites.AddItemFavoriteData(new FavoriteData(m_memberData.ID));
+						callResponderAddMemberToFavorites.token = wsFlex.AddMemberToFavorites(SesHandler.Instance.Session.SID, m_memberData.ID);
+					}
+					else
+					{
+						BoxMDI.GetBoxMDI.AddMessageBox(LocHandler.GS(LocGeneratedCode.Add_to_FavoritesQ), LocHandler.GS(LocGeneratedCode.Add_this_member12to_your_favoritesQ), LocHandler.GS(LocGeneratedCode.Do_not_ask_me_again), m_memberData.Photo, MessageBox.YESNO, selectPhotoAddToFavoritesAddPostModalBox);
+					}
+				}
+				else
+				{
+					if (SesHandler.Instance.Session.Me.DontAskRemoveFromFavorites)
+					{
+						SesHandler.Instance.Session.Favorites.RemoveItemFavoriteDataByID(m_memberData.ID);
+						callResponderRemoveMemberFromFavorites.token = wsFlex.RemoveMemberFromFavorites(SesHandler.Instance.Session.SID, m_memberData.ID);
+					}
+					else
+					{
+						BoxMDI.GetBoxMDI.AddMessageBox(LocHandler.GS(LocGeneratedCode.Remove_from_FavoritesQ), LocHandler.GS(LocGeneratedCode.Remove_this_member12from_your_favoritesQ), LocHandler.GS(LocGeneratedCode.Do_not_ask_me_again), m_memberData.Photo, MessageBox.YESNO, selectPhotoAddToFavoritesRemovePostModalBox);
+					}
+				}
+			}
+			public function selectPhotoAddToFavoritesAddPostModalBox(event:MessageBoxEvent):void
+			{
+				if (event.type == MessageBox.YES)
+				{
+					if (event.DontAsk)
+					{
+						SesHandler.Instance.Session.Me.DontAskAddToFavorites = true;
+						wsFlex.DontAskAddToFavorites(SesHandler.Instance.Session.SID);
+					}
+					SesHandler.Instance.Session.Favorites.AddItemFavoriteData(new FavoriteData(m_memberData.ID));
+					callResponderAddMemberToFavorites.token = wsFlex.AddMemberToFavorites(SesHandler.Instance.Session.SID, m_memberData.ID);
+				}
+				else
+				{
+					selectButtonFavorites.Selected = !selectButtonFavorites.Selected;
+				}
+			}
+			public function selectPhotoAddToFavoritesRemovePostModalBox(event:MessageBoxEvent):void
+			{
+				if (event.type == MessageBox.YES)
+				{
+					if (event.DontAsk)
+					{
+						SesHandler.Instance.Session.Me.DontAskRemoveFromFavorites = true;
+						wsFlex.DontAskRemoveFromFavorites(SesHandler.Instance.Session.SID);
+					}
+					SesHandler.Instance.Session.Favorites.RemoveItemFavoriteDataByID(m_memberData.ID);
+					callResponderRemoveMemberFromFavorites.token = wsFlex.RemoveMemberFromFavorites(SesHandler.Instance.Session.SID, m_memberData.ID);
+				}
+				else
+				{
+					selectButtonFavorites.Selected = !selectButtonFavorites.Selected;
+				}
+			}
+			
+			public function selectButtonSendPresent_CLICKED(event:ButtonEvent):void
+			{
+				selectPhotoDetails.Selected = false;
+				//selectButtonSendPresent.Selected = false;
+				selectButtonSendWink.Selected = false;
+				selectButtonShareMember.Selected = false;
+				selectButtonMemberPhotos.Selected = false;
+				selectButtonMemberLikes.Selected = false;
+				dispatchEvent(new ActionsBarEvent(ActionsBarEvent.DO_ACTION, SEND_PRESENT, event.GetButton.Selected, 190));
+			}
+			
+			public function selectButtonSendWink_CLICKED(event:ButtonEvent):void
+			{
+				selectPhotoDetails.Selected = false;
+				selectButtonSendPresent.Selected = false;
+				//selectButtonSendWink.Selected = false;
+				selectButtonShareMember.Selected = false;
+				selectButtonMemberPhotos.Selected = false;
+				selectButtonMemberLikes.Selected = false;
+				dispatchEvent(new ActionsBarEvent(ActionsBarEvent.DO_ACTION, SEND_WINK, event.GetButton.Selected, 83));
+			}
+			
+			private function selectButtonShareMember_CLICKED(event:ButtonEvent):void
+			{
+				selectPhotoDetails.Selected = false;
+				selectButtonSendPresent.Selected = false;
+				selectButtonSendWink.Selected = false;
+				//selectButtonShareMember.Selected = false;
+				selectButtonMemberPhotos.Selected = false;
+				selectButtonMemberLikes.Selected = false;
+				dispatchEvent(new ActionsBarEvent(ActionsBarEvent.DO_ACTION, SHARE_MEMBER, event.GetButton.Selected, 260));
+			}
+			
+			public function selectButtonMemberPhotos_CLICKED(event:ButtonEvent):void
+			{
+				selectPhotoDetails.Selected = false;
+				selectButtonSendPresent.Selected = false;
+				selectButtonSendWink.Selected = false;
+				selectButtonShareMember.Selected = false;
+				//selectButtonMemberPhotos.Selected = false;
+				selectButtonMemberLikes.Selected = false;
+				dispatchEvent(new ActionsBarEvent(ActionsBarEvent.DO_ACTION, MEMBER_PHOTOS, event.GetButton.Selected, 55));
+			}
+			public function selectButtonMemberLikes_CLICKED(event:ButtonEvent):void
+			{
+				selectPhotoDetails.Selected = false;
+				selectButtonSendPresent.Selected = false;
+				selectButtonSendWink.Selected = false;
+				selectButtonShareMember.Selected = false;
+				selectButtonMemberPhotos.Selected = false;
+				//selectButtonMemberLikes.Selected = false;
+				dispatchEvent(new ActionsBarEvent(ActionsBarEvent.DO_ACTION, MEMBER_LIKES, event.GetButton.Selected, 45));
+			}
+			
+			private function clickButtonBlock_CLICKED(event:ButtonEvent):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+				BoxMDI.GetBoxMDI.AddMessageBox(LocHandler.GS(LocGeneratedCode.Block_MemberQ), LocHandler.GS(LocGeneratedCode.Are_you_sure_you_want12to_block_this_memberQ), "", m_memberData.Photo, MessageBox.YESNO, clickButtonBlockPostModalBox);
+			}
+			public function clickButtonBlockPostModalBox(event:MessageBoxEvent):void
+			{
+				if (event.type == MessageBox.YES)
+				{
+					callResponderBlockMember.token = wsFlex.AddMemberFromBlackList(SesHandler.Instance.Session.SID, m_memberData.ID);
+					SesHandler.Instance.Session.BlackListed.AddItemBlackListedData(new BlackListedData(m_memberData.ID));
+				}
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:Transition>
+			<s:Fade id="fadeShow" target="{vGroup}" duration="300" alphaFrom="0" alphaTo="1" effectEnd="fadeShow_effectEndHandler(event)"/>
+		</s:Transition>
+		<s:Transition>
+			<s:Fade id="fadeHide" target="{vGroup}" duration="120" alphaFrom="1" alphaTo="0" effectEnd="fadeHide_effectEndHandler(event)"/>
+		</s:Transition>
+		
+		<s:CallResponder id="callResponderBlockMember"
+						 result="Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"
+						 fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+		<s:CallResponder id="callResponderAddMemberToFavorites"
+						 result="Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"
+						 fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+		<s:CallResponder id="callResponderRemoveMemberFromFavorites"
+						 result="Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"
+						 fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+		<flexws:FlexWS id="wsFlex"
+					   fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+	</fx:Declarations>
+	<s:VGroup id="vGroup" width="100%" height="100%" horizontalAlign="center" verticalAlign="top" paddingLeft="2" paddingRight="2" paddingTop="2" paddingBottom="2" gap="3" alpha="0">
+		<Photo:SelectPhoto id="selectPhotoDetails" Photo="{m_memberData.Photo}" m_iSize="39" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Member_details)}" CLICKED="selectPhotoDetails_CLICKED(event)"/>
+		<mx:Spacer height="2"/>
+		<mx:Canvas id="canvasOnOffLine" width="17" height="17" filters="{m_memberData.IsOnline?[Filters.Selected]:null}">
+			<UI:SimpleImage id="simpleImageOnline" visible="{m_memberData.IsOnline}" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Member_is_online)}" m_png="{Embeded.s_imgOnline}"/>
+			<UI:SimpleImage id="simpleImageOffline" visible="{!m_memberData.IsOnline}" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Member_is_offline)}" m_png="{Embeded.s_imgOffline}"/>
+		</mx:Canvas>
+		<Button:ClickButton id="clickButtonPoke" width="17" height="17" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Poke)}" m_png="{Embeded.s_imgFindMe}" CLICKED="clickButtonPoke_CLICKED(event)"/>
+		<Button:SelectButton id="selectButtonFavorites" width="17" height="17" m_strTooltip="{selectButtonFavorites.Selected?LocHandler.GS(LocGeneratedCode.Remove_from_Favorites):LocHandler.GS(LocGeneratedCode.Add_to_Favorites)}" m_png="{Embeded.s_imgFavorite}" Selected="{m_memberData.IsFavorite}" CLICKED="selectButtonFavorites_CLICKED(event)"/>
+		<Button:SelectButton id="selectButtonSendPresent" width="17" height="17" m_iPngPaddingLeft="1" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Send_a_Present)}" m_png="{Embeded.s_imgSendGift}" CLICKED="selectButtonSendPresent_CLICKED(event)"/>
+		<Button:SelectButton id="selectButtonSendWink" width="17" height="17" m_iPngPaddingLeft="1" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Send_wink)}" m_png="{Embeded.s_imgSendTwink}" CLICKED="selectButtonSendWink_CLICKED(event)"/>
+		<Button:SelectButton id="selectButtonShareMember" width="28" height="17" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Share_member)}" m_png="{Embeded.s_imgShareButtonSmall}" CLICKED="selectButtonShareMember_CLICKED(event)"/>
+		<Button:SelectButton id="selectButtonMemberPhotos" width="17" height="17" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Member_s_Photos)}" m_png="{Embeded.s_imgShowMemberPhotos}" CLICKED="selectButtonMemberPhotos_CLICKED(event)"/>
+		<Button:SelectButton id="selectButtonMemberLikes" width="17" height="17" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Things_you_both_like)}" m_png="{Embeded.s_imgLike}" CLICKED="selectButtonMemberLikes_CLICKED(event)"/>
+		<Button:ClickButton id="clickButtonBlock" width="17" height="17" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Block_Member)}" m_png="{Embeded.s_imgBlock}" CLICKED="clickButtonBlock_CLICKED(event)"/>
+	</s:VGroup>
+</s:BorderContainer>

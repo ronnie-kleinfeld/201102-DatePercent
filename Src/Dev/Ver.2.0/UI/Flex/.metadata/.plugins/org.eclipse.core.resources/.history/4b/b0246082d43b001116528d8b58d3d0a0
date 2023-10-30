@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PopBox:PopBoxBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+						width="400" height="300"
+						xmlns:PopUp="Components.PopUp.*" xmlns:PopBox="Components.PopBox.*">
+	<PopUp:layout>
+		<s:BasicLayout/>
+	</PopUp:layout>
+	<fx:Script>
+		<![CDATA[
+			// singleton
+			private static var s_dsInstance:ChangeLocationPopBox;
+			
+			public static function get Instance():ChangeLocationPopBox
+			{
+				if (s_dsInstance == null)
+				{
+					s_dsInstance = new ChangeLocationPopBox();
+				}
+				
+				return s_dsInstance;
+			}
+		]]>
+	</fx:Script>
+	<s:Label text="change location pop box"/>
+</PopBox:PopBoxBase>

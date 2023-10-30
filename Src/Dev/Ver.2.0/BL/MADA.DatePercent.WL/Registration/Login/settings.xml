@@ -1,0 +1,99 @@
+<settings>
+  <General_Properties>
+    <assets value="images.xml"/>
+    <showAbout value="false"/>
+    <componentWidth value="748"/>
+    <componentHeight value="340"/>
+    <backgroundColor value="0xffffff"/>
+    <widthPlane value="75"/>
+    <heightPlane value="45"/>
+    <preloader value="assets/preloaders/video.swf"/>
+    <useColorbox value="true"/>
+  </General_Properties>
+  <Colorbox_Properties>
+    <transition value="elastic"/>
+    <innerWidth value="900"/>
+    <innerHeight value="500"/>
+    <slideshow value="false"/>
+    <slideshowSpeed value="2500"/>
+  </Colorbox_Properties>
+  <Wall_Properties>
+    <typeOfWall value="insideCurvature"/>
+    <cameraPerspectiv value="50"/>
+    <posX value="0"/>
+    <posY value="0"/>
+    <lines value="3"/>
+    <columns value="13"/>
+    <radius value="170"/>
+    <spacingH value="12"/>
+    <spacingV value="5"/>
+    <speedMove value="1"/>
+    <speedWheel value="5"/>
+    <farDistFromWall value="200"/>
+    <nearDistFromWall value="66"/>
+  </Wall_Properties>
+  <Loader_Properties>
+    <typeLoader value="bottom"/>
+    <funcLoader value="Back"/>
+    <methLoader value="easeInOut"/>
+    <timeLoader value="3"/>
+  </Loader_Properties>
+  <Reflection_Properties>
+    <alpha value="44"/>
+    <ratio value="163"/>
+    <distance value="2"/>
+  </Reflection_Properties>
+  <Tweens_Images>
+    <goToUrlOnClick value="false"/>
+    <positionPlane value="wall"/>
+    <funcCamera value="Quadratic"/>
+    <methCamera value="easeOut"/>
+    <timeCamera value="1.3"/>
+    <funcPlane value="Linear"/>
+    <methPlane value="easeOut"/>
+    <timePlane value="0.8"/>
+  </Tweens_Images>
+  <Blur_Effect>
+    <useBlur value="false"/>
+    <blur value="2"/>
+  </Blur_Effect>
+  <Glow_Effect>
+    <useGlow value="true"/>
+    <useInner value="true"/>
+    <glowStrength value="2"/>
+    <glowColor value="0x3b5998"/>
+    <glowAlpha value="0.8"/>
+    <glow value="6"/>
+  </Glow_Effect>
+  <Glow_Effect_Near>
+    <useGlow value="true"/>
+    <useInner value="false"/>
+    <glowStrength value="1"/>
+    <glowColor value="0x9cc8d9"/>
+    <glowAlpha value="0.8"/>
+    <glow value="4"/>
+  </Glow_Effect_Near>
+  <Scroll_Bar>
+    <type_Bar value="assets/scrollBar/None/Bar.xml"/>
+    <width value="450"/>
+    <positionY value="294"/>
+  </Scroll_Bar>
+  <ToolTip_Properties>
+    <toolOffSet value="center"/>
+    <functionEasy value="Strong"/>
+    <appearance value="center"/>
+    <tweenTime value="0.6"/>
+    <padding value="5"/>
+    <backColor value="798152"/>
+    <backColor2 value="16777215"/>
+    <backAlpha value="0.7"/>
+    <cornerRadius value="5"/>
+    <toolDistance value="16"/>
+    <hookSize value="8"/>
+    <borderThickness value="1"/>
+    <borderColor value="6770400"/>
+    <fontFace value="verdana"/>
+    <fontColor value="0"/>
+    <fontSize value="15"/>
+  </ToolTip_Properties>
+</settings>

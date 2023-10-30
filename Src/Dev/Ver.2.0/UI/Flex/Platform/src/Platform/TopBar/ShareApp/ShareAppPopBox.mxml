@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PopBox:PopBoxBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="282" height="162"
+				   preinitialize="preinitializeHandler(event)" creationComplete="creationCompleteHandler(event)"
+				   xmlns:PopBox="UI.Box.PopBox.*" xmlns:Box="UI.Box.*" xmlns:Button="UI.Button.*" xmlns:Sep="UI.Sep.*">
+	<fx:Script>
+		<![CDATA[
+			import Handler.LocHandler;
+			
+			import UI.Box.BoxMDI;
+			import UI.Box.PopBox.NodgePositionEnum;
+			import UI.Button.ButtonBase;
+			import UI.Button.ButtonEvent;
+			import UI.Photo.PhotoBase;
+			
+			import Utils.AS3.Embeded;
+			import Handler.LocGeneratedCode;
+			
+			import mx.events.FlexEvent;
+			
+			protected function preinitializeHandler(event:FlexEvent):void
+			{
+				m_enumNodgePosition = NodgePositionEnum.TOP_RIGHT;
+			}
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				boxGroup.InitPadding(m_enumNodgePosition);
+				boxCanvas.InidNodge(m_enumNodgePosition);
+				boxBC.ShowCloseButton();
+				boxBC.ShowTitle(LocHandler.GS(LocGeneratedCode.Share_App));
+			}
+			public override function Init(p_buttonOpener:ButtonBase, p_photoOpener:PhotoBase):void
+			{
+				super.Init(p_buttonOpener, p_photoOpener);
+				DoShowBox(boxCanvas);
+			}
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (boxBC != null)
+				{
+					boxBC.Dispose();
+				}
+				if (boxCanvas != null)
+				{
+					boxCanvas.Dispose();
+				}
+				
+				if (clickButtonShareWithYourContacts != null)
+				{
+					clickButtonShareWithYourContacts.Dispose();
+					clickButtonShareWithYourContacts = null;
+				}
+				if (clickButtonShareWithAFriend != null)
+				{
+					clickButtonShareWithAFriend.Dispose();
+					clickButtonShareWithAFriend = null;
+				}
+				if (clickButtonShareWithAFacebookFriend != null)
+				{
+					clickButtonShareWithAFacebookFriend.Dispose();
+					clickButtonShareWithAFacebookFriend = null;
+				}
+			}
+			
+			public function GetData():void
+			{
+				DoPaint();
+			}
+			public function DoPaint():void
+			{
+				DoShowContent(boxContent);
+			}
+			
+			protected override function SetLocation():void
+			{
+				this.right = 121 - 26;
+				this.top = 34;
+			}
+			
+			protected function clickButtonShareWithYourContacts_CLICKED(event:ButtonEvent):void
+			{
+				dispatchEvent(new Event(CLOSE));
+			}
+			
+			protected function clickButtonShareWithAFriend_CLICKED(event:ButtonEvent):void
+			{
+				var modalBoxBase:ShareAppWithEMailModalBox = new ShareAppWithEMailModalBox();
+				BoxMDI.GetBoxMDI.AddModalBox(modalBoxBase);
+				modalBoxBase.Init(null, null);
+				modalBoxBase.GetData();
+				dispatchEvent(new Event(CLOSE));
+			}
+			
+			protected function clickButtonShareWithAFacebookFriend_CLICKED(event:ButtonEvent):void
+			{
+				Utils.AS3.NavigateToWebUrl.ShareAppOnFacebook();
+				dispatchEvent(new Event(CLOSE));
+			}
+		]]>
+	</fx:Script>
+	<Box:BoxCanvas id="boxCanvas" width="100%" height="100%">
+		<Box:BoxGroup id="boxGroup" width="100%" height="100%">
+			<Box:BoxBC id="boxBC" width="100%" height="100%" CLOSE="dispatchEvent(new Event(CLOSE))">
+				<Box:BoxContent id="boxContent" width="100%" height="100%">
+					<mx:Spacer height="15"/>
+					<Button:ClickButton id="clickButtonShareWithYourContacts" enabled="false"
+										m_strText="{LocHandler.GS(LocGeneratedCode.Share_with_your_contacts)}" m_iLabelPaddingLeft="36" m_iLabelPaddingRight="4" m_iFontSize="12"
+										m_png="{Embeded.s_imgShareWithYourContacts}"
+										CLICKED="clickButtonShareWithYourContacts_CLICKED(event)"/>
+					<Sep:HSep width="262"/>
+					<Button:ClickButton id="clickButtonShareWithAFriend"
+										m_strText="{LocHandler.GS(LocGeneratedCode.Share_with_a_Friend)}" m_iLabelPaddingLeft="36" m_iLabelPaddingRight="4" m_iFontSize="12"
+										m_png="{Embeded.s_imgShareWithAFriend}"
+										CLICKED="clickButtonShareWithAFriend_CLICKED(event)"/>
+					<Sep:HSep width="262"/>
+					<Button:ClickButton id="clickButtonShareWithAFacebookFriend"
+										m_strText="{LocHandler.GS(LocGeneratedCode.Share_with_a_Facebook_friend)}" m_iLabelPaddingLeft="36" m_iLabelPaddingRight="4" m_iFontSize="12"
+										m_png="{Embeded.s_imgShareWithAFacebookFriend}"
+										CLICKED="clickButtonShareWithAFacebookFriend_CLICKED(event)"/>
+				</Box:BoxContent>
+			</Box:BoxBC>
+		</Box:BoxGroup>
+	</Box:BoxCanvas>
+</PopBox:PopBoxBase>

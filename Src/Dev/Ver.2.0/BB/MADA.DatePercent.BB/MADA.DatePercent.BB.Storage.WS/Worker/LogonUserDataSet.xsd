@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="LogonUserDataSet" targetNamespace="http://tempuri.org/LogonUserDataSet.xsd" xmlns:mstns="http://tempuri.org/LogonUserDataSet.xsd" xmlns="http://tempuri.org/LogonUserDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ConnectionStringDev" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="ConnectionStringDev (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ConnectionStringDev.ConnectionString" Provider="System.Data.SqlClient">
+          </Connection>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="LogonUserDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="LogonUserDataSet" msprop:Generator_DataSetName="LogonUserDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSGetUsers" msprop:Generator_UserTableName="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSGetUsers" msprop:Generator_RowDeletedName="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSGetUsersRowDeleted" msprop:Generator_RowChangedName="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSGetUsersRowChanged" msprop:Generator_RowClassName="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSGetUsersRow" msprop:Generator_RowChangingName="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSGetUsersRowChanging" msprop:Generator_RowEvArgName="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSGetUsersRowChangeEvent" msprop:Generator_RowEvHandlerName="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSGetUsersRowChangeEventHandler" msprop:Generator_TableClassName="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSGetUsersDataTable" msprop:Generator_TableVarName="tablePT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSGetUsers" msprop:Generator_RowDeletingName="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSGetUsersRowDeleting" msprop:Generator_TablePropName="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSGetUsers">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="USL_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="USL_ID" msprop:Generator_ColumnVarNameInTable="columnUSL_ID" msprop:Generator_ColumnPropNameInRow="USL_ID" msprop:Generator_ColumnPropNameInTable="USL_IDColumn" type="xs:int" />
+              <xs:element name="USL_FETCHED_LOGON_ID" msprop:Generator_UserColumnName="USL_FETCHED_LOGON_ID" msprop:Generator_ColumnVarNameInTable="columnUSL_FETCHED_LOGON_ID" msprop:Generator_ColumnPropNameInRow="USL_FETCHED_LOGON_ID" msprop:Generator_ColumnPropNameInTable="USL_FETCHED_LOGON_IDColumn" type="xs:int" />
+              <xs:element name="USR_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="USR_ID" msprop:Generator_ColumnVarNameInTable="columnUSR_ID" msprop:Generator_ColumnPropNameInRow="USR_ID" msprop:Generator_ColumnPropNameInTable="USR_IDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="USR_SEX_CODE" msprop:Generator_UserColumnName="USR_SEX_CODE" msprop:Generator_ColumnVarNameInTable="columnUSR_SEX_CODE" msprop:Generator_ColumnPropNameInRow="USR_SEX_CODE" msprop:Generator_ColumnPropNameInTable="USR_SEX_CODEColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="USR_LAT" msprop:Generator_UserColumnName="USR_LAT" msprop:Generator_ColumnVarNameInTable="columnUSR_LAT" msprop:Generator_ColumnPropNameInRow="USR_LAT" msprop:Generator_ColumnPropNameInTable="USR_LATColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="USR_LNG" msprop:Generator_UserColumnName="USR_LNG" msprop:Generator_ColumnVarNameInTable="columnUSR_LNG" msprop:Generator_ColumnPropNameInRow="USR_LNG" msprop:Generator_ColumnPropNameInTable="USR_LNGColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="USR_RADIUS_KM" msprop:Generator_UserColumnName="USR_RADIUS_KM" msprop:Generator_ColumnVarNameInTable="columnUSR_RADIUS_KM" msprop:Generator_ColumnPropNameInRow="USR_RADIUS_KM" msprop:Generator_ColumnPropNameInTable="USR_RADIUS_KMColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSCheckBreakingNews" msprop:Generator_UserTableName="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSCheckBreakingNews" msprop:Generator_RowDeletedName="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSCheckBreakingNewsRowDeleted" msprop:Generator_TableClassName="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSCheckBreakingNewsDataTable" msprop:Generator_RowChangedName="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSCheckBreakingNewsRowChanged" msprop:Generator_RowClassName="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSCheckBreakingNewsRow" msprop:Generator_RowChangingName="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSCheckBreakingNewsRowChanging" msprop:Generator_RowEvArgName="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSCheckBreakingNewsRowChangeEvent" msprop:Generator_RowEvHandlerName="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSCheckBreakingNewsRowChangeEventHandler" msprop:Generator_TablePropName="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSCheckBreakingNews" msprop:Generator_TableVarName="tablePT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSCheckBreakingNews" msprop:Generator_RowDeletingName="PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSCheckBreakingNewsRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Counter" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Counter" msprop:Generator_ColumnPropNameInRow="Counter" msprop:Generator_ColumnVarNameInTable="columnCounter" msprop:Generator_ColumnPropNameInTable="CounterColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1">
+      <xs:selector xpath=".//mstns:PT_USER_LOGONSetFlagUSL_HAS_BREAKING_NEWSGetUsers" />
+      <xs:field xpath="mstns:USL_ID" />
+      <xs:field xpath="mstns:USR_ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

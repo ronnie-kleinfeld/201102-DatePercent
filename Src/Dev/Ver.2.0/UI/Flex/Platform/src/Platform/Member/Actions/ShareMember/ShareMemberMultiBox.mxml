@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="100%" height="100%"
+		 xmlns:Label="UI.Label.*" xmlns:Photo="UI.Photo.*" xmlns:Button="UI.Button.*" xmlns:UI="UI.*" xmlns:Sep="UI.Sep.*">
+	<s:layout>
+		<s:VerticalLayout gap="2"/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import Data.MemberData;
+			
+			import Handler.LocHandler;
+			
+			import UI.Box.BoxMDI;
+			import UI.Button.ButtonEvent;
+			
+			import Utils.AS3.Embeded;
+			import Handler.LocGeneratedCode;
+			
+			[Bindable] private var m_memberData:MemberData;
+			
+			public function Init(p_memberData:MemberData):void
+			{
+				m_memberData = p_memberData;
+			}
+			public function Dispose():void
+			{
+				if (clickButtonShareWithAFriend != null)
+				{
+					clickButtonShareWithAFriend.Dispose();
+					clickButtonShareWithAFriend = null;
+				}
+				if (clickButtonShareWithAFacebookFriend != null)
+				{
+					clickButtonShareWithAFacebookFriend.Dispose();
+					clickButtonShareWithAFacebookFriend = null;
+				}
+				
+				m_memberData = null;
+			}
+			
+			// events
+			protected function clickButtonShareWithAFriend_CLICKED(event:ButtonEvent):void
+			{
+				var modalBoxBase:ShareMemberWithEMailModalBox = new ShareMemberWithEMailModalBox();
+				BoxMDI.GetBoxMDI.AddModalBox(modalBoxBase);
+				modalBoxBase.Init(null, null);
+				modalBoxBase.GetData(m_memberData);
+			}
+			
+			protected function clickButtonShareWithAFacebookFriend_CLICKED(event:ButtonEvent):void
+			{
+				Utils.AS3.NavigateToWebUrl.ShareMemberOnFacebook(m_memberData);
+			}
+		]]>
+	</fx:Script>
+	<Label:HeaderLabel width="100%" text="{LocHandler.GS(LocGeneratedCode.Share_member)}" textAlign="left"/>
+	<mx:Spacer height="10"/>
+	<s:VGroup width="100%" height="100%">
+		<Button:ClickButton id="clickButtonShareWithAFriend" width="34" height="34"
+							m_strText="{LocHandler.GS(LocGeneratedCode.Share_with12a_Friend)}" m_iLabelPaddingLeft="40" m_iLabelPaddingRight="4" m_iFontSize="12"
+							m_png="{Embeded.s_imgShareWithAFriend}"
+							CLICKED="clickButtonShareWithAFriend_CLICKED(event)"/>
+		<mx:Spacer height="5"/>
+		<Button:ClickButton id="clickButtonShareWithAFacebookFriend" width="34" height="34"
+							m_strText="{LocHandler.GS(LocGeneratedCode.Share_with12a_Facebook_friend)}" m_iLabelPaddingLeft="40" m_iLabelPaddingRight="4" m_iFontSize="12"
+							m_png="{Embeded.s_imgShareWithAFacebookFriend}"
+							CLICKED="clickButtonShareWithAFacebookFriend_CLICKED(event)"/>
+	</s:VGroup>
+</s:Group>

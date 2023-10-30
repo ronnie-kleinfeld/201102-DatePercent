@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<List:VListBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				width="100%" height="100%"
+				initialize="initializeHandler(event)"
+				xmlns:List="UI.List.*" xmlns:Button="UI.Button.*">
+	<fx:Script>
+		<![CDATA[
+			import Data.Base.CollectionEvent;
+			import Data.Member.InboxData;
+			import Data.Member.InboxDataCollection;
+			
+			import Enum.CommTypeEnum;
+			
+			import Handler.SesHandler;
+			
+			import Platform.Member.MemberPopBoxEvent;
+			
+			import UI.Box.BoxMDI;
+			import UI.List.ListItemBase;
+			import UI.List.ListItemEvent;
+			
+			import Utils.Log.Logger;
+			
+			import flash.utils.getQualifiedClassName;
+			
+			import mx.events.FlexEvent;
+			
+			protected override function get DoFillByTimer():Boolean
+			{
+				return false;
+			}
+			protected override function get AddItemByCollectionEvent():Boolean
+			{
+				return false;
+			}
+			
+			private function initializeHandler(event:FlexEvent):void
+			{
+				m_scroller = scroller;
+				m_hvGroup = vGroup;
+			}
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (clickButtonNext != null)
+				{
+					clickButtonNext.Dispose();
+					clickButtonNext = null;
+				}
+				if (clickButtonPrev != null)
+				{
+					clickButtonPrev.Dispose();
+					clickButtonPrev = null;
+				}
+			}
+			
+			protected override function DoFillStep():void
+			{
+				for (var i:int = 0; i < m_iPaintedListItemCount; i++)
+				{
+					var inboxData:InboxData = InboxDataCollection(m_ac).FindItemInboxDataByIndex(i);
+					if (FindListItemByID(inboxData.ID) == null && FindListItemByMemberID(inboxData.MemberID) == null)
+					{
+						AddInboxesListItem(inboxData);	
+					}
+				}
+				
+				InvalidatePrevNext();
+			}
+			protected function FindListItemByMemberID(p_iMemberID:int):ListItemBase
+			{
+				for (var i:int = 0; i < m_hvGroup.numElements; i++)
+				{
+					var listItemBase:ListItemBase = ListItemBase(m_hvGroup.getElementAt(i));
+					if ((InboxData(listItemBase.m_objectBase)).MemberID == p_iMemberID)
+					{
+						return listItemBase;
+					}
+				}
+				
+				return null;
+			}
+			
+			protected override function collectionBase_OBJECT_ADDED(event:CollectionEvent):void
+			{
+				if (AddItemByCollectionEvent)
+				{
+					AddInboxesListItem(InboxData(event.ObjectData));
+				}
+			}
+			
+			private function AddInboxesListItem(p_inboxData:InboxData):void
+			{
+				var listItemBase:ListItemBase;
+				
+				switch (p_inboxData.CommTypeCode)
+				{
+					case CommTypeEnum.TEXT:
+						listItemBase = new InboxPopBoxListItemText();
+						break;
+					case CommTypeEnum.WINK:
+						listItemBase = new InboxPopBoxListItemWink();
+						break;
+					case CommTypeEnum.PRESENT:
+						listItemBase = new InboxPopBoxListItemPresent();
+						break;
+					default:
+						Logger.Instance.WriteSwitchOutOfBoundError(p_inboxData.CommTypeCode.toString(), flash.utils.getQualifiedClassName(this));
+				}
+				
+				listItemBase.Init(p_inboxData);
+				AddListItem(listItemBase, false);
+			}
+			
+			protected function showPhotosList_LIST_ITEM_CLICKED(event:ListItemEvent):void
+			{
+				event.stopPropagation();
+				//BoxMDI.GetBoxMDI.DoCloseAllBox();
+				dispatchEvent(new MemberPopBoxEvent(MemberPopBoxEvent.OPEN_MEMBER_POP_BOX, InboxData(event.ListItem).Member));
+			}
+		]]>
+	</fx:Script>
+	<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+		<Button:ClickButton id="clickButtonPrev" visible="{m_bPrevVisible}" m_png="{m_classPrevPng}" CLICKED="DoMovePrev()" m_strTooltip="{m_strToolTipPrev}"/>
+		<s:Scroller id="scroller" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+			<s:Group width="100%" height="100%">
+				<s:VGroup id="vGroup" width="100%" height="100%" clipAndEnableScrolling="false" paddingTop="2" paddingBottom="2" gap="0"/>
+			</s:Group>
+		</s:Scroller>
+		<Button:ClickButton id="clickButtonNext" visible="{m_bNextVisible}" m_png="{m_classNextPng}" CLICKED="DoMoveNext()" m_strTooltip="{m_strToolTipNext}"/>
+	</s:VGroup>
+</List:VListBase>

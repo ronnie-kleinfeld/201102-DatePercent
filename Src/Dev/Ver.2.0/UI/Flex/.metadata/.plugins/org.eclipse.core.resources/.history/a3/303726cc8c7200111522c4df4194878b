@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<List:VListBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				width="100%" height="100%"
+				initialize="initializeHandler(event)"
+				xmlns:List="UI.List.*" xmlns:Button="UI.Button.*">
+	<fx:Script>
+		<![CDATA[
+			import Data.Base.CollectionEvent;
+			import Data.Member.BreakingNewsData;
+			import Data.Member.MapMarkerData;
+			
+			import Handler.SessionHandler;
+			
+			import mx.events.FlexEvent;
+			
+			protected override function get DoFillByTimer():Boolean
+			{
+				return true;
+			}
+			protected override function get FillInterval():int
+			{
+				return 4000;
+			}
+			protected override function get AddItemByCollectionEvent():Boolean
+			{
+				return false;
+			}
+			
+			private function initializeHandler(event:FlexEvent):void
+			{
+				m_scroller = scroller;
+				m_hvGroup = vGroup;
+				Init(SessionHandler.Instance.Session.BreakingNews);
+			}
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (clickButtonNext != null)
+				{
+					clickButtonNext.Dispose();
+					clickButtonNext = null;
+				}
+				if (clickButtonPrev != null)
+				{
+					clickButtonPrev.Dispose();
+					clickButtonPrev = null;
+				}
+			}
+			protected override function DoFillTimer():void
+			{
+				var i:int;
+				for (i = 0; i < SessionHandler.Instance.Session.BreakingNews.Length; i++)
+				{
+					var breakingNewsData:BreakingNewsData = SessionHandler.Instance.Session.BreakingNews.FindItemBreakingNewsDataByIndex(i);
+					if (this.FindListItemByID(breakingNewsData.ID) == null)
+					{
+						AddBreakingNewsBarListItem(breakingNewsData);
+						break;
+					}
+				}
+				
+				try
+				{
+					StopFillTimer();
+					
+					for (i = 0; i < 5; i++)
+					{
+						SessionHandler.Instance.Session.BreakingNews.RemoveItemBreakingNewsDataByID(SessionHandler.Instance.Session.BreakingNews.Length - 1);
+					}
+				}
+				finally
+				{
+					StartFillTimer();
+				}
+			}
+			
+			protected override function collectionBase_OBJECT_ADDED(event:CollectionEvent):void
+			{
+				if (AddItemByCollectionEvent)
+				{
+					AddBreakingNewsBarListItem(BreakingNewsData(event.ObjectData));
+				}
+			}
+			private function AddBreakingNewsBarListItem(p_breakingNewsData:BreakingNewsData):void
+			{
+				SessionHandler.Instance.Session.MapMarkers.AddItemMapMarkerData(new MapMarkerData(p_breakingNewsData.Member.ID));
+				
+				var breakingNewsBarListItem:BreakingNewsBarListItem = new BreakingNewsBarListItem();
+				breakingNewsBarListItem.Init(p_breakingNewsData);
+				AddListItem(breakingNewsBarListItem, true);
+			}
+			
+			protected override function collectionBase_OBJECT_REMOVED(event:CollectionEvent):void
+			{
+				super.collectionBase_OBJECT_REMOVED(event);
+				SessionHandler.Instance.Session.MapMarkers.RemoveItemMapMarkerDataByID(event.ObjectData.ID);
+			}
+		]]>
+	</fx:Script>
+	<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="middle" gap="0">
+		<Button:ClickButton id="clickButtonPrev" visible="{m_bPrevVisible}" m_png="{m_classPrevPng}" CLICKED="DoMovePrev()" m_strTooltip="{m_strToolTipPrev}"/>
+		<s:Scroller id="scroller" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+			<s:Group width="100%" height="100%">
+				<s:VGroup id="vGroup" width="100%" height="100%" clipAndEnableScrolling="false" paddingTop="2" paddingBottom="2" paddingLeft="3" paddingRight="2" gap="2"/>
+			</s:Group>
+		</s:Scroller>
+		<Button:ClickButton id="clickButtonNext" visible="{m_bNextVisible}" m_png="{m_classNextPng}" CLICKED="DoMoveNext()" m_strTooltip="{m_strToolTipNext}"/>
+	</s:VGroup>
+</List:VListBase>

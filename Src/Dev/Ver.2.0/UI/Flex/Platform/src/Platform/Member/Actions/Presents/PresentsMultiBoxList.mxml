@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<List:VListBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				width="100%" height="100%"
+				initialize="initializeHandler(event)"
+				xmlns:List="UI.List.*" xmlns:Button="UI.Button.*" xmlns:Label="UI.Label.*">
+	<fx:Script>
+		<![CDATA[
+			import Data.Base.CollectionEvent;
+			import Data.MemberData;
+			import Data.Presents.PresentData;
+			import Data.Presents.PresentDataCollection;
+			
+			import Handler.LocHandler;
+			
+			import Handler.LocGeneratedCode;
+			
+			import mx.events.FlexEvent;
+
+			[Bindable] private var m_memberData:MemberData;
+
+			protected override function get DoFillByTimer():Boolean
+			{
+				return false;
+			}
+			protected override function get AddItemByCollectionEvent():Boolean
+			{
+				return false;
+			}
+			
+			private function initializeHandler(event:FlexEvent):void
+			{
+				m_scroller = scroller;
+				m_hvGroup = vGroup;
+			}
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (clickButtonNext != null)
+				{
+					clickButtonNext.Dispose();
+					clickButtonNext = null;
+				}
+				if (clickButtonPrev != null)
+				{
+					clickButtonPrev.Dispose();
+					clickButtonPrev = null;
+				}
+				
+				m_memberData = null;
+			}
+			
+			public function GetData(p_memberData:MemberData):void
+			{
+				m_memberData = p_memberData;
+			}
+			
+			protected override function DoFillStep():void
+			{
+				for (var i:int = 0; i < m_iPaintedListItemCount; i++)
+				{
+					var p_presentData:PresentData = PresentDataCollection(m_ac).FindItemPresentDataByIndex(i);
+					if (FindListItemByID(p_presentData.ID) == null)
+					{
+						AddPresentsListItem(p_presentData);	
+					}
+				}
+				
+				InvalidatePrevNext();
+			}
+			
+			protected override function collectionBase_OBJECT_ADDED(event:CollectionEvent):void
+			{
+				if (AddItemByCollectionEvent)
+				{
+					AddPresentsListItem(PresentData(event.ObjectData));
+				}
+			}
+			
+			private function AddPresentsListItem(p_presentData:PresentData):void
+			{
+				var presentsListItem:PresentsMultiBoxListItem = new PresentsMultiBoxListItem();
+				presentsListItem.Init(p_presentData);
+				presentsListItem.GetData(m_memberData);
+				AddListItem(presentsListItem, false);
+			}
+		]]>
+	</fx:Script>
+	<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+		<Label:HeaderLabel width="100%" text="{LocHandler.GS(LocGeneratedCode.Send_a_Present)}" textAlign="left"/>
+		<Button:ClickButton id="clickButtonPrev" visible="{m_bPrevVisible}" m_png="{m_classPrevPng}" CLICKED="DoMovePrev()" m_strTooltip="{m_strToolTipPrev}"/>
+		<s:Scroller id="scroller" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+			<s:Group width="100%" height="100%">
+				<s:VGroup id="vGroup" width="100%" height="100%" clipAndEnableScrolling="false" paddingTop="2" paddingBottom="2" gap="2"/>
+			</s:Group>
+		</s:Scroller>
+		<Button:ClickButton id="clickButtonNext" visible="{m_bNextVisible}" m_png="{m_classNextPng}" CLICKED="DoMoveNext()" m_strTooltip="{m_strToolTipNext}"/>
+	</s:VGroup>
+</List:VListBase>

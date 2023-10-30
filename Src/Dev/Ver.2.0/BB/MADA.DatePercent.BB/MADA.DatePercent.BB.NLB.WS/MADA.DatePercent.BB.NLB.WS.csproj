@@ -1,0 +1,372 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E98722E6-EF1D-4B7A-ABCC-7D23C9E805A1}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MADA.DatePercent.BB.NLB.WS</RootNamespace>
+    <AssemblyName>MADA.DatePercent.BB.NLB.WS</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="crossdomain.xml" />
+    <Content Include="Dashboard\Dashboard.aspx" />
+    <Content Include="Dashboard\Hostings.aspx" />
+    <Content Include="Dashboard\IpLatLng.aspx" />
+    <Content Include="Dashboard\Map.aspx" />
+    <Content Include="Dashboard\Registers.aspx" />
+    <Content Include="Dashboard\Servers.aspx" />
+    <Content Include="Dashboard\ServerTypes.aspx" />
+    <Content Include="Dashboard\Sessions.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="RedirectToApp.htm" />
+    <Content Include="Res\BL.png" />
+    <Content Include="Res\Dist.png" />
+    <Content Include="Res\Log.png" />
+    <Content Include="Res\Map.png" />
+    <Content Include="Res\NLB.png" />
+    <Content Include="Res\Server.png" />
+    <Content Include="Res\Smtp.png" />
+    <Content Include="Res\Storage.png" />
+    <Content Include="Res\IIS.png" />
+    <Content Include="Res\WL.png" />
+    <Content Include="robots.txt" />
+    <Content Include="SiteMap\AtomMap.xml" />
+    <Content Include="SiteMap\GoogleMap.xml" />
+    <Content Include="SiteMap\PodCasts.xml" />
+    <Content Include="SiteMap\RorRDF.xml" />
+    <Content Include="SiteMap\RssLatest.xml" />
+    <Content Include="SiteMap\RssMap.xml" />
+    <Content Include="SiteMap\urllist.txt" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationHandler.cs">
+      <DependentUpon>ApplicationHandler.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ApplicationHandler.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApplicationHandler.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ContactFetcher\GMail.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>GMail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContactFetcher\GMail.aspx.designer.cs">
+      <DependentUpon>GMail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Hostings.aspx.cs">
+      <DependentUpon>Hostings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Hostings.aspx.designer.cs">
+      <DependentUpon>Hostings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\IpLatLng.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>IpLatLng.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\IpLatLng.aspx.designer.cs">
+      <DependentUpon>IpLatLng.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Map.aspx.cs">
+      <DependentUpon>Map.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Map.aspx.designer.cs">
+      <DependentUpon>Map.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Registers.aspx.cs">
+      <DependentUpon>Registers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Registers.aspx.designer.cs">
+      <DependentUpon>Registers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Servers.aspx.cs">
+      <DependentUpon>Servers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Servers.aspx.designer.cs">
+      <DependentUpon>Servers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\ServerTypes.aspx.cs">
+      <DependentUpon>ServerTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard\ServerTypes.aspx.designer.cs">
+      <DependentUpon>ServerTypes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Sessions.aspx.cs">
+      <DependentUpon>Sessions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Sessions.aspx.designer.cs">
+      <DependentUpon>Sessions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Facebook\PageTab.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>PageTab.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Facebook\PageTab.aspx.designer.cs">
+      <DependentUpon>PageTab.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Flex\FBLogin.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>FBLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Flex\FBLogin.aspx.designer.cs">
+      <DependentUpon>FBLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Flex\FBLoginPost.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>FBLoginPost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Flex\FBLoginPost.aspx.designer.cs">
+      <DependentUpon>FBLoginPost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Flex\Loader.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Loader.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Flex\Loader.aspx.designer.cs">
+      <DependentUpon>Loader.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\com.dp38745.www\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\com.dp68457.www\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\NLBWS.info.datepercent.www\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="WS\NlbWS.asmx.cs">
+      <DependentUpon>NlbWS.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\Framework\Dev\Ver.1.0\MADA.BE\MADA.BE.csproj">
+      <Project>{AB4697F9-6CE3-4769-BBBB-0CA1BB5AEE4D}</Project>
+      <Name>MADA.BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Framework\Dev\Ver.1.0\MADA.Common\MADA.Common.csproj">
+      <Project>{4CD17982-9552-4CEE-9AD1-531534D9FB8B}</Project>
+      <Name>MADA.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Framework\Dev\Ver.1.0\MADA.Data\MADA.Data.csproj">
+      <Project>{CC8CF9E4-6755-4B24-AD9A-B70F71EA9645}</Project>
+      <Name>MADA.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Framework\Dev\Ver.1.0\MADA.Web\MADA.Web.csproj">
+      <Project>{AE746367-2AB4-44EC-A1BB-A2A94FE73B9B}</Project>
+      <Name>MADA.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Log\Dev\Ver.1.0\MADA.Log.Api.Net\MADA.Log.Api.Net.csproj">
+      <Project>{11F390E2-70D9-4F27-A0C0-95EC370C4EAC}</Project>
+      <Name>MADA.Log.Api.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SMTP\MADA.DatePercent.SMTP\MADA.DatePercent.SMTP.Api.Net\MADA.DatePercent.SMTP.Api.Net.csproj">
+      <Project>{BE5453AA-0C1B-4D80-A999-EB7D93C20C14}</Project>
+      <Name>MADA.DatePercent.SMTP.Api.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MADA.DatePercent.BB.BE\MADA.DatePercent.BB.BE.csproj">
+      <Project>{15FAE7CE-43BE-4267-9D93-915231887CE8}</Project>
+      <Name>MADA.DatePercent.BB.BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MADA.DatePercent.BB.BL\MADA.DatePercent.BB.BL.csproj">
+      <Project>{6C5FEE5B-9853-41EC-B039-A104F5044543}</Project>
+      <Name>MADA.DatePercent.BB.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MADA.DatePercent.BB.NLB.DBS\MADA.DatePercent.BB.NLB.DBS.csproj">
+      <Project>{544366F4-EB47-41FD-85F4-DB4C1A5601A3}</Project>
+      <Name>MADA.DatePercent.BB.NLB.DBS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ApplicationHandler.xsc">
+      <DependentUpon>ApplicationHandler.xsd</DependentUpon>
+    </None>
+    <None Include="ApplicationHandler.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ApplicationHandler.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ApplicationHandler.xss">
+      <DependentUpon>ApplicationHandler.xsd</DependentUpon>
+    </None>
+    <None Include="Web References\com.dp38745.www\LoggerWS.disco" />
+    <None Include="Web References\com.dp68457.www\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\com.dp68457.www\SmtpWS.disco" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\com.dp38745.www\LoggerWS.wsdl" />
+    <None Include="Web References\com.dp38745.www\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\com.dp68457.www\SmtpWS.wsdl" />
+    <None Include="Web References\NLBWS.info.datepercent.www\NLBWS.wsdl" />
+    <None Include="Web References\NLBWS.info.datepercent.www\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="ContactFetcher\GMail.aspx" />
+    <Content Include="ContactFetcher\GMail.htm" />
+    <Content Include="Facebook\PageTab.aspx" />
+    <Content Include="Flex\FBLogin.aspx" />
+    <Content Include="Flex\FBLoginPost.aspx" />
+    <Content Include="Res\Com.png" />
+    <Content Include="Flex\Loader.aspx" />
+    <Content Include="Res\dp15448.com.pdf" />
+    <Content Include="Res\dp36524.com.pdf" />
+    <Content Include="Res\dp38745.com.pdf" />
+    <Content Include="Res\dp68457.com.pdf" />
+    <Content Include="Res\header.png" />
+    <Content Include="Res\LandingPage_en.png" />
+    <Content Include="Res\LandingPage_es.png" />
+    <Content Include="Res\loading_progress.gif" />
+    <Content Include="Script\playerProductInstall.swf" />
+    <Content Include="Script\swfobject.js" />
+    <Content Include="WS\NlbWS.asmx" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://www.datepercent.info/WS/NLBWS.asmx%3fWSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\NLBWS.info.datepercent.www\</RelPath>
+      <UpdateFromURL>http://www.datepercent.info/WS/NLBWS.asmx%3fWSDL</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>MADA_DatePercent_BB_NLB_WS_NLBWS_info_datepercent_www_NLBWS</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://www.dp38745.com/LoggerWS.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\com.dp38745.www\</RelPath>
+      <UpdateFromURL>http://www.dp38745.com/LoggerWS.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>MADA_DatePercent_BB_NLB_WS_com_dp38745_www_LoggerWS</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://www.dp68457.com/SmtpWS.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\com.dp68457.www\</RelPath>
+      <UpdateFromURL>http://www.dp68457.com/SmtpWS.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>MADA_DatePercent_BB_NLB_WS_com_dp68457_www_SmtpWS</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Public\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v8.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>63331</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

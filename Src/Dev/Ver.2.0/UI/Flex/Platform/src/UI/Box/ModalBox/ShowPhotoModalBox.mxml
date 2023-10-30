@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModalBox:ModalBoxBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+					   width="640" height="480"
+					   click="dispatchEvent(new Event(CLOSE))"
+					   creationComplete="creationCompleteHandler(event)"
+					   xmlns:ModalBox="UI.Box.ModalBox.*" xmlns:Box="UI.Box.*" xmlns:Button="UI.Button.*" xmlns:UI="UI.*" xmlns:Photo="UI.Photo.*">
+	<fx:Metadata>
+		[Event(name=CLOSE, type="flash.events.Event")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import Data.Member.PhotoData;
+			import Data.Member.PhotoDataCollection;
+			
+			import Handler.LocHandler;
+			
+			import UI.Button.ButtonBase;
+			import UI.Button.ButtonEvent;
+			import UI.Photo.PhotoBase;
+			
+			import Utils.AS3.Embeded;
+			import Handler.LocGeneratedCode;
+			
+			import mx.events.FlexEvent;
+			
+			[Bindable] private var m_photoData:PhotoData;
+			[Bindable] private var m_photoDataCollection:PhotoDataCollection;
+			
+			// class
+			public override function Init(p_buttonOpener:ButtonBase, p_photoOpener:PhotoBase):void
+			{
+				super.Init(p_buttonOpener, p_photoOpener);
+				DoShowBox(boxCanvas);
+			}
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				boxBC.ShowCloseButton();
+			}
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				m_photoDataCollection = null;
+				m_photoData = null;
+				
+				if (clickButtonNext != null)
+				{
+					clickButtonNext.Dispose();
+					clickButtonNext = null;
+				}
+				if (clickButtonPrevius != null)
+				{
+					clickButtonPrevius.Dispose();
+					clickButtonPrevius = null;
+				}
+				
+				if (boxBC != null)
+				{
+					boxBC.Dispose();
+				}
+				if (boxCanvas != null)
+				{
+					boxCanvas.Dispose();
+				}
+			}
+			
+			public function GetData(p_photoData:PhotoData, p_photoDataCollection:PhotoDataCollection):void
+			{
+				m_photoData = p_photoData;
+				m_photoDataCollection = p_photoDataCollection;
+				DoPaint();
+			}
+			public function DoPaint():void
+			{
+				DoShowContent(boxContent);
+			}
+			
+			// events
+			private function clickButtonPrevius_CLICKED(event:ButtonEvent):void
+			{
+				// show previus photo
+				
+				
+			}
+			private function clickButtonNext_CLICKED(event:ButtonEvent):void
+			{
+				// show next photo
+				
+				
+			}
+		]]>
+	</fx:Script>
+	<Box:BoxCanvas id="boxCanvas" width="100%" height="100%">
+		<Box:BoxGroup id="boxGroup" width="100%" height="100%">
+			<Box:BoxBC id="boxBC" width="100%" height="100%" CLOSE="dispatchEvent(new Event(CLOSE))">
+				<Box:BoxContent id="boxContent" width="100%" height="100%">
+					<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="middle" gap="0">
+						<Button:ClickButton id="clickButtonPrevius" width="{m_photoDataCollection==null?0:12}" m_png="{Embeded.s_imgListSmallLeft}" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Previus)}"
+											CLICKED="clickButtonPrevius_CLICKED(event)"/>
+						<mx:Image width="{this.width-48}" height="{this.height-24}" source="{m_photoData.Url}" verticalAlign="middle" horizontalAlign="center"/>
+						<Button:ClickButton id="clickButtonNext" width="{m_photoDataCollection==null?0:12}" m_png="{Embeded.s_imgListSmallRight}" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Next)}"
+											CLICKED="clickButtonNext_CLICKED(event)"/>
+					</s:HGroup>
+				</Box:BoxContent>
+			</Box:BoxBC>
+		</Box:BoxGroup>
+	</Box:BoxCanvas>
+</ModalBox:ModalBoxBase>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Photo:PhotoBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				 width="{m_iSize}" height="{m_iSize}"
+				 toolTip="{m_strTooltip}"
+				 xmlns:Photo="UI.Photo.*" xmlns:Button="UI.Button.*">
+	<fx:Metadata>
+		[Event(name=CLICKED, type="UI.Photo.PhotoEvent")]
+		[Event(name=REMOVE_CLICKED, type="UI.Photo.PhotoEvent")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import Handler.LocHandler;
+			
+			import Utils.AS3.Embeded;
+			import Utils.AS3.Filters;
+			import Handler.LocGeneratedCode;
+			
+			[Bindable] private var m_bShowRemove:Boolean;
+			public var m_bRemoveFadeEffect:Boolean = false;
+			
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (clickButtonRemove != null)
+				{
+					clickButtonRemove.Dispose();
+					clickButtonRemove = null;
+				}
+				
+				fadeHide = null;
+				fadeShow = null;
+			}
+			
+			// properties
+			public function DoShowRemove():void
+			{
+				m_bShowRemove = true;
+				this.buttonMode = false;
+				fadeShow.play();
+				m_bRemoveFadeEffect = false;
+			}
+			public function DoHideRemove():void
+			{
+				this.buttonMode = true;
+				filters = [Utils.AS3.Filters.Glow];
+				fadeHide.play();
+				m_bShowRemove = false;
+				m_bRemoveFadeEffect = true;
+			}
+			
+			// events
+			protected override function rollOverHandler(event:MouseEvent):void
+			{
+				super.rollOverHandler(event);
+				if (m_bRemoveFadeEffect)
+				{
+					fadeShow.play();
+				}
+				if (event.buttonDown)
+				{
+					filters = [Utils.AS3.Filters.Sunken];
+				}
+				else
+				{
+					filters = [Utils.AS3.Filters.Glow];
+				}
+			}
+			protected override function rollOutHandler(event:MouseEvent):void
+			{
+				super.rollOutHandler(event);
+				if (m_bRemoveFadeEffect)
+				{
+					fadeShow.stop();
+					fadeHide.play();
+				}
+				filters = null;
+			}
+			protected override function mouseDownHandler(event:MouseEvent):void
+			{
+				super.mouseDownHandler(event);
+				if (!m_bShowRemove)
+				{
+					filters = [Utils.AS3.Filters.Sunken];
+				}
+			}
+			protected override function mouseUpHandler(event:MouseEvent):void
+			{
+				super.mouseUpHandler(event);
+				if (!m_bShowRemove)
+				{
+					filters = [Utils.AS3.Filters.Glow];
+				}
+			}
+			protected override function clickHandler(event:MouseEvent):void
+			{
+				super.clickHandler(event);
+				dispatchEvent(new PhotoEvent(PhotoEvent.CLICKED, this));
+			}
+			
+			protected function clickButtonRemove_clickHandler(event:MouseEvent):void
+			{
+				if (m_bShowRemove)
+				{
+					event.stopPropagation();
+					dispatchEvent(new PhotoEvent(PhotoEvent.REMOVE_CLICKED, this));
+				}
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:Transition>
+			<s:Fade id="fadeShow" target="{clickButtonRemove}" alphaFrom="0" alphaTo="1" duration="1000" effectEnd="{m_bShowRemove=true}"/>
+		</s:Transition>
+		<s:Transition>
+			<s:Fade id="fadeHide" target="{clickButtonRemove}" alphaFrom="1" alphaTo="0" duration="250" effectEnd="{m_bShowRemove=false}"/>
+		</s:Transition>
+	</fx:Declarations>
+	<mx:Image width="{m_iSize-4}" height="{m_iSize-4}" source="{Photo.UrlX}" scaleContent="true" verticalAlign="middle" horizontalAlign="center"/>
+	<Button:ClickButton id="clickButtonRemove"
+						toolTip="{LocHandler.GS(LocGeneratedCode.Remove)}"
+						top="1" right="3" m_png="{Embeded.s_imgRemove}" visible="{m_bShowRemove}" alpha="0"
+						click="clickButtonRemove_clickHandler(event)"/>
+</Photo:PhotoBase>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PopBox:PopBoxBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="200" height="51"
+				   preinitialize="preinitializeHandler(event)" initialize="initializeHandler(event)" creationComplete="creationCompleteHandler(event)"
+				   xmlns:PopBox="UI.Box.PopBox.*" xmlns:Box="UI.Box.*" xmlns:Inbox="Platform.TopBar.Inbox.*">
+	<fx:Script>
+		<![CDATA[
+			import Data.Base.CollectionEvent;
+			
+			import Handler.LocHandler;
+			import Handler.SesHandler;
+			
+			import UI.Box.PopBox.NodgePositionEnum;
+			import UI.Button.ButtonBase;
+			import UI.Photo.PhotoBase;
+			
+			import Handler.LocGeneratedCode;
+			
+			import mx.events.EffectEvent;
+			import mx.events.FlexEvent;
+			
+			protected function preinitializeHandler(event:FlexEvent):void
+			{
+				m_enumNodgePosition = NodgePositionEnum.TOP_RIGHT;
+			}
+			protected function initializeHandler(event:FlexEvent):void
+			{
+				SesHandler.Instance.Session.Inboxes.addEventListener(CollectionEvent.OBJECT_REMOVED, inboxes_OBJECT_REMOVED);
+			}
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				boxGroup.InitPadding(m_enumNodgePosition);
+				boxCanvas.InidNodge(m_enumNodgePosition);
+				boxBC.ShowCloseButton();
+			}
+			public override function Init(p_buttonOpener:ButtonBase, p_photoOpener:PhotoBase):void
+			{
+				super.Init(p_buttonOpener, p_photoOpener);
+				DoShowBox(boxCanvas);
+			}
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (boxBC != null)
+				{
+					boxBC.Dispose();
+				}
+				if (boxCanvas != null)
+				{
+					boxCanvas.Dispose();
+				}
+				
+				if (inboxPopBoxList != null)
+				{
+					inboxPopBoxList.Dispose();
+					inboxPopBoxList = null;
+				}
+			}
+			
+			public function DoPaint():void
+			{
+				DoShowContent(boxContent);
+				DoPaintTitle();
+				if (SesHandler.Instance.Session.Inboxes.UniqueLengthByMemberID == 0)
+				{
+					this.height = 51;
+				}
+				else
+				{
+					this.height =
+						51 +
+						(12 + 2 + 2) * 2 +
+						66 * SesHandler.Instance.Session.Inboxes.UniqueLengthByMemberID +
+						2;
+				}
+				if (this.height > 349)
+				{
+					this.height = 349;
+				}
+				inboxPopBoxList.Init(SesHandler.Instance.Session.Inboxes);
+			}
+			protected override function m_fadeContent_EFFECT_END(event:EffectEvent):void
+			{
+				inboxPopBoxList.DoFill();
+			}
+			private function DoPaintTitle():void
+			{
+				if (SesHandler.Instance.Session.Inboxes.UniqueLengthByMemberID > 0)
+				{
+					boxBC.ShowTitle(SesHandler.Instance.Session.Inboxes.UniqueLengthByMemberID + " " + LocHandler.GS(LocGeneratedCode.new_messages));
+				}
+				else
+				{
+					boxBC.ShowTitle(LocHandler.GS(LocGeneratedCode.No_new_messages));
+				}
+			}
+			
+			protected override function SetLocation():void
+			{
+				this.right = 72 - 26;
+				this.top = 33;
+			}
+			
+			private function inboxes_OBJECT_REMOVED(event:CollectionEvent):void
+			{
+				DoPaintTitle();
+			}
+		]]>
+	</fx:Script>
+	<Box:BoxCanvas id="boxCanvas" width="100%" height="100%">
+		<Box:BoxGroup id="boxGroup" width="100%" height="100%">
+			<Box:BoxBC id="boxBC" width="100%" height="100%" CLOSE="dispatchEvent(new Event(CLOSE))">
+				<Box:BoxContent id="boxContent" width="100%" height="100%">
+					<mx:Spacer height="5"/>
+					<Inbox:InboxPopBoxList id="inboxPopBoxList" width="100%" height="100%"
+										   m_bAddSep="true" m_iPaintedListItemCount="4" m_iPaintedListItemStpes="4"/>
+				</Box:BoxContent>
+			</Box:BoxBC>
+		</Box:BoxGroup>
+	</Box:BoxCanvas>
+</PopBox:PopBoxBase>

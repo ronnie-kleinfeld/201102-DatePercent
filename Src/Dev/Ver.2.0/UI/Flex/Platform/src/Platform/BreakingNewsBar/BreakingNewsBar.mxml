@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   backgroundColor="0x3399ff" backgroundAlpha="0" borderVisible="false"
+				   width="122" height="100%"
+				   initialize="initializeHandler(event)" creationComplete="creationCompleteHandler(event)"
+				   xmlns:Button="UI.Button.*" xmlns:BreakingNewsBar="Platform.BreakingNewsBar.*">
+	<s:layout>
+		<s:HorizontalLayout gap="0"/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import Handler.LocGeneratedCode;
+			import Handler.LocHandler;
+			import Handler.SesHandler;
+			
+			import UI.Box.BoxMDI;
+			import UI.Button.ButtonEvent;
+			
+			import Utils.AS3.Embeded;
+			import Utils.Log.Logger;
+			
+			import mx.events.FlexEvent;
+			
+			// singleton
+			private static var s_breakingNewsBar:BreakingNewsBar;
+			public static function get GetBreakingNewsBar():BreakingNewsBar
+			{
+				return s_breakingNewsBar;
+			}
+			public function set SetBreakingNewsBar(value:BreakingNewsBar):void
+			{
+				s_breakingNewsBar = value;
+			}
+			
+			private var m_timerFillLocalMembers:Timer;
+			
+			protected function initializeHandler(event:FlexEvent):void
+			{
+				m_timerFillLocalMembers = new Timer(3000);
+				m_timerFillLocalMembers.addEventListener(TimerEvent.TIMER, m_timerFillLocalMembers_TIMER);
+			}
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				m_timerFillLocalMembers.start();
+			}
+			public function Dispose():void
+			{
+				if (breakingNewsList != null)
+				{
+					breakingNewsList.Dispose();
+					breakingNewsList = null;
+				}
+			}
+			
+			public function DoPaint():void
+			{
+				breakingNewsList.DoFill();
+			}
+			
+			private function m_timerFillLocalMembers_TIMER(event:TimerEvent):void
+			{
+				try
+				{
+					m_timerFillLocalMembers.stop();
+					
+					if (breakingNewsList.vGroup.numElements >= SesHandler.Instance.Session.BreakingNews.Length)
+					{
+						SesHandler.Instance.SessionFillLocalMembers();
+					}
+				}
+				catch (error:Error)
+				{
+					Logger.Instance.WriteError(error, flash.utils.getQualifiedClassName(this));
+				}
+				finally
+				{
+					m_timerFillLocalMembers.start();
+				}
+			}
+			
+			protected function selectButtonRadius_CLICKED(event:ButtonEvent):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+				
+				if (event.GetButton.Selected)
+				{
+					BoxMDI.GetBoxMDI.DoCloseMemberBox();
+					var radiusPopBox:RadiusPopBox = new RadiusPopBox();
+					BoxMDI.GetBoxMDI.AddNonModalPopUp(radiusPopBox);
+					radiusPopBox.Init(event.GetButton, null);
+					radiusPopBox.GetData();
+				}
+				else
+				{
+					BoxMDI.GetBoxMDI.DoCloseNonModalBox();
+				}
+			}
+		]]>
+	</fx:Script>
+	<s:VGroup width="100%" height="100%" gap="0">
+		<Button:SelectButton id="selectButtonRadius" width="100%" height="36"
+							 m_strText="{LocHandler.GS(LocGeneratedCode.Breaking_News)}"
+							 m_iLabelPaddingLeft="28" m_iLabelPaddingRight="4"
+							 m_strTooltip="{LocHandler.GS(LocGeneratedCode.Members_in_your_area12Click_to_change_area_size)}"
+							 m_png="{Embeded.s_imgBreakingNewsHeader}"
+							 CLICKED="selectButtonRadius_CLICKED(event)"/>
+		<BreakingNewsBar:BreakingNewsBarList id="breakingNewsList" width="123" height="100%"
+											 m_bAddSep="true" m_iPaintedListItemCount="10" m_iPaintedListItemStpes="5" m_iPaintedListItemMaxCount="20"/>
+	</s:VGroup>
+	<s:BorderContainer width="1" height="100%" backgroundColor="0x3399ff" backgroundAlpha="0.77" borderVisible="false"/>
+</s:BorderContainer>

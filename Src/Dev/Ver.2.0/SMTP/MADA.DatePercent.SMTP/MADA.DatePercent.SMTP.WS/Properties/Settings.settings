@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MADA.DatePercent.SMTP.WS.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ConnectionStringDev" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=DEV;Initial Catalog=SmtpDB;Persist Security Info=True;User ID=sa;Password=qweQWE123!@#</Value>
+    </Setting>
+    <Setting Name="ConnectionStringInterspace" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Database=datepercentcom;Server=sql03.intervision.co.il;Trusted_Connection=False;User ID=datepercentcom;Password=dp633;</Value>
+    </Setting>
+    <Setting Name="LogProcess" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ConnectionStringProd" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Database=DP68457DB;Server=dp68457.com;Trusted_Connection=False;User ID=dp68457com;Password=dp633;</Value>
+    </Setting>
+    <Setting Name="LogInformation" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="TimerInterval" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">2000</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

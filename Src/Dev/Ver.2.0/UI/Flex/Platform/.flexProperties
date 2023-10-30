@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexProperties aspUseIIS="true" enableServiceManager="false" flexServerFeatures="0" flexServerType="32" fmlDataModelLocation=".model/Platform.fml" serverContextRoot="" serverRoot="C:/Users/rk/Documents/Dev/DatePercent/Dev/Ver.2.0/BB/MADA.DatePercent.BB/MADA.DatePercent.BB.IIS.WS" serverRootURL="http://localhost:63332/" toolCompile="true" useServerFlexSDK="false" version="2"/>

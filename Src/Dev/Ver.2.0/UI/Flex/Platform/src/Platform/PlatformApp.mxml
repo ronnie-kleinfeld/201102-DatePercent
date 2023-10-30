@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+			   width="100%" height="100%" minWidth="561" minHeight="261"
+			   resize="resizeHandler(event)"
+			   preinitialize="preinitializeHandler(event)" initialize="initializeHandler(event)" creationComplete="creationCompleteHandler(event)"
+			   xmlns:Box="UI.Box.*" xmlns:TopBar="Platform.TopBar.*" xmlns:BreakingNewsBar="Platform.BreakingNewsBar.*" xmlns:Map="Platform.Map.*" xmlns:FavoritesBar="Platform.FavoritesBar.*" xmlns:Location="Platform.Location.*" xmlns:ActivesBar="Platform.ActivesBar.*" xmlns:flexws="services.flexws.*" xmlns:Loader="UI.Loader.*">
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center"
+						  gap="0"/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import Handler.AppHandler;
+			import Handler.LocHandler;
+			import Handler.ParHandler;
+			import Handler.SesHandler;
+			
+			import Platform.Location.LocationEvent;
+			import Platform.Location.LocationModalBox;
+			
+			import UI.Button.ButtonEvent;
+			import UI.List.ListEvent;
+			
+			import Utils.AS3.NavigateToWebUrl;
+			import Utils.AS3.ObjectUtil;
+			import Utils.Log.Logger;
+			
+			import mx.events.EffectEvent;
+			import mx.events.FlexEvent;
+			import mx.events.ResizeEvent;
+			import mx.managers.CursorManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			// members
+			private var m_bIsPrepared:Boolean;
+			private var m_timerPS:Timer;
+			private var m_iGetPSFaultAge:int;
+			
+			// class
+			protected function preinitializeHandler(event:FlexEvent):void
+			{
+				Logger.Instance.Init("DP FB-Flex-Ver.2.0", true, true, Utils.AS3.ObjectUtil.GetStringValue(this.parameters, "SID"));
+				
+				LocHandler.Instance.Init(Utils.AS3.ObjectUtil.GetStringValue(this.parameters, "Locale"));
+			}
+			protected function initializeHandler(event:FlexEvent):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+				
+				CursorManager.setBusyCursor();
+				
+				ParHandler.Instance.Init(this.parameters, this.loaderInfo);
+				
+				m_timerPS = new Timer(1000);
+				m_timerPS.addEventListener(TimerEvent.TIMER, m_timerPS_TIMER);
+				
+				AppHandler.Instance.addEventListener(AppHandler.FILLED, applicationHandler_FILLED);
+				AppHandler.Instance.addEventListener(AppHandler.FAULT, applicationHandler_FAULT);
+				AppHandler.Instance.ApplicationFill();
+				
+				SesHandler.Instance.Session.SID = ParHandler.Instance.SID;
+				SesHandler.Instance.addEventListener(SesHandler.INITIALIZED, sessionHandler_INITIALIZED);
+				SesHandler.Instance.addEventListener(SesHandler.MEMBERS_FILLED, sessionHandler_MEMBERS_FILLED);
+				SesHandler.Instance.addEventListener(SesHandler.INBOX_FILLED, sessionHandler_INBOX_FILLED);
+				SesHandler.Instance.addEventListener(SesHandler.FAULT, sessionHandler_FAULT);
+				SesHandler.Instance.SessionInit();
+				
+				DoLocation();
+			}
+			
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+				m_bIsPrepared = true;
+				DoSequence();
+				boxMDI.GetBoxMDI = boxMDI;
+				breakingNewsBar.SetBreakingNewsBar = breakingNewsBar;
+				mapBox.SetMapBox = mapBox;
+			}
+			protected function applicationHandler_FILLED(event:Event):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+				DoSequence();
+			}
+			protected function sessionHandler_INITIALIZED(event:Event):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+				DoSequence();
+				DoFillMe();
+			}
+			protected function mapBox_CREATION_COMPLETED(event:Event):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+				DoSequence();
+			}
+			
+			protected function applicationHandler_FAULT(event:Event):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+				NavigateToWebUrl.RedirectToApp(true);
+			}
+			protected function sessionHandler_FAULT(event:Event):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+				NavigateToWebUrl.RedirectToApp(true);
+			}
+			
+			// methods
+			public function DoSequence():void
+			{
+				if (m_bIsPrepared &&
+					AppHandler.Instance.Filled &&
+					SesHandler.Instance.Initialized &&
+					mapBox.IsCreationCompleted)
+				{
+					CursorManager.removeBusyCursor();
+					DoLocation();
+					DoFillMembers();
+				}
+			}
+			
+			// events
+			protected function resizeHandler(event:ResizeEvent):void
+			{
+				if (boxMDI != null)
+				{
+					boxMDI.DoCloseBalloonBox();
+				}
+			}
+			
+			// location
+			public function DoLocation():void
+			{
+				if (boxMDI.alpha == 0)
+				{
+					if (ExternalInterface.available) 
+					{
+						ExternalInterface.call("DoShowPlatformApp");
+					}
+					
+					CursorManager.removeBusyCursor();
+					var locationModalBox:LocationModalBox = new LocationModalBox();
+					boxMDI.AddModalBox(locationModalBox);
+					boxMDI.CenterModalBox(locationModalBox);
+					locationModalBox.Init(null, null);
+					locationModalBox.GetData();
+					locationModalBox.addEventListener(LocationEvent.FIND_LOCATION, locationModalBox_FIND_LOCATION);
+					locationModalBox.addEventListener(LocationEvent.CURRENT_LOCATION, locationModalBox_CURRENT_LOCATION);
+				}
+			}
+			private function locationModalBox_FIND_LOCATION(event:LocationEvent):void
+			{
+				sequenceHideLocation.play();
+			}
+			private function locationModalBox_CURRENT_LOCATION(event:LocationEvent):void
+			{
+				sequenceHideLocation.play();
+			}
+			protected function sequenceHideLocation_effectEndHandler(event:EffectEvent):void
+			{
+				DoPlatform();
+			}
+			protected function sequenceShowLocation_effectEndHandler(event:EffectEvent):void
+			{
+				DoLocation();
+			}
+			
+			// platform
+			public function DoPlatform():void
+			{
+				topBar.Init();
+				favoritesBar.DoPaint();
+				mapBox.AddMe();
+			}
+			protected function favoritesBarList_FILL_TIMER_FILLED(event:ListEvent):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+				topBar.DoPaint();
+				m_timerPS.start();
+			}
+			protected function sessionHandler_MEMBERS_FILLED(event:Event):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+				SesHandler.Instance.Session.Members.DoUpdateAllMembersLikesInCommon();
+				breakingNewsBar.DoPaint();
+				topBar.DoPaint();
+			}
+			protected function sessionHandler_INBOX_FILLED(event:Event):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+				topBar.DoPaint();
+			}
+			
+			// PS timer
+			private function m_timerPS_TIMER(event:TimerEvent):void
+			{
+				try
+				{
+					callResponderGetPS.token = wsFlex.GetPS(SesHandler.Instance.Session.SID);
+				}
+				catch (error:Error)
+				{
+					Logger.Instance.WriteError(error, flash.utils.getQualifiedClassName(this));
+				}
+			}
+			protected function callResponderGetPS_resultHandler(event:ResultEvent):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+				
+				try
+				{
+					m_iGetPSFaultAge = 0;
+					
+					var iLogonCounter:int = event.result._C;
+					DoSetLogonCounter();
+					
+					var iBW:int = event.result._BW;
+					if (iBW >= 64)
+					{
+						// 64 - Credits Balance Updated
+						DoFillCreditsBalance();
+						iBW = iBW - 64;
+					}
+					if (iBW >= 32)
+					{
+						// 32 - Link Updated
+						// implemented in ChatControl
+						iBW = iBW - 32;
+					}
+					if (iBW >= 16)
+					{
+						// 16 - Is Online
+						// not implemented
+						iBW = iBW - 16;
+					}
+					if (iBW >= 8)
+					{
+						// 8 - Me FB Updated
+						DoFillMe();
+						iBW = iBW - 8;
+					}
+					if (iBW >= 4)
+					{
+						// 4 - Has Breaking News
+						DoFillMembers();
+						iBW = iBW - 4;
+					}
+					if (iBW >= 2)
+					{
+						// 2 - Has Online Favorites
+						// not implemented
+						iBW = iBW - 2;
+					}
+					if (iBW >= 1)
+					{
+						// 1 - Has Inbox
+						DoGetInbox();
+					}
+				}
+				catch (error:Error)
+				{
+					Logger.Instance.WriteError(error, flash.utils.getQualifiedClassName(this));
+				}
+			}
+			protected function callResponderGetPS_faultHandler(event:FaultEvent):void
+			{
+				try
+				{
+					Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));
+					
+					m_iGetPSFaultAge = m_iGetPSFaultAge + 1;
+					
+					if (m_iGetPSFaultAge > 5)
+					{
+						Utils.AS3.NavigateToWebUrl.RedirectToApp(true);
+					}
+				}
+				catch (error:Error)
+				{
+					Logger.Instance.WriteError(error, flash.utils.getQualifiedClassName(this));
+				}
+			}
+			
+			// Credits Balance Updated
+			private function DoFillCreditsBalance():void
+			{
+				Logger.Instance.WriteInformation("DoFillCreditsBalance", flash.utils.getQualifiedClassName(this));
+				SesHandler.Instance.SessionFillCreditsBalance();
+			}
+			
+			// logon counter
+			private function DoSetLogonCounter():void
+			{
+				Logger.Instance.WriteInformation("DoSetLogonCounter", flash.utils.getQualifiedClassName(this));
+			}
+			
+			// me FB Updated
+			private function DoFillMe():void
+			{
+				Logger.Instance.WriteInformation("DoFillMe", flash.utils.getQualifiedClassName(this));
+				SesHandler.Instance.SessionFill();
+			}
+			
+			// breaking news
+			private function DoFillMembers():void
+			{
+				Logger.Instance.WriteInformation("DoFillMembers", flash.utils.getQualifiedClassName(this));
+				SesHandler.Instance.SessionFillOnlineMembers();
+			}
+			
+			// inbox
+			private function DoGetInbox():void
+			{
+				Logger.Instance.WriteInformation("DoGetInbox", flash.utils.getQualifiedClassName(this));
+				SesHandler.Instance.SessionFillInbox();
+			}
+			
+			// topBar
+			protected function topBar_CLICKED(event:ButtonEvent):void
+			{
+				switch (event.GetButton.id)
+				{
+					case "clickButtonChangeLocation":
+						sequenceShowLocation.play();
+						break;
+					case "clickButtonToFullSize":
+						boxMDI.DoCloseBalloonBox();
+						this.stage.displayState = StageDisplayState.NORMAL;
+						sequenceToFullSize.play();
+						break;
+					case "clickButtonToNormalSize":
+						boxMDI.DoCloseBalloonBox();
+						this.stage.displayState = StageDisplayState.NORMAL;
+						sequenceToNormalSize.play();
+						break;
+					default:
+						Logger.Instance.WriteSwitchOutOfBoundError(event.GetButton.id, flash.utils.getQualifiedClassName(this));
+				}
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:Transition>
+			<s:Sequence id="sequenceToFullSize" effectEnd="boxMDI.percentWidth=100;boxMDI.percentHeight=100">
+				<s:Fade target="{hGroupLogo}" alphaFrom="1" alphaTo="0" duration="100"/>
+				<s:Parallel duration="250">
+					<s:Resize target="{hGroupLogo}" heightFrom="178" heightTo="0"/>
+					<s:Resize target="{boxMDI}" widthFrom="760" widthTo="{this.width}" heightTo="{this.height}"/>
+				</s:Parallel>
+			</s:Sequence>
+		</s:Transition>
+		<s:Transition>
+			<s:Sequence id="sequenceToNormalSize" effectEnd="boxMDI.percentHeight=100">
+				<s:Parallel duration="250">
+					<s:Resize target="{hGroupLogo}" heightFrom="0" heightTo="178"/>
+					<s:Resize target="{boxMDI}" widthFrom="{this.width}" widthTo="760" heightTo="{this.height - 178}"/>
+				</s:Parallel>
+				<s:Fade target="{hGroupLogo}" alphaFrom="0" alphaTo="1" duration="100"/>
+			</s:Sequence>
+		</s:Transition>
+		<s:Transition>
+			<s:Sequence id="sequenceShowLocation" effectEnd="sequenceShowLocation_effectEndHandler(event)">
+				<s:Parallel duration="0">
+					<s:Fade target="{hGroupLogo}" alphaFrom="1" alphaTo="0"/>
+					<s:Fade target="{boxMDI}" alphaFrom="1" alphaTo="0"/>
+				</s:Parallel>
+				<s:Resize target="{hGroupLogo}" duration="100" heightFrom="{boxMDI.width==760?178:0}" heightTo="0"/>
+			</s:Sequence>
+		</s:Transition>
+		<s:Transition>
+			<s:Sequence id="sequenceHideLocation" effectEnd="sequenceHideLocation_effectEndHandler(event)">
+				<s:Resize target="{hGroupLogo}" duration="0" heightFrom="0" heightTo="{boxMDI.width==760?178:0}"/>
+				<s:Parallel duration="0">
+					<s:Fade target="{hGroupLogo}" alphaFrom="0" alphaTo="1"/>
+					<s:Fade target="{boxMDI}" alphaFrom="0" alphaTo="1"/>
+				</s:Parallel>
+			</s:Sequence>
+		</s:Transition>
+		
+		<s:CallResponder id="callResponderGetPS" 
+						 result="Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));callResponderGetPS_resultHandler(event)"
+						 fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));callResponderGetPS_faultHandler(event)"/>
+		<flexws:FlexWS id="wsFlex"
+					   fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this))"/>
+	</fx:Declarations>	
+	<s:Group id="hGroupLogo" width="100%" height="178" alpha="0">
+		<mx:Image id="imageLogoLeft" x="{(hGroupLogo.width - imageLogo.width) / 2 - imageLogoLeft.width}" height="100%" source="../Res/HeaderLeft.png" visible="{imageLogo.height > 0}"/>
+		<mx:Image id="imageLogo" x="{imageLogoLeft.x + imageLogoLeft.width}" height="100%" source="../Res/HeaderCenter.png" visible="{imageLogo.height > 0}"/>
+		<mx:Image x="{imageLogoLeft.x + imageLogoLeft.width + imageLogo.width}" height="100%" source="../Res/HeaderRight.png" visible="{imageLogo.height > 0}"/>
+	</s:Group>
+	<Box:BoxMDI id="boxMDI" m_platformApp="{this}" width="760" height="100%" alpha="0">
+		<Map:MapBox id="mapBox" CREATION_COMPLETED="mapBox_CREATION_COMPLETED(event)"/>
+		<s:VGroup width="100%" height="100%" gap="0">
+			<TopBar:TopBar id="topBar" dropShadowVisible="true" CLICKED="topBar_CLICKED(event)"/>
+			<BreakingNewsBar:BreakingNewsBar id="breakingNewsBar"/>
+			<s:VGroup width="100%" gap="1">
+				<ActivesBar:ActivesBar id="activesBar"/>
+				<FavoritesBar:FavoritesBar id="favoritesBar" FILL_TIMER_FILLED="favoritesBarList_FILL_TIMER_FILLED(event)"/>
+			</s:VGroup>
+		</s:VGroup>
+	</Box:BoxMDI>
+</s:Application>

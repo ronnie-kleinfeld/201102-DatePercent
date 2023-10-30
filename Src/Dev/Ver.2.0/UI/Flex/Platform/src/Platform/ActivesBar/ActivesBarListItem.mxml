@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<List:ListItemBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="41" height="41"
+				   xmlns:List="UI.List.*" xmlns:Photo="UI.Photo.*">
+	<fx:Script>
+		<![CDATA[
+			import Data.Member.ActiveData;
+			
+			import Handler.SesHandler;
+			
+			import Platform.Member.MemberPopBox;
+			
+			import UI.Box.BoxMDI;
+			import UI.Box.PopBox.NodgePositionEnum;
+			import UI.Photo.PhotoEvent;
+			
+			import mx.events.EffectEvent;
+			
+			protected override function get WidthTo():Number
+			{
+				return 41;
+			}
+			protected override function get HeightTo():Number
+			{
+				return 41;
+			}
+			
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (selectPhoto != null)
+				{
+					selectPhoto.Dispose();
+					selectPhoto = null;
+				}
+			}
+			
+			public function DoShowMemberPopBox():void
+			{
+				if (selectPhoto.Selected)
+				{
+					BoxMDI.GetBoxMDI.DoCloseAllBox();
+					var memberPopBox:MemberPopBox = new MemberPopBox();
+					BoxMDI.GetBoxMDI.AddMemberPopUp(memberPopBox);
+					memberPopBox.Init(null, this.selectPhoto);
+					memberPopBox.GetData(NodgePositionEnum.BOTTOM_LEFT, ActiveData(m_objectBase).Member, ActiveData(m_objectBase).ACTION);
+				}
+				else
+				{
+					BoxMDI.GetBoxMDI.DoCloseMemberBox();
+				}
+			}
+			protected override function clickHandler(event:MouseEvent):void
+			{
+				DoShowMemberPopBox();
+			}
+			protected override function m_sequenceAdd_EFFECT_END(event:EffectEvent):void
+			{
+				DoShowMemberPopBox();
+			}
+			
+			protected function selectPhoto_CLICKED(event:PhotoEvent):void
+			{
+				if (!selectPhoto.Selected)
+				{
+					BoxMDI.GetBoxMDI.DoCloseAllBox();
+				}
+			}
+			
+			protected function selectPhoto_REMOVE_CLICKED(event:PhotoEvent):void
+			{
+				SesHandler.Instance.Session.Actives.RemoveItemActiveDataByID(ActiveData(m_objectBase).Member.ID);
+			}
+		]]>
+	</fx:Script>
+	<Photo:SelectPhoto id="selectPhoto"
+					   m_iSize="39" m_bRemoveFadeEffect="true"
+					   Photo="{ActiveData(m_objectBase).Member.Photo}" m_strTooltip="{ActiveData(m_objectBase).Member.NickName}"
+					   NotificationCount="{ActiveData(m_objectBase).Member.CommCount}"
+					   CLICKED="selectPhoto_CLICKED(event)"
+					   REMOVE_CLICKED="selectPhoto_REMOVE_CLICKED(event)"/>
+</List:ListItemBase>

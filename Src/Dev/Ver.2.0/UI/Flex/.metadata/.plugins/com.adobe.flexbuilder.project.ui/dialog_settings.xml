@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="C:\Users\rk\Documents\Dev\DatePercent\Dev\Ver.2.0\BB\MADA.DatePercent.BB\MADA.DatePercent.BB.IIS.WS" key="com.adobe.flexbuilder.project.ui.last.asp.webroot"/>
+	<item value="false" key="com.adobe.flexbuilder.project.ui.use.default.location"/>
+	<item value="http://localhost:63332" key="com.adobe.flexbuilder.project.ui.last.asp.url"/>
+	<item value="false" key="com.adobe.flexbuilder.project.ui.last.asp.use.iis"/>
+	<item value="C:\Users\rk\Downloads" key="com.adobe.flexbuilder.project.ui.last.project.parent"/>
+	<item value="true" key="com.adobe.flexbuilder.project.ui.last.apptype"/>
+	<item value="" key="com.adobe.flexbuilder.project.ui.last.java.javasrc"/>
+	<item value="1" key="com.adobe.flexbuilder.project.ui.last.server.type"/>
+	<section name="com.adobe.flexbuilder.help.ModulesPropertyPage">
+	</section>
+	<section name="ADD_MODULE_DIALOG_SECTION">
+		<item value="465" key="DIALOG_WIDTH"/>
+		<item value="199" key="DIALOG_Y_ORIGIN"/>
+		<item value="279" key="DIALOG_X_ORIGIN"/>
+		<item value="275" key="DIALOG_HEIGHT"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+	</section>
+</section>

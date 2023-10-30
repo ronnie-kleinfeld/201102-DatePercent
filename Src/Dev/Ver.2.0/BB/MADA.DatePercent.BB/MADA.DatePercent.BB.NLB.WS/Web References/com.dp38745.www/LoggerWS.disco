@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://www.dp38745.com/LoggerWS.asmx?wsdl" docRef="http://www.dp38745.com/LoggerWS.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://www.dp38745.com/LoggerWS.asmx" xmlns:q1="http://www.dp38745.com/" binding="q1:LoggerWSSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://www.dp38745.com/LoggerWS.asmx" xmlns:q2="http://www.dp38745.com/" binding="q2:LoggerWSSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

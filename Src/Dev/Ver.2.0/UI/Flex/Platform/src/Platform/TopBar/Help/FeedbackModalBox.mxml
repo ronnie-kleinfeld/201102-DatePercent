@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModalBox:ModalBoxBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+					   width="420" height="285"
+					   xmlns:ModalBox="UI.Box.ModalBox.*" xmlns:Box="UI.Box.*" xmlns:UI="UI.*" xmlns:Label="UI.Label.*" xmlns:Button="UI.Button.*" xmlns:flexws="services.flexws.*">
+	<fx:Metadata>
+		[Event(name=CLOSE, type="flash.events.Event")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import Handler.LocHandler;
+			import Handler.SesHandler;
+			
+			import UI.Box.BoxMDI;
+			import UI.Box.MessageBox.MessageBox;
+			import UI.Box.MessageBox.MessageBoxEvent;
+			import UI.Button.ButtonBase;
+			import UI.Button.ButtonEvent;
+			import UI.Photo.PhotoBase;
+			
+			import Utils.AS3.Embeded;
+			import Handler.LocGeneratedCode;
+			import Utils.Log.Logger;
+			
+			import mx.managers.CursorManager;
+			import mx.rpc.events.ResultEvent;
+			
+			[Bindable] private var m_bIsFeedback:Boolean;
+			
+			//class
+			public override function Init(p_buttonOpener:ButtonBase, p_photoOpener:PhotoBase):void
+			{
+				super.Init(p_buttonOpener, p_photoOpener);
+				DoShowBox(boxCanvas);
+			}
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (boxBC != null)
+				{
+					boxBC.Dispose();
+				}
+				if (boxCanvas != null)
+				{
+					boxCanvas.Dispose();
+				}
+				
+				if (clickButtonYes != null)
+				{
+					clickButtonYes.Dispose();
+					clickButtonYes = null;
+				}
+				if (clickButtonNo != null)
+				{
+					clickButtonNo.Dispose();
+					clickButtonNo = null;
+				}
+			}
+			
+			public function GetData(p_bIsFeedback:Boolean):void
+			{
+				m_bIsFeedback = p_bIsFeedback;
+				boxBC.ShowTitle(m_bIsFeedback?LocHandler.GS(LocGeneratedCode.Send_a_Feedback):LocHandler.GS(LocGeneratedCode.Report_of_missbehave));
+				DoPaint();
+			}
+			public function DoPaint():void
+			{
+				DoShowContent(boxContent);
+			}
+			
+			// events
+			protected function clickButtonYes_CLICKED(event:ButtonEvent):void
+			{
+				if (m_bIsFeedback)
+				{
+					callResponderSendFeedback.token = wsFlex.SendFeedback(SesHandler.Instance.Session.SID, textInputName.text, textInputEMail.text, textAreaBody.text);
+				}
+				else
+				{
+					callResponderSendReport.token = wsFlex.SendReport(SesHandler.Instance.Session.SID, textInputName.text, textInputEMail.text, textAreaBody.text);
+				}
+			}
+			
+			private function callResponderSendFeedback_resultHandler(event:ResultEvent):void
+			{
+				if (SesHandler.Instance.Session.Me.DontAskFeedbackSent)
+				{
+					dispatchEvent(new Event(CLOSE));
+				}
+				else
+				{
+					BoxMDI.GetBoxMDI.AddMessageBox("", LocHandler.GS(LocGeneratedCode.Your_feedback_was_sent_successfully12Thanks_for_your_time), LocHandler.GS(LocGeneratedCode.Do_not_ask_me_again), null, MessageBox.YES, callResponderSendFeedbackPostModalBox);
+				}
+			}
+			public function callResponderSendFeedbackPostModalBox(event:MessageBoxEvent):void
+			{
+				switch (event.type)
+				{
+					case MessageBox.YES:
+						if (event.DontAsk)
+						{
+							SesHandler.Instance.Session.Me.DontAskFeedbackSent = true;
+							wsFlex.DontAskFeedbackSent(SesHandler.Instance.Session.SID);
+						}
+						dispatchEvent(new Event(CLOSE));
+						break;
+				}
+			}
+			
+			private function callResponderSendReport_resultHandler(event:ResultEvent):void
+			{
+				if (SesHandler.Instance.Session.Me.DontAskReportSent)
+				{
+					dispatchEvent(new Event(CLOSE));
+				}
+				else
+				{
+					BoxMDI.GetBoxMDI.AddMessageBox("", LocHandler.GS(LocGeneratedCode.Your_report_was_sent_successfully12Thanks_for_your_time), LocHandler.GS(LocGeneratedCode.Do_not_ask_me_again), null, MessageBox.YES, callResponderSendReportPostModalBox);
+				}
+			}
+			public function callResponderSendReportPostModalBox(event:MessageBoxEvent):void
+			{
+				switch (event.type)
+				{
+					case MessageBox.YES:
+						if (event.DontAsk)
+						{
+							SesHandler.Instance.Session.Me.DontAskReportSent = true;
+							wsFlex.DontAskReportSent(SesHandler.Instance.Session.SID);
+						}
+						dispatchEvent(new Event(CLOSE));
+						break;
+				}
+			}
+			
+			protected function clickButtonNo_CLICKED(event:ButtonEvent):void
+			{
+				dispatchEvent(new Event(CLOSE));
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:CallResponder id="callResponderSendFeedback"
+						 result="Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor();callResponderSendFeedback_resultHandler(event)"
+						 fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor();dispatchEvent(new Event(CLOSE));"/>
+		<s:CallResponder id="callResponderSendReport"
+						 result="Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor();callResponderSendReport_resultHandler(event)"
+						 fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor();dispatchEvent(new Event(CLOSE));"/>
+		<flexws:FlexWS id="wsFlex"
+					   fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor();dispatchEvent(new Event(CLOSE));"/>
+	</fx:Declarations>
+	<Box:BoxCanvas id="boxCanvas" width="100%" height="100%">
+		<Box:BoxGroup id="boxGroup" width="100%" height="100%">
+			<Box:BoxBC id="boxBC" width="100%" height="100%" CLOSE="dispatchEvent(new Event(CLOSE))">
+				<Box:BoxContent id="boxContent" width="100%" height="100%">
+					<mx:Spacer height="15"/>
+					<s:HGroup width="100%" gap="7">
+						<s:VGroup width="50%" gap="7">
+							<mx:Canvas width="100%" height="20">
+								<UI:InnerShadow m_strGrayedText="{LocHandler.GS(LocGeneratedCode.Your_Name__optional_)}" m_strLiveText="{textInputName.text}"/>
+								<UI:TextInputNormal id="textInputName"/>
+							</mx:Canvas>
+							<mx:Canvas width="100%" height="20">
+								<UI:InnerShadow m_strGrayedText="{LocHandler.GS(LocGeneratedCode.Your_EMail__optional_)}" m_strLiveText="{textInputEMail.text}"/>
+								<UI:TextInputNormal id="textInputEMail"/>
+							</mx:Canvas>
+						</s:VGroup>
+						<s:VGroup width="50%" gap="7">
+							<Label:HeaderLabel width="100%" text="{m_bIsFeedback?LocHandler.GS(LocGeneratedCode.Got_an_new_ideaQ):LocHandler.GS(LocGeneratedCode.Something_to_reportQ)}"/>
+							<Label:NormalLabel width="100%" text="{m_bIsFeedback?LocHandler.GS(LocGeneratedCode.Something_you_would_like_to_addQ_Let_us_know_and_help_us_Improve_DatePercent__Thank_you_):LocHandler.GS(LocGeneratedCode.Something_you_would_like_to_reportQ_Let_us_know_and_help_us_Improve_DatePercent__Thank_you_)}"/>
+						</s:VGroup>
+					</s:HGroup>
+					<mx:Canvas width="400" height="100%">
+						<UI:InnerShadow m_strGrayedText="{m_bIsFeedback?LocHandler.GS(LocGeneratedCode.Write_your_feedback):LocHandler.GS(LocGeneratedCode.Write_your_report)}" m_strLiveText="{textAreaBody.text}"/>
+						<UI:TextAreaNormal id="textAreaBody"/>
+					</mx:Canvas>
+					<s:HGroup width="100%" horizontalAlign="right">
+						<Button:ClickButton id="clickButtonYes" m_strTooltip="{m_bIsFeedback?LocHandler.GS(LocGeneratedCode.Send_the_feedback):LocHandler.GS(LocGeneratedCode.Send_the_report)}" m_png="{Embeded.s_imgYes}" CLICKED="clickButtonYes_CLICKED(event)"/>
+						<Button:ClickButton id="clickButtonNo" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Close)}" m_png="{Embeded.s_imgNo}" CLICKED="clickButtonNo_CLICKED(event)"/>
+					</s:HGroup>
+				</Box:BoxContent>
+			</Box:BoxBC>
+		</Box:BoxGroup>
+	</Box:BoxCanvas>
+</ModalBox:ModalBoxBase>

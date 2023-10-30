@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+			   width="100%" height="100%"
+			   preinitialize="preinitializeHandler(event)" initialize="initializeHandler(event)" creationComplete="creationCompleteHandler(event)"
+			   xmlns:Platform="Platform.*" xmlns:Actives="Actives.*" xmlns:Modal="Components.Modal.*">
+	<fx:Metadata>
+		[Event(name=LOADED, type="flash.events.Event")]
+		[Event(name=creationComplete, type="flash.events.Event")]
+	</fx:Metadata>
+	<s:layout>
+		<s:HorizontalLayout horizontalAlign="center"/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			private const FEEDBACK:String = "FEEDBACK";
+			private const NORMAL_SIZE:String = "NORMAL_SIZE";
+			private const FULL_SIZE:String = "FULL_SIZE";
+			
+			private var m_timer:Timer;
+			
+			protected function preinitializeHandler(event:FlexEvent):void
+			{
+				m_timer = new Timer(5000);
+				m_timer.addEventListener(TimerEvent.TIMER, m_timer_TIMER);
+			}
+			protected function initializeHandler(event:FlexEvent):void
+			{
+			}
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				m_timer.start();
+				//dispatchEvent(event);
+			}
+			
+			// timer
+			private function m_timer_TIMER(event:TimerEvent):void
+			{
+				//dispatchEvent(new Event("LOADED"));
+			}
+			
+			protected function topBar_FEEDBACK(event:Event):void
+			{
+				var feedbackPopBox:FeedbackPopBox = new FeedbackPopBox();
+				modalPopUp.addElement(feedbackPopBox);
+			}
+			protected function topBar_NORMAL_SIZE(event:Event):void
+			{
+				this.stage.displayState = StageDisplayState.NORMAL;
+				vGroup.width = 760;
+				logoBox.height = 178;
+				//mapLoader.ResetSize();
+			}
+			protected function topBar_FULL_SIZE(event:Event):void
+			{
+				this.stage.displayState = StageDisplayState.NORMAL;
+				vGroup.percentWidth = 100;
+				logoBox.height = 0;
+				//mapLoader.ResetSize();
+			}
+		]]>
+	</fx:Script>
+	<Modal:ModalPopUp id="modalPopUp" width="100%" height="100%" click="canvas_clickHandler(event)">
+		<s:VGroup id="vGroup" width="760" height="100%" gap="0">
+			<Platform:LogoBox id="logoBox" visible="{logoBox.height > 0}"/>
+			<Platform:TopBar id="topBar"
+							 FEEDBACK="topBar_FEEDBACK(event)" NORMAL_SIZE="topBar_NORMAL_SIZE(event)" FULL_SIZE="topBar_FULL_SIZE(event)"/>
+			<s:HGroup width="100%" height="100%">
+				<Platform:BreakingNewsBar/>
+				<s:Group id="Map" width="100%"/>
+			</s:HGroup>
+			<s:VGroup width="100%" gap="1">
+				<Platform:ActivesBar/>
+				<Platform:FavoritesBar/>
+			</s:VGroup>
+		</s:VGroup>
+	</Modal:ModalPopUp>
+</s:Application>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DatabaseFixupDataSet" targetNamespace="http://tempuri.org/DatabaseFixupDataSet.xsd" xmlns:mstns="http://tempuri.org/DatabaseFixupDataSet.xsd" xmlns="http://tempuri.org/DatabaseFixupDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ConnectionStringDev" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="ConnectionStringDev (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ConnectionStringDev.ConnectionString" Provider="System.Data.SqlClient">
+          </Connection>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DatabaseFixupDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DatabaseFixupDataSet" msprop:Generator_DataSetName="DatabaseFixupDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="T_USER" msprop:Generator_UserTableName="T_USER" msprop:Generator_RowDeletedName="T_USERRowDeleted" msprop:Generator_TableClassName="T_USERDataTable" msprop:Generator_RowChangedName="T_USERRowChanged" msprop:Generator_RowClassName="T_USERRow" msprop:Generator_RowChangingName="T_USERRowChanging" msprop:Generator_RowEvArgName="T_USERRowChangeEvent" msprop:Generator_RowEvHandlerName="T_USERRowChangeEventHandler" msprop:Generator_TablePropName="T_USER" msprop:Generator_TableVarName="tableT_USER" msprop:Generator_RowDeletingName="T_USERRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="USR_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="USR_ID" msprop:Generator_ColumnPropNameInRow="USR_ID" msprop:Generator_ColumnVarNameInTable="columnUSR_ID" msprop:Generator_ColumnPropNameInTable="USR_IDColumn" type="xs:int" />
+              <xs:element name="USR_UID" msprop:Generator_UserColumnName="USR_UID" msprop:Generator_ColumnPropNameInRow="USR_UID" msprop:Generator_ColumnVarNameInTable="columnUSR_UID" msprop:Generator_ColumnPropNameInTable="USR_UIDColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USR_ADDED_TIMEDATE" msprop:Generator_UserColumnName="USR_ADDED_TIMEDATE" msprop:Generator_ColumnPropNameInRow="USR_ADDED_TIMEDATE" msprop:Generator_ColumnVarNameInTable="columnUSR_ADDED_TIMEDATE" msprop:Generator_ColumnPropNameInTable="USR_ADDED_TIMEDATEColumn" type="xs:dateTime" />
+              <xs:element name="USR_FB_UID" msprop:Generator_UserColumnName="USR_FB_UID" msprop:Generator_ColumnPropNameInRow="USR_FB_UID" msprop:Generator_ColumnVarNameInTable="columnUSR_FB_UID" msprop:Generator_ColumnPropNameInTable="USR_FB_UIDColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USR_FB_THIRD_PARTY_ID" msprop:Generator_UserColumnName="USR_FB_THIRD_PARTY_ID" msprop:Generator_ColumnPropNameInRow="USR_FB_THIRD_PARTY_ID" msprop:Generator_ColumnVarNameInTable="columnUSR_FB_THIRD_PARTY_ID" msprop:Generator_ColumnPropNameInTable="USR_FB_THIRD_PARTY_IDColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USR_FB_FIRST_NAME" msprop:Generator_UserColumnName="USR_FB_FIRST_NAME" msprop:Generator_ColumnPropNameInRow="USR_FB_FIRST_NAME" msprop:Generator_ColumnVarNameInTable="columnUSR_FB_FIRST_NAME" msprop:Generator_ColumnPropNameInTable="USR_FB_FIRST_NAMEColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USR_FB_MIDDLE_NAME" msprop:Generator_UserColumnName="USR_FB_MIDDLE_NAME" msprop:Generator_ColumnPropNameInRow="USR_FB_MIDDLE_NAME" msprop:Generator_ColumnVarNameInTable="columnUSR_FB_MIDDLE_NAME" msprop:Generator_ColumnPropNameInTable="USR_FB_MIDDLE_NAMEColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USR_FB_LAST_NAME" msprop:Generator_UserColumnName="USR_FB_LAST_NAME" msprop:Generator_ColumnPropNameInRow="USR_FB_LAST_NAME" msprop:Generator_ColumnVarNameInTable="columnUSR_FB_LAST_NAME" msprop:Generator_ColumnPropNameInTable="USR_FB_LAST_NAMEColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USR_NICK_NAME" msprop:Generator_UserColumnName="USR_NICK_NAME" msprop:Generator_ColumnPropNameInRow="USR_NICK_NAME" msprop:Generator_ColumnVarNameInTable="columnUSR_NICK_NAME" msprop:Generator_ColumnPropNameInTable="USR_NICK_NAMEColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USR_FB_PIC_URL" msprop:Generator_UserColumnName="USR_FB_PIC_URL" msprop:Generator_ColumnPropNameInRow="USR_FB_PIC_URL" msprop:Generator_ColumnVarNameInTable="columnUSR_FB_PIC_URL" msprop:Generator_ColumnPropNameInTable="USR_FB_PIC_URLColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USR_FB_PICX_URL" msprop:Generator_UserColumnName="USR_FB_PICX_URL" msprop:Generator_ColumnPropNameInRow="USR_FB_PICX_URL" msprop:Generator_ColumnVarNameInTable="columnUSR_FB_PICX_URL" msprop:Generator_ColumnPropNameInTable="USR_FB_PICX_URLColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USR_FB_EMAIL" msprop:Generator_UserColumnName="USR_FB_EMAIL" msprop:Generator_ColumnPropNameInRow="USR_FB_EMAIL" msprop:Generator_ColumnVarNameInTable="columnUSR_FB_EMAIL" msprop:Generator_ColumnPropNameInTable="USR_FB_EMAILColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USR_FB_BIRTHDAY_DATE" msprop:Generator_UserColumnName="USR_FB_BIRTHDAY_DATE" msprop:Generator_ColumnPropNameInRow="USR_FB_BIRTHDAY_DATE" msprop:Generator_ColumnVarNameInTable="columnUSR_FB_BIRTHDAY_DATE" msprop:Generator_ColumnPropNameInTable="USR_FB_BIRTHDAY_DATEColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USR_BIRTHDAY" msprop:Generator_UserColumnName="USR_BIRTHDAY" msprop:Generator_ColumnPropNameInRow="USR_BIRTHDAY" msprop:Generator_ColumnVarNameInTable="columnUSR_BIRTHDAY" msprop:Generator_ColumnPropNameInTable="USR_BIRTHDAYColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="USR_FB_SEX" msprop:Generator_UserColumnName="USR_FB_SEX" msprop:Generator_ColumnPropNameInRow="USR_FB_SEX" msprop:Generator_ColumnVarNameInTable="columnUSR_FB_SEX" msprop:Generator_ColumnPropNameInTable="USR_FB_SEXColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USR_SEX_CODE" msprop:Generator_UserColumnName="USR_SEX_CODE" msprop:Generator_ColumnPropNameInRow="USR_SEX_CODE" msprop:Generator_ColumnVarNameInTable="columnUSR_SEX_CODE" msprop:Generator_ColumnPropNameInTable="USR_SEX_CODEColumn" type="xs:int" />
+              <xs:element name="USR_FB_LOCALE" msprop:Generator_UserColumnName="USR_FB_LOCALE" msprop:Generator_ColumnPropNameInRow="USR_FB_LOCALE" msprop:Generator_ColumnVarNameInTable="columnUSR_FB_LOCALE" msprop:Generator_ColumnPropNameInTable="USR_FB_LOCALEColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USR_FB_PROFILE_URL" msprop:Generator_UserColumnName="USR_FB_PROFILE_URL" msprop:Generator_ColumnPropNameInRow="USR_FB_PROFILE_URL" msprop:Generator_ColumnVarNameInTable="columnUSR_FB_PROFILE_URL" msprop:Generator_ColumnPropNameInTable="USR_FB_PROFILE_URLColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USR_DISTANCE_UNITS_CODE" msprop:Generator_UserColumnName="USR_DISTANCE_UNITS_CODE" msprop:Generator_ColumnPropNameInRow="USR_DISTANCE_UNITS_CODE" msprop:Generator_ColumnVarNameInTable="columnUSR_DISTANCE_UNITS_CODE" msprop:Generator_ColumnPropNameInTable="USR_DISTANCE_UNITS_CODEColumn" type="xs:int" />
+              <xs:element name="USR_LAT" msprop:Generator_UserColumnName="USR_LAT" msprop:Generator_ColumnPropNameInRow="USR_LAT" msprop:Generator_ColumnVarNameInTable="columnUSR_LAT" msprop:Generator_ColumnPropNameInTable="USR_LATColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="USR_LNG" msprop:Generator_UserColumnName="USR_LNG" msprop:Generator_ColumnPropNameInRow="USR_LNG" msprop:Generator_ColumnVarNameInTable="columnUSR_LNG" msprop:Generator_ColumnPropNameInTable="USR_LNGColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="USR_RADIUS_KM" msprop:Generator_UserColumnName="USR_RADIUS_KM" msprop:Generator_ColumnPropNameInRow="USR_RADIUS_KM" msprop:Generator_ColumnVarNameInTable="columnUSR_RADIUS_KM" msprop:Generator_ColumnPropNameInTable="USR_RADIUS_KMColumn" type="xs:int" />
+              <xs:element name="USR_PIN_URL" msprop:Generator_UserColumnName="USR_PIN_URL" msprop:Generator_ColumnPropNameInRow="USR_PIN_URL" msprop:Generator_ColumnVarNameInTable="columnUSR_PIN_URL" msprop:Generator_ColumnPropNameInTable="USR_PIN_URLColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USR_OLD_USER_ID" msprop:Generator_UserColumnName="USR_OLD_USER_ID" msprop:Generator_ColumnPropNameInRow="USR_OLD_USER_ID" msprop:Generator_ColumnVarNameInTable="columnUSR_OLD_USER_ID" msprop:Generator_ColumnPropNameInTable="USR_OLD_USER_IDColumn" type="xs:int" />
+              <xs:element name="USR_DONT_ASK_REMOVE_FROM_FAVORITES" msprop:Generator_UserColumnName="USR_DONT_ASK_REMOVE_FROM_FAVORITES" msprop:Generator_ColumnPropNameInRow="USR_DONT_ASK_REMOVE_FROM_FAVORITES" msprop:Generator_ColumnVarNameInTable="columnUSR_DONT_ASK_REMOVE_FROM_FAVORITES" msprop:Generator_ColumnPropNameInTable="USR_DONT_ASK_REMOVE_FROM_FAVORITESColumn" type="xs:boolean" />
+              <xs:element name="USR_DONT_ASK_ADD_TO_FAVORITES" msprop:Generator_UserColumnName="USR_DONT_ASK_ADD_TO_FAVORITES" msprop:Generator_ColumnPropNameInRow="USR_DONT_ASK_ADD_TO_FAVORITES" msprop:Generator_ColumnVarNameInTable="columnUSR_DONT_ASK_ADD_TO_FAVORITES" msprop:Generator_ColumnPropNameInTable="USR_DONT_ASK_ADD_TO_FAVORITESColumn" type="xs:boolean" />
+              <xs:element name="USR_DONT_ASK_BLOCK_MEMBER" msprop:Generator_UserColumnName="USR_DONT_ASK_BLOCK_MEMBER" msprop:Generator_ColumnPropNameInRow="USR_DONT_ASK_BLOCK_MEMBER" msprop:Generator_ColumnVarNameInTable="columnUSR_DONT_ASK_BLOCK_MEMBER" msprop:Generator_ColumnPropNameInTable="USR_DONT_ASK_BLOCK_MEMBERColumn" type="xs:boolean" />
+              <xs:element name="USR_DONT_ASK_REMOVE_FROM_BLACK_LIST" msprop:Generator_UserColumnName="USR_DONT_ASK_REMOVE_FROM_BLACK_LIST" msprop:Generator_ColumnPropNameInRow="USR_DONT_ASK_REMOVE_FROM_BLACK_LIST" msprop:Generator_ColumnVarNameInTable="columnUSR_DONT_ASK_REMOVE_FROM_BLACK_LIST" msprop:Generator_ColumnPropNameInTable="USR_DONT_ASK_REMOVE_FROM_BLACK_LISTColumn" type="xs:boolean" />
+              <xs:element name="USR_DONT_ASK_REMOVE_FROM_MY_PHOTOS" msprop:Generator_UserColumnName="USR_DONT_ASK_REMOVE_FROM_MY_PHOTOS" msprop:Generator_ColumnPropNameInRow="USR_DONT_ASK_REMOVE_FROM_MY_PHOTOS" msprop:Generator_ColumnVarNameInTable="columnUSR_DONT_ASK_REMOVE_FROM_MY_PHOTOS" msprop:Generator_ColumnPropNameInTable="USR_DONT_ASK_REMOVE_FROM_MY_PHOTOSColumn" type="xs:boolean" />
+              <xs:element name="USR_DONT_ASK_INVITATION_SENT" msprop:Generator_UserColumnName="USR_DONT_ASK_INVITATION_SENT" msprop:Generator_ColumnPropNameInRow="USR_DONT_ASK_INVITATION_SENT" msprop:Generator_ColumnVarNameInTable="columnUSR_DONT_ASK_INVITATION_SENT" msprop:Generator_ColumnPropNameInTable="USR_DONT_ASK_INVITATION_SENTColumn" type="xs:boolean" />
+              <xs:element name="USR_DONT_ASK_FEEDBACK_SENT" msprop:Generator_UserColumnName="USR_DONT_ASK_FEEDBACK_SENT" msprop:Generator_ColumnPropNameInRow="USR_DONT_ASK_FEEDBACK_SENT" msprop:Generator_ColumnVarNameInTable="columnUSR_DONT_ASK_FEEDBACK_SENT" msprop:Generator_ColumnPropNameInTable="USR_DONT_ASK_FEEDBACK_SENTColumn" type="xs:boolean" />
+              <xs:element name="USR_DONT_ASK_REPORT_SENT" msprop:Generator_UserColumnName="USR_DONT_ASK_REPORT_SENT" msprop:Generator_ColumnPropNameInRow="USR_DONT_ASK_REPORT_SENT" msprop:Generator_ColumnVarNameInTable="columnUSR_DONT_ASK_REPORT_SENT" msprop:Generator_ColumnPropNameInTable="USR_DONT_ASK_REPORT_SENTColumn" type="xs:boolean" />
+              <xs:element name="USR_DONT_ASK_PROFILE_UPDATED" msprop:Generator_UserColumnName="USR_DONT_ASK_PROFILE_UPDATED" msprop:Generator_ColumnPropNameInRow="USR_DONT_ASK_PROFILE_UPDATED" msprop:Generator_ColumnVarNameInTable="columnUSR_DONT_ASK_PROFILE_UPDATED" msprop:Generator_ColumnPropNameInTable="USR_DONT_ASK_PROFILE_UPDATEDColumn" type="xs:boolean" />
+              <xs:element name="USR_DONT_ASK_TWINK_SENT" msprop:Generator_UserColumnName="USR_DONT_ASK_TWINK_SENT" msprop:Generator_ColumnPropNameInRow="USR_DONT_ASK_TWINK_SENT" msprop:Generator_ColumnVarNameInTable="columnUSR_DONT_ASK_TWINK_SENT" msprop:Generator_ColumnPropNameInTable="USR_DONT_ASK_TWINK_SENTColumn" type="xs:boolean" />
+              <xs:element name="USR_CREDITS_BALANCE" msprop:Generator_UserColumnName="USR_CREDITS_BALANCE" msprop:Generator_ColumnPropNameInRow="USR_CREDITS_BALANCE" msprop:Generator_ColumnVarNameInTable="columnUSR_CREDITS_BALANCE" msprop:Generator_ColumnPropNameInTable="USR_CREDITS_BALANCEColumn" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:T_USER" />
+      <xs:field xpath="mstns:USR_ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

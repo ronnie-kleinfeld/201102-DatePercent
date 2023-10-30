@@ -1,0 +1,24 @@
+<publishData>
+  <publishTarget publishUrl="C:\Users\rk\Documents\Dev\DatePercent\IIS\Ver.2.0\Com\">
+    <file relUrl="Res/Header.png" publishTime="07/03/2012 15:26:30" />
+    <file relUrl="bin/MADA.DatePercent.WWW.dll" publishTime="29/03/2012 15:07:27" />
+    <file relUrl="Res/HeaderRight.png" publishTime="07/03/2012 15:26:30" />
+    <file relUrl="bin/Legal/PrivacyPolicy.pdf" publishTime="07/03/2012 15:33:30" />
+    <file relUrl="Legal/EULA.pdf" publishTime="07/03/2012 15:33:30" />
+    <file relUrl="Web.config" publishTime="07/03/2012 15:21:19" />
+    <file relUrl="Res/Logo16x16.png" publishTime="19/03/2012 10:10:54" />
+    <file relUrl="Res/HeaderLeft.png" publishTime="07/03/2012 15:26:30" />
+    <file relUrl="Legal/PrivacyPolicy.pdf" publishTime="07/03/2012 15:33:30" />
+    <file relUrl="bin/MADA.DatePercent.WWW.pdb" publishTime="29/03/2012 15:07:27" />
+    <file relUrl="Res/Logo75x75.png" publishTime="19/03/2012 10:10:57" />
+    <file relUrl="Default.htm" publishTime="28/03/2012 17:28:46" />
+    <file relUrl="Res/HeaderCenter.png" publishTime="07/03/2012 15:26:30" />
+    <file relUrl="Res/Logo60x60.png" publishTime="19/03/2012 10:11:03" />
+    <file relUrl="RedirectToApp.htm" publishTime="28/03/2012 17:28:39" />
+    <file relUrl="Res/Logo200x75.png" publishTime="19/03/2012 10:10:55" />
+    <file relUrl="Res/Logo.png" publishTime="07/03/2012 15:26:30" />
+    <file relUrl="bin/Legal/EULA.pdf" publishTime="07/03/2012 15:33:30" />
+    <file relUrl="favicon.ico" publishTime="07/03/2012 15:24:20" />
+    <file relUrl="Res/Version.2.png" publishTime="29/03/2012 15:07:21" />
+  </publishTarget>
+</publishData>

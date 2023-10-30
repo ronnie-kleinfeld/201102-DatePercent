@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600">
+
+	<fx:Script>
+		<![CDATA[
+			protected function button1_clearHandler(event:Event):void
+			{
+				var payment_URL:String = "<Merchant URL to initiate API call>";
+				// use ExternalInterface to call the JavaScript method dg.startFlow
+				var result:uint = ExternalInterface.call("dg.startFlow", payment_URL);
+			}
+		]]>
+	</fx:Script>
+	<s:Button label="Pay" clear="button1_clearHandler(event)"/> 
+</s:Application>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<cross-domain-policy>
+  <allow-access-from domain="*.datepercent.com"/>
+  <allow-access-from domain="*.dp15448.com"/>
+  <allow-access-from domain="*.dp36524.com"/>
+  <allow-access-from domain="*.datepercent.info"/>
+  <allow-access-from domain="*.dp87459.com"/>
+  <allow-access-from domain="*.dp38745.com"/>
+  <allow-access-from domain="*.dp68457.com"/>
+  <allow-access-from domain="*.dp32547.com"/>
+  <allow-access-from domain="localhost"/>
+  <allow-access-from domain="*.facebook.com"/>
+  <allow-http-request-headers-from domain="*" headers="SOAPAction"/>
+</cross-domain-policy>

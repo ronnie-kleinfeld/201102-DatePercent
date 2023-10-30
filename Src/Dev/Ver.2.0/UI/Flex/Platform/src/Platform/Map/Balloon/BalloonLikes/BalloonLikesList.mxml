@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<List:HListBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				width="100%" height="100%"
+				initialize="initializeHandler(event)"
+				xmlns:List="UI.List.*" xmlns:Button="UI.Button.*">
+	<fx:Script>
+		<![CDATA[
+			import Data.Base.CollectionEvent;
+			import Data.Member.LikeData;
+			import Data.Member.LikeDataCollection;
+			
+			import mx.events.FlexEvent;
+			
+			protected override function get DoFillByTimer():Boolean
+			{
+				return false;
+			}
+			protected override function get AddItemByCollectionEvent():Boolean
+			{
+				return false;
+			}
+			
+			private function initializeHandler(event:FlexEvent):void
+			{
+				m_scroller = scroller;
+				m_hvGroup = hGroup;
+			}
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (clickButtonNext != null)
+				{
+					clickButtonNext.Dispose();
+					clickButtonNext = null;
+				}
+				if (clickButtonPrev != null)
+				{
+					clickButtonPrev.Dispose();
+					clickButtonPrev = null;
+				}
+			}
+			
+			protected override function DoFillStep():void
+			{
+				for (var i:int = 0; i < m_iPaintedListItemCount; i++)
+				{
+					var likeData:LikeData = LikeDataCollection(m_ac).FindItemLikeDataByIndex(i);
+					if (FindListItemByID(likeData.ID) == null)
+					{
+ 						AddBalloonLikesListItem(likeData);
+					}
+				}
+				
+				InvalidatePrevNext();
+			}
+			
+			protected override function collectionBase_OBJECT_ADDED(event:CollectionEvent):void
+			{
+				if (AddItemByCollectionEvent)
+				{
+					var likeData:LikeData = LikeData(event.ObjectData);
+					if (likeData.IsLikesInCommon && FindListItemByID(likeData.ID) == null)
+					{
+						AddBalloonLikesListItem(likeData);
+					}
+				}
+			}
+			
+			private function AddBalloonLikesListItem(p_oLikeData:LikeData):void
+			{
+				var balloonLikesListItem:BalloonLikesListItem = new BalloonLikesListItem();
+				balloonLikesListItem.Init(p_oLikeData);
+				AddListItem(balloonLikesListItem, false);
+			}
+		]]>
+	</fx:Script>
+	<s:HGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+		<Button:ClickButton id="clickButtonPrev" visible="{m_bPrevVisible}" m_png="{m_classPrevPng}" CLICKED="DoMovePrev()" m_strTooltip="{m_strToolTipPrev}"/>
+		<s:Scroller id="scroller" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+			<s:Group width="100%" height="100%">
+				<s:HGroup id="hGroup" width="100%" height="100%" clipAndEnableScrolling="false" paddingLeft="2" paddingRight="2" gap="0"/>
+			</s:Group>
+		</s:Scroller>
+		<Button:ClickButton id="clickButtonNext" visible="{m_bNextVisible}" m_png="{m_classNextPng}" CLICKED="DoMoveNext()" m_strTooltip="{m_strToolTipNext}"/>
+	</s:HGroup>		
+</List:HListBase>

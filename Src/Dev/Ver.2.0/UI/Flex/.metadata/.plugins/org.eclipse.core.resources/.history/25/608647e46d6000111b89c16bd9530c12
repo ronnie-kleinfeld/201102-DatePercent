@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PopBox:PopBoxBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="200" minWidth="200" maxWidth="380" height="284" minHeight="284"
+				   currentState="Null"
+				   rollOver="rollOverHandler(event)"
+				   preinitialize="preinitializeHandler(event)" creationComplete="creationCompleteHandler(event)"
+				   xmlns:PopBox="UI.Box.PopBox.*" xmlns:Box="UI.Box.*" xmlns:Member="Platform.Member.*" xmlns:Chat="Platform.Member.Chat.*" xmlns:Actions="Platform.Member.Actions.*" xmlns:Sep="UI.Sep.*" xmlns:Button="UI.Button.*">
+	<fx:Script>
+		<![CDATA[
+			import Data.MemberData;
+			
+			import Handler.ApplicationHandler;
+			
+			import Platform.Member.Actions.ActionsBarEvent;
+			import Platform.Member.Chat.ChatEvent;
+			import Platform.Member.MemberDetails.DetailsMultiBox;
+			import Platform.Member.MemberFriends.MemberFriendsList;
+			import Platform.Member.MemberLikes.MemberLikesList;
+			import Platform.Member.MemberPhotos.MemberPhotosList;
+			import Platform.Member.Presents.PresentsMultiBoxList;
+			import Platform.Member.ShareMember.ShareMemberMultiBox;
+			import Platform.Member.Wink.WinkMultiBox;
+			
+			import UI.Box.BoxMDI;
+			import UI.Box.PopBox.NodgePositionEnum;
+			import UI.Button.ButtonBase;
+			import UI.Photo.PhotoBase;
+			
+			import Utils.Log.Logger;
+			
+			import mx.events.EffectEvent;
+			import mx.events.FlexEvent;
+			
+			// members
+			[Bindable] private var m_memberData:MemberData;
+			
+			private var m_detailsMultiBox:DetailsMultiBox;
+			private var m_presentsMultiBoxList:PresentsMultiBoxList;
+			private var m_winkMultiBox:WinkMultiBox;
+			private var m_shareMemberMultiBox:ShareMemberMultiBox;
+			private var m_memberPhotosList:MemberPhotosList;
+			private var m_memberLikesList:MemberLikesList;
+			private var m_memberFriendsList:MemberFriendsList;
+			
+			protected function preinitializeHandler(event:FlexEvent):void
+			{
+				m_enumNodgePosition = NodgePositionEnum.TOP_LEFT;
+			}
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				boxGroup.InitPadding(m_enumNodgePosition);
+				boxCanvas.InidNodge(m_enumNodgePosition);
+				boxBC.ShowCloseButton();
+				boxBC.CloseButton.left = 171;
+				boxBC.CloseButton.right = null;
+			}
+			public override function Init(p_buttonOpener:ButtonBase, p_photoOpener:PhotoBase):void
+			{
+				super.Init(p_buttonOpener, p_photoOpener);
+				DoShowBox(boxCanvas);
+			}
+			public override function Dispose():void
+			{
+				super.Dispose();
+				boxCanvas.Dispose();
+				boxBC.Dispose();
+			}
+			
+			public function GetData(p_enumNodgePosition:int, p_memberData:MemberData):void
+			{
+				m_enumNodgePosition = p_enumNodgePosition;
+				m_memberData = p_memberData;
+				boxGroup.InitPadding(m_enumNodgePosition);
+				boxCanvas.InidNodge(m_enumNodgePosition);
+				boxBC.ShowTitle(p_memberData.NickName);
+				actionsBar.GetData(p_memberData);
+				DoPaint();
+			}
+			public function DoPaint():void
+			{
+				DoShowContent(boxContent);
+				chatList.Init(m_memberData.Messages);
+			}
+			protected override function m_fadeContent_EFFECT_END(event:EffectEvent):void
+			{
+				chatList.DoFill();
+			}
+			
+			protected override function SetLocation():void
+			{
+				var pointLocal:Point = new Point(m_photoOpener.x + m_photoOpener.width / 2, m_photoOpener.y - 2);
+				var pointGlobal:Point = m_photoOpener.localToGlobal(pointLocal);
+				var pointGlobal2:Point = new Point(pointGlobal.x, pointGlobal.y);
+				var pointLocal2:Point = BoxMDI.GetBoxMDI.globalToLocal(pointGlobal2);
+				this.bottom = 88;
+				
+				if (pointLocal2.x < BoxMDI.GetBoxMDI.width / 2)
+				{
+					boxCanvas.InidNodge(NodgePositionEnum.BOTTOM_LEFT);
+					this.left = pointLocal2.x - 28;
+				}
+				else
+				{
+					boxCanvas.InidNodge(NodgePositionEnum.BOTTOM_RIGHT);
+					this.left = pointLocal2.x + 26 - 200;
+				}
+			}
+			
+			private function chatControl_TEXT_ADD(event:ChatEvent):void
+			{
+				chatList.DoMoveEnd();
+			}
+			
+			// actions box
+			private function DoInitActionBox():void
+			{
+			}
+			
+			protected function rollOverHandler(event:MouseEvent):void
+			{
+				if (actionsBar.width == 0 && !sequenceShowMultiBox.isPlaying && !sequenceHideMultiBox.isPlaying)
+				{
+					resizeShowActionsBar.play();
+				}
+			}
+			protected function resizeShowActionsBar_effectEndHandler(event:EffectEvent):void
+			{
+				actionsBar.Show();
+			}
+			
+			// multibox
+			protected function actionsBar_DO_ACTION(event:ActionsBarEvent):void
+			{
+				if (event.OpenMultiBox)
+				{
+					currentState = event.ActionName;
+					resizeShowMultiBox.widthFrom = this.width;
+					resizeShowMultiBox.widthTo = 10 + 180 + 5 + 1 + 5 + event.MultiBoxWidth + 10;
+					DoShowMultiBox();
+				}
+				else
+				{
+					currentState = "Null";
+					DoHidewMultiBox();
+				}
+			}
+			private function DoShowMultiBox():void
+			{
+				if (!sequenceShowMultiBox.isPlaying && !sequenceHideMultiBox.isPlaying)
+				{
+					sequenceShowMultiBox.play();
+				}
+			}
+			protected function sequenceShowMultiBox_effectEndHandler(event:EffectEvent):void
+			{
+				DoAddMultiBox();
+			}
+			protected function DoAddMultiBox():void
+			{
+				groupMultiBox.removeAllElements();
+				groupMultiBox.visible = true;
+				vSep.visible = true;
+				
+				switch (currentState)
+				{
+					case ActionsBar.MEMBER_DETAILS:
+						if (m_detailsMultiBox == null)
+						{
+							m_detailsMultiBox = new DetailsMultiBox();
+						}
+						groupMultiBox.addElement(m_detailsMultiBox);
+						m_detailsMultiBox.Init(m_memberData);
+						break;
+					case ActionsBar.SEND_PRESENT:
+						if (m_presentsMultiBoxList == null)
+						{
+							m_presentsMultiBoxList = new PresentsMultiBoxList();
+							m_presentsMultiBoxList.m_bSmallIcons = true;
+							m_presentsMultiBoxList.m_bAddSep = true;
+							m_presentsMultiBoxList.m_iPaintedListItemCount = 5;
+							m_presentsMultiBoxList.m_iPaintedListItemStpes = 5;
+						}
+						groupMultiBox.addElement(m_presentsMultiBoxList);
+						m_presentsMultiBoxList.Init(ApplicationHandler.Instance.Presents);
+						m_presentsMultiBoxList.DoFill();
+						break;
+					case ActionsBar.SEND_WINK:
+						if (m_winkMultiBox == null)
+						{
+							m_winkMultiBox = new WinkMultiBox();
+							m_winkMultiBox.Init(m_memberData);
+						}
+						groupMultiBox.addElement(m_winkMultiBox);
+						break;
+					case ActionsBar.SHARE_MEMBER:
+						if (m_shareMemberMultiBox == null)
+						{
+							m_shareMemberMultiBox = new ShareMemberMultiBox();
+							m_shareMemberMultiBox.Init(m_memberData);
+						}
+						groupMultiBox.addElement(m_shareMemberMultiBox);
+						break;
+					case ActionsBar.MEMBER_PHOTOS:
+						if (m_memberPhotosList == null)
+						{
+							m_memberPhotosList = new MemberPhotosList();
+							m_memberPhotosList.m_bSmallIcons = true;
+							m_memberPhotosList.m_bAddSep = true;
+							m_memberPhotosList.m_iPaintedListItemCount = 5;
+							m_memberPhotosList.m_iPaintedListItemStpes = 5;
+						}
+						groupMultiBox.addElement(m_memberPhotosList);
+						m_memberPhotosList.Init(m_memberData.Photos);
+						m_memberPhotosList.DoFill();
+						break;
+					case ActionsBar.MEMBER_LIKES:
+						if (m_memberLikesList == null)
+						{
+							m_memberLikesList = new MemberLikesList();
+							m_memberLikesList.m_bSmallIcons = true;
+							m_memberLikesList.m_bAddSep = true;
+							m_memberLikesList.m_iPaintedListItemCount = 5;
+							m_memberLikesList.m_iPaintedListItemStpes = 5;
+						}
+						groupMultiBox.addElement(m_memberLikesList);
+						m_memberLikesList.Init(m_memberData.Likes);
+						m_memberLikesList.DoFill();
+						break;
+					case ActionsBar.MEMBER_FRIENDS:
+						if (m_memberFriendsList == null)
+						{
+							m_memberFriendsList = new MemberFriendsList();
+							m_memberFriendsList.m_bSmallIcons = true;
+							m_memberFriendsList.m_bAddSep = true;
+							m_memberFriendsList.m_iPaintedListItemCount = 5;
+							m_memberFriendsList.m_iPaintedListItemStpes = 5;
+						}
+						groupMultiBox.addElement(m_memberFriendsList);
+						m_memberFriendsList.Init(m_memberData.Friends);
+						m_memberFriendsList.DoFill();
+						break;
+					default:
+						Logger.Instance.WriteSwitchOutOfBoundError(currentState, flash.utils.getQualifiedClassName(this));
+						break;
+				}
+			}
+			
+			private function DoHidewMultiBox():void
+			{
+				if (!sequenceShowMultiBox.isPlaying && !sequenceHideMultiBox.isPlaying)
+				{
+					groupMultiBox.visible = false;
+					vSep.visible = false;
+					groupMultiBox.removeAllElements();
+					resizeHideMultiBox.widthFrom = this.width;
+					sequenceHideMultiBox.play();
+				}
+			}
+			protected function sequenceHideMultiBox_effectEndHandler(event:EffectEvent):void
+			{
+			}
+		]]>
+	</fx:Script>
+	<PopBox:states>
+		<s:State name="Null"/>
+		<s:State name="MEMBER_DETAILS"/>
+		<s:State name="SEND_PRESENT"/>
+		<s:State name="SEND_WINK"/>
+		<s:State name="SHARE_MEMBER"/>
+		<s:State name="MEMBER_PHOTOS"/>
+		<s:State name="MEMBER_LIKES"/>
+		<s:State name="MEMBER_FRIENDS"/>
+	</PopBox:states>
+	<fx:Declarations>
+		<s:Transition>
+			<s:Resize id="resizeShowActionsBar" target="{actionsBar}" widthFrom="0" widthTo="43" effectEnd="resizeShowActionsBar_effectEndHandler(event)"/>
+		</s:Transition>
+
+		<s:Transition>
+			<s:Fade id="fadeShowMultiBox" target="{groupMultiBox}" alphaFrom="0" alphaTo="1" duration="200"/>
+			<s:Resize id="resizeShowMultiBox" target="{this}" widthFrom="200" duration="300"/>
+		</s:Transition>
+
+		<s:Transition>
+			<s:Sequence id="sequenceShowMultiBox" effectEnd="sequenceShowMultiBox_effectEndHandler(event)">
+				<s:Resize id="resizeShowMultiBox" target="{this}" widthFrom="200" duration="300"/>
+			</s:Sequence>
+		</s:Transition>
+		<s:Transition>
+			<s:Sequence id="sequenceHideMultiBox" effectEnd="sequenceHideMultiBox_effectEndHandler(event)">
+				<s:Resize id="resizeHideMultiBox" target="{this}" widthTo="200" duration="200"/>
+			</s:Sequence>
+		</s:Transition>
+	</fx:Declarations>
+	<Box:BoxCanvas id="boxCanvas" width="100%" height="100%">
+		<Box:BoxGroup id="boxGroup" width="100%" height="100%">
+			<Box:BoxBC id="boxBC" width="100%" height="100%" CLOSE="dispatchEvent(new Event(CLOSE))">
+				<Actions:ActionsBar id="actionsBar" width="0" right="{-actionsBar.width}" top="10"
+									DO_ACTION="actionsBar_DO_ACTION(event)"/>
+				<Box:BoxContent id="boxContent" width="200" height="100%">
+					<s:HGroup width="100%" height="100%" clipAndEnableScrolling="false" gap="5">
+						<s:VGroup width="180" height="100%">
+							<mx:Spacer height="15"/>
+							<Chat:ChatList id="chatList" width="100%" height="100%" m_iPaintedListItemCount="100" m_iPaintedListItemStpes="100" m_bSmallIcons="true"/>
+							<Chat:ChatControl id="chatControl" width="100%" m_memberData="{m_memberData}" TEXT_ADD="chatControl_TEXT_ADD(event)"/>
+						</s:VGroup>
+						<Sep:VSep id="vSep" width="1" visible="false"/>
+						<s:Group id="groupMultiBox" left="0" right="0" height="100%" clipAndEnableScrolling="false"/>
+					</s:HGroup>
+				</Box:BoxContent>
+			</Box:BoxBC>
+		</Box:BoxGroup>
+	</Box:BoxCanvas>
+</PopBox:PopBoxBase>

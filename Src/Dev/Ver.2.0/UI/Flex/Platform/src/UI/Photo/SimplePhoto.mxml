@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Photo:PhotoBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				 width="{m_iSize}" height="{m_iSize}"
+				 toolTip="{m_strTooltip}" buttonMode="false"
+				 xmlns:Photo="UI.Photo.*" xmlns:Button="UI.Button.*" xmlns:Label="UI.Label.*" >
+	<fx:Metadata>
+		[Event(name=REMOVE_CLICKED, type="UI.Photo.PhotoEvent")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import Utils.AS3.Embeded;
+			
+			[Bindable] private var m_imgNotification:Class;
+			[Bindable] private var m_iNotificationCount:int;
+			
+			[Bindable] public var m_bRemoveEnabled:Boolean = false;
+			[Bindable] private var m_bShowRemove:Boolean = false;
+			
+			// properties
+			public function set NotificationCount(value:int):void
+			{
+				m_iNotificationCount = value > 99 ? 99 : value;
+				if (m_iNotificationCount > 0)
+				{
+					m_imgNotification = Embeded.s_imgNotificationMessageRed;
+				}
+				else
+				{
+					m_imgNotification = null;
+					m_iNotificationCount = 0;
+				}
+			}
+			
+			// class
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (clickButton != null)
+				{
+					clickButton.Dispose();
+					clickButton = null;
+				}
+				if (fadeHide != null)
+				{
+					fadeHide = null;
+				}
+				if (fadeShow != null)
+				{
+					fadeShow = null;
+				}
+			}
+			
+			// events
+			protected override function rollOverHandler(event:MouseEvent):void
+			{
+				if (m_bRemoveEnabled)
+				{
+					super.rollOverHandler(event);
+					m_bShowRemove = true;
+					fadeShow.play();
+				}
+			}
+			protected override function rollOutHandler(event:MouseEvent):void
+			{
+				if (m_bRemoveEnabled)
+				{
+					super.rollOutHandler(event);
+					fadeShow.stop();
+					fadeHide.play();
+					m_bShowRemove = false;
+				}
+			}
+			
+			protected function imageRemove_clickHandler(event:MouseEvent):void
+			{
+				if (m_bShowRemove)
+				{
+					event.stopPropagation();
+					dispatchEvent(new PhotoEvent(PhotoEvent.REMOVE_CLICKED, this));
+				}
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:Transition>
+			<s:Fade id="fadeShow" target="{clickButton}" alphaFrom="0" alphaTo="1" duration="400"/>
+		</s:Transition>
+		<s:Transition>
+			<s:Fade id="fadeHide" target="{clickButton}" alphaFrom="1" alphaTo="0" duration="0"/>
+		</s:Transition>
+	</fx:Declarations>
+	<mx:Image width="{m_iSize-4}" height="{m_iSize-4}" source="{Photo.UrlX}" scaleContent="true" verticalAlign="middle" horizontalAlign="center"/>
+	<mx:Image id="imageNotification" top="-6" right="-3" source="{m_imgNotification}" visible="{m_iNotificationCount > 0}"/>
+	<Label:ButtonLabel id="labelButtonNotification" width="16" top="-3" right="-1" text="{m_iNotificationCount==0?'':m_iNotificationCount}" textAlign="center" visible="{m_iNotificationCount > 0}"/>
+	<Button:ClickButton id="clickButton" top="1" left="3" m_png="{Embeded.s_imgRemove}" visible="{m_bShowRemove}" alpha="0" click="imageRemove_clickHandler(event)"/>
+</Photo:PhotoBase>

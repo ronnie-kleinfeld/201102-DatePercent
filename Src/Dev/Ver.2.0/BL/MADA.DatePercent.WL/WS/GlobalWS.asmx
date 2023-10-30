@@ -1,0 +1,1 @@
+<%@ WebService Language="C#" CodeBehind="GlobalWS.asmx.cs" Class="MADA.DatePercent.WL.WS.GlobalWS" %>

@@ -1,0 +1,179 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace MX "FlexTemplates.MX.*";
+
+.Application
+{
+	background-color:#bbbbbb;
+	border: thin dotted #564565;
+}
+.BorderContainer
+{
+	backgroundColor:#ffffff;
+	/* backgroundImage:undefined; */
+	/* backgroundImageFillMode:scale; */
+	borderAlpha:1.0;
+	borderColor:#B7BABC;
+	borderStyle:solid;
+	borderVisible:true;
+	borderWeight:1;
+	cornerRadius:0;
+	dropShadowVisible:false;
+}
+.BorderContainer1
+{
+	backgroundColor:#ffffff;
+	/* backgroundImage:undefined; */
+	/* backgroundImageFillMode:scale; */
+	borderAlpha:1.0;
+	borderColor:#0e1f5b;
+	borderStyle:solid;
+	borderVisible:true;
+	borderWeight:2;
+	cornerRadius:0;
+	dropShadowVisible:false;
+}
+.BorderContainer3
+{
+	backgroundColor:#ffffff;
+	/* backgroundImage:undefined; */
+	/* backgroundImageFillMode:scale; */
+	borderAlpha:1.0;
+	borderColor:#3b5998;
+	borderStyle:solid;
+	borderVisible:true;
+	borderWeight:2;
+	cornerRadius:0;
+	dropShadowVisible:true;
+}
+.BorderContainer3
+{
+	backgroundColor:#ffffff;
+	/* backgroundImage:undefined; */
+	/* backgroundImageFillMode:scale; */
+	borderAlpha:1.0;
+	borderColor:#7f93bc;
+	borderStyle:solid;
+	borderVisible:true;
+	borderWeight:1;
+	cornerRadius:3;
+	dropShadowVisible:false;
+}
+.BorderContainerNoBorder
+{
+	backgroundColor:#ffffff;
+	borderVisible:false;
+}
+.BorderContainerRed
+{
+	/* backgroundColor:#ff0000; */
+	/* backgroundImage:undefined; */
+	/* backgroundImageFillMode:scale; */
+	/* borderAlpha:1.0; */
+	borderColor:#ff0000;
+	borderStyle:solid;
+	borderVisible:true;
+	borderWeight:1;
+	/* cornerRadius:0; */
+	/* dropShadowVisible:false; */
+}
+.ChatMessage
+{
+	backgroundColor:#d8dfea;
+	cornerRadius:3;
+	borderVisible:false;
+}
+.title
+{
+	font-weight:bold;
+	font-size: 15px;
+	padding:5px;
+	color:#FFFFFF;
+	background:#2194ca;
+}
+.listHeader
+{
+	font-weight:bold;
+	font-size:12px;
+	color:#2194ca;
+	background:#d8dfea;
+	padding:2px 20px;
+	margin:0px;
+}
+s|Label
+{
+	color: #2194ca;
+}
+.TopTitle
+{
+	fontWeight:bold;
+	color:#7b87d4;
+	fontSize:20;
+	fontStyle:normal;
+	textDecoration:none; 
+	verticalAlign:middle;
+}
+.TopBar
+{
+	fontSize: 11;
+	fontWeight: bold;
+	color: #7b87d4;
+}
+.BottomBar
+{
+	fontSize: 11;
+	fontWeight: bold;
+	color: #7b87d4;
+}
+.H1
+{
+	fontSize: 18;
+	fontWeight: bold;
+	color: #2194ca;
+}
+.H2
+{
+	fontSize: 15;
+	fontWeight: bold;
+	color: #2194ca;
+}
+.H3
+{
+	fontSize: 12;
+	fontWeight: normal;
+	color: #2194ca;
+}
+.H4
+{
+	fontSize: 10;
+	fontWeight: normal;
+	color: #2194ca;
+}
+s|Label
+{
+	fontSize: 11;
+	color: #7b87d4;
+}
+mx|LinkButton
+{
+	fontSize: 11;
+	fontWeight: bold;
+	color: #7b87d4;
+}
+.TextInput
+{
+	fontSize: 11;
+	color: #7b87d4;
+}
+s|Button
+{
+	fontSize: 11;
+	fontWeight: normal;
+	color: #2194ca;
+}
+global
+{
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	content-background-color: #FFFFFF;
+}

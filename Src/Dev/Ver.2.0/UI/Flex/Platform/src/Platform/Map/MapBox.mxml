@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="100%" height="100%"
+		 initialize="initializeHandler(event)" creationComplete="creationCompleteHandler(event)"
+		 xmlns:tilemap="com.mapquest.tilemap.*">
+	<fx:Metadata>
+		[Event(name=CREATION_COMPLETED, type="flash.events.Event")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import Data.Base.CollectionEvent;
+			import Data.Base.ObjectEvent;
+			import Data.Member.MapMarkerData;
+			import Data.MemberData;
+			
+			import Handler.SesHandler;
+			
+			import Platform.Map.Balloon.BalloonPopBox;
+			import Platform.Map.MemberMarker.MemberMarker;
+			import Platform.Map.MemberMarker.MemberMarkerEvent;
+			
+			import UI.Box.BoxMDI;
+			import UI.Box.PopBox.NodgePositionEnum;
+			
+			import Utils.AS3.Const;
+			import Utils.Log.Logger;
+			
+			import com.mapquest.LatLng;
+			import com.mapquest.tilemap.ShapeCollection;
+			import com.mapquest.tilemap.pois.ForceDeclutter;
+			import com.mapquest.tilemap.pois.LeaderLines;
+			
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			
+			private const CREATION_COMPLETED:String = "CREATION_COMPLETED";
+			
+			// singleton
+			private static var s_mapBox:MapBox;
+			public static function get GetMapBox():MapBox
+			{
+				return s_mapBox;
+			}
+			public function set SetMapBox(value:MapBox):void
+			{
+				s_mapBox = value;
+			}
+			
+			// members
+			private var m_bIsCreationCompleted:Boolean;
+			
+			private var m_memberMarkerMe:MemberMarker;
+			private var m_acMapMarker:ArrayCollection;
+			
+			private var m_bMouseDownOnMap:Boolean;
+			
+			private var m_forceDeclutter:ForceDeclutter;
+			private var m_shapeCollection:ShapeCollection;
+			private var m_leaderLines:LeaderLines;
+			
+			public function get GetMap():TilemapComponent
+			{
+				return map;
+			}
+			public function get IsCreationCompleted():Boolean
+			{
+				return m_bIsCreationCompleted;
+			}
+			
+			private function initializeHandler(event:FlexEvent):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+				
+				m_acMapMarker = SesHandler.Instance.Session.MapMarkers;
+				m_acMapMarker.addEventListener(CollectionEvent.OBJECT_ADDED, m_acMapMarker_OBJECT_ADDED);
+				m_acMapMarker.addEventListener(CollectionEvent.OBJECT_REMOVE, m_acMapMarker_OBJECT_REMOVE);
+				
+				SesHandler.Instance.Session.Me.addEventListener(ObjectEvent.ZOOM_LEVEL_CHANGED, me_ZOOM_LEVEL_CHANGED);
+			}
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+				
+				map.zoomSettings.smoothing = true;
+				map.zoomSettings.time = 400;
+				
+				map.doubleClickEnabled = true;
+				map.rolloversEnabled = true;
+				
+				map.addEventListener(MouseEvent.MOUSE_DOWN, map_MOUSE_DOWN);
+				map.addEventListener(MouseEvent.MOUSE_WHEEL, map_MOUSE_WHEEL);
+				map.addEventListener(MouseEvent.DOUBLE_CLICK, map_DOUBLE_CLICK);
+				
+				m_leaderLines = new LeaderLines();
+				m_leaderLines.drawAllLines();
+				m_leaderLines.lineColor = 0x000000;
+				m_leaderLines.alpha = 0.77
+				map.leaderLines = m_leaderLines;
+				
+				m_forceDeclutter = new ForceDeclutter();
+				m_forceDeclutter.attractionOn = false;
+				m_forceDeclutter.iterationDelay = 0;
+				m_forceDeclutter.repulseBuffer = 1;
+				m_forceDeclutter.temperature = 5;
+				m_forceDeclutter.useAnimation = true;
+				map.declutter = m_forceDeclutter;
+				
+				m_shapeCollection = new ShapeCollection();
+				
+				m_bIsCreationCompleted = true;
+				dispatchEvent(new Event(CREATION_COMPLETED));
+			}
+			
+			// me
+			public function AddMe():void
+			{
+				if (m_memberMarkerMe == null)
+				{
+					m_memberMarkerMe = new MemberMarker(SesHandler.Instance.Session.Me);
+					m_memberMarkerMe.addEventListener(MemberMarkerEvent.ITEM_ROLL_OVER, memberMarker_ITEM_ROLL_OVER);
+					m_memberMarkerMe.addEventListener(MemberMarkerEvent.CLICK, memberMarker_CLICK);
+					m_memberMarkerMe.Member.addEventListener(MemberData.GPS_CHANGED, m_memberMarkerMe_GPS_CHANGED);
+					map.setCenter(m_memberMarkerMe.Member.GPS);
+					SetZoom(m_memberMarkerMe.Member.ZoomLevel);
+					
+					AddToOverlay(m_memberMarkerMe);
+				}
+				else
+				{
+					m_memberMarkerMe.m_poi.latLng = SesHandler.Instance.Session.Me.GPS;
+					m_memberMarkerMe.DoLoadImage();
+					map.setCenter(m_memberMarkerMe.Member.GPS);
+				}
+			}
+			private function DisposeMe():void
+			{
+				if (m_memberMarkerMe != null)
+				{
+					RemoveFromOverlay(m_memberMarkerMe);
+					m_memberMarkerMe.Dispose();
+					m_memberMarkerMe.Member.removeEventListener(MemberData.GPS_CHANGED, m_memberMarkerMe_GPS_CHANGED);
+					m_memberMarkerMe.removeEventListener(MemberMarkerEvent.CLICK, memberMarker_CLICK);
+					m_memberMarkerMe.removeEventListener(MemberMarkerEvent.ITEM_ROLL_OVER, memberMarker_ITEM_ROLL_OVER);
+					m_memberMarkerMe = null;
+				}
+			}
+			private function m_memberMarkerMe_GPS_CHANGED(event:ObjectEvent):void
+			{
+				AddMe();
+			}
+			
+			// member
+			protected function m_acMapMarker_OBJECT_ADDED(event:CollectionEvent):void
+			{
+				var memberData:MemberData = MapMarkerData(event.ObjectData).Member;
+				AddMemberMarker(memberData);
+			}
+			private function AddMemberMarker(p_memberData:MemberData):void
+			{
+				var memberMarker:MemberMarker;
+				memberMarker = new MemberMarker(p_memberData);
+				memberMarker.addEventListener(MemberMarkerEvent.ITEM_ROLL_OVER, memberMarker_ITEM_ROLL_OVER);
+				memberMarker.addEventListener(MemberMarkerEvent.CLICK, memberMarker_CLICK);
+				SesHandler.Instance.Session.MapMarkers.FindItemMapMarkerDataByID(p_memberData.ID).SetMapMarker = memberMarker;
+				
+				m_shapeCollection.declutter = true;
+				m_shapeCollection.add(memberMarker.m_poi);
+				
+				AddToOverlay(memberMarker);
+				
+				if (map.shapes.length > 20)
+				{
+					SesHandler.Instance.Session.MapMarkers.RemoveItemAt(0);
+				}
+			}
+			private function DisposeMemberMarker(p_memberMarker:MemberMarker):void
+			{
+				if (p_memberMarker != null)
+				{
+					if (m_shapeCollection != null)
+					{
+						m_shapeCollection.remove(p_memberMarker.m_poi);
+					}
+					
+					RemoveFromOverlay(p_memberMarker);
+					p_memberMarker.Dispose();
+					p_memberMarker.removeEventListener(MemberMarkerEvent.CLICK, memberMarker_CLICK);
+					p_memberMarker.removeEventListener(MemberMarkerEvent.ITEM_ROLL_OVER, memberMarker_ITEM_ROLL_OVER);
+					p_memberMarker = null;
+				}
+			}
+			
+			private function AddToOverlay(p_memberMarker:MemberMarker):void
+			{
+				map.addShape(p_memberMarker.m_poi);
+			}
+			private function RemoveFromOverlay(p_memberMarker:MemberMarker):void
+			{
+				map.removeShape(p_memberMarker.m_poi);
+			}
+			
+			// remove
+			protected function m_acMapMarker_OBJECT_REMOVE(event:CollectionEvent):void
+			{
+				var mapMarkerData:MapMarkerData = MapMarkerData(event.ObjectData);
+				var memberMarker:MemberMarker = mapMarkerData.GetMapMarker;
+				DisposeMemberMarker(memberMarker);
+			}
+			
+			// interaction
+			private function map_MOUSE_DOWN(event:MouseEvent):void
+			{
+				BoxMDI.GetBoxMDI.DoCloseBalloonBox();
+			}
+			private function map_MOUSE_WHEEL(event:MouseEvent):void
+			{
+				event.stopPropagation();
+				BoxMDI.GetBoxMDI.DoCloseBalloonBox();
+				if (event.delta > 0)
+				{
+					map.zoomIn();
+				}
+				else
+				{
+					map.zoomOut();
+				}
+			}
+			private function map_DOUBLE_CLICK(event:MouseEvent):void
+			{
+				var latLng:LatLng = map.pixToLL(new Point(event.stageX, event.stageY));
+				map.setCenter(latLng);
+				map.zoomIn();
+			}
+			private function memberMarker_ITEM_ROLL_OVER(event:MemberMarkerEvent):void
+			{
+				BoxMDI.GetBoxMDI.DoCloseAllBox();
+			}
+			private function memberMarker_CLICK(event:MemberMarkerEvent):void
+			{
+				event.stopPropagation();
+				BoxMDI.GetBoxMDI.DoCloseAllBox();
+				var balloonPopBox:BalloonPopBox = new BalloonPopBox();
+				BoxMDI.GetBoxMDI.AddBalloonPopUp(balloonPopBox);
+				balloonPopBox.Init(null, null);
+				
+				var point:Point = map.llToPix(event.GetMemberMarker.Member.GPS);
+				var pointCenter:Point = map.localToGlobal(new Point(this.x + this.width / 2, this.y + this.height / 2));
+				
+				if (point.x < pointCenter.x)
+				{
+					if (point.y < pointCenter.y)
+					{
+						balloonPopBox.boxCanvas.InidNodge(NodgePositionEnum.BALLOON_TOP_LEFT);
+						balloonPopBox.x = point.x - 28;
+						balloonPopBox.y = point.y + 26;
+					}
+					else
+					{
+						balloonPopBox.boxCanvas.InidNodge(NodgePositionEnum.BALLOON_BOTTOM_LEFT);
+						balloonPopBox.x = point.x - 29;
+						balloonPopBox.y = point.y - 275;
+					}
+				}
+				else
+				{
+					if (point.y < pointCenter.y)
+					{
+						balloonPopBox.boxCanvas.InidNodge(NodgePositionEnum.BALLOON_TOP_RIGHT);
+						balloonPopBox.x = point.x - 222;
+						balloonPopBox.y = point.y + 26;
+					}
+					else
+					{
+						balloonPopBox.boxCanvas.InidNodge(NodgePositionEnum.BALLOON_BOTTOM_RIGHT);
+						balloonPopBox.x = point.x - 222;
+						balloonPopBox.y = point.y - 275;
+					}
+				}
+				
+				balloonPopBox.GetData(event.GetMemberMarker.Member);
+			}
+			
+			// zoom
+			private function me_ZOOM_LEVEL_CHANGED(event:ObjectEvent):void
+			{
+				if (map != null)
+				{
+					SetZoom(MemberData(event.ObjectData).ZoomLevel);
+				}
+			}
+			private function SetZoom(p_numZoomLevel:Number):void
+			{
+				if (map != null)
+				{
+					if (p_numZoomLevel < 5)
+					{
+						map.zoomLevel = 5;
+					}
+					else if (p_numZoomLevel > 17)
+					{
+						map.zoomLevel = 50;
+					}
+					else
+					{
+						map.zoomLevel = p_numZoomLevel;
+					}
+				}
+			}
+			public function ZoomIn():void
+			{
+				map.zoomIn();
+			}
+			public function ZoomOut():void
+			{
+				map.zoomOut();
+			}
+			
+			// utils
+			public function PanToMe():void
+			{
+				BoxMDI.GetBoxMDI.DoCloseAllBox();
+				map.panToLatLng(m_memberMarkerMe.Member.GPS);
+				m_memberMarkerMe.Poke();
+			}
+			public function PanToByID(p_iID:int):void
+			{
+				BoxMDI.GetBoxMDI.DoCloseBalloonBox();
+				var memberMarker:MemberMarker = FindByID(p_iID);
+				map.panToLatLng(memberMarker.Member.GPS);
+				memberMarker.Poke();
+			}
+			
+			public function FindByID(p_iID:int):MemberMarker
+			{
+				var memberMarker:MemberMarker;
+				
+				try
+				{
+					memberMarker = SesHandler.Instance.Session.MapMarkers.FindItemMapMarkerDataByID(p_iID).GetMapMarker;
+				}
+				catch (error:Error)
+				{
+					memberMarker = null;
+				}
+				
+				return memberMarker;
+			}
+			public function PokeByID(p_iID:int):void
+			{
+				try
+				{
+					FindByID(p_iID).Poke();
+				}
+				catch (error:Error)
+				{
+				}
+			}
+		]]>
+	</fx:Script>
+	<tilemap:TilemapComponent id="map" width="100%" height="100%" key="{Const.MAP_QUEST_MAPS_API_KEY}" zoom="4"/>
+</s:Group>

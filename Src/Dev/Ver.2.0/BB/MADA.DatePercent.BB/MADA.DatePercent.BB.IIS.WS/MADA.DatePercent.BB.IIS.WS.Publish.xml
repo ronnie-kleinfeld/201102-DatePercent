@@ -1,0 +1,30 @@
+<publishData>
+  <publishTarget publishUrl="C:\Users\rk\Documents\Dev\DatePercent\IIS\Ver.2.0\IIS\">
+    <file relUrl="Res/HeaderRight.png" publishTime="29/03/2012 10:37:05" />
+    <file relUrl="Res/Logo60x60.png" publishTime="29/03/2012 10:37:05" />
+    <file relUrl="Flex/AnimationHE.swf" publishTime="26/03/2012 15:30:15" />
+    <file relUrl="Default.htm" publishTime="29/12/2011 22:39:04" />
+    <file relUrl="Res/Logo75x75.png" publishTime="29/03/2012 10:37:05" />
+    <file relUrl="Res/Location/LocationBG.png" publishTime="29/03/2012 10:39:38" />
+    <file relUrl="Res/Location/Search.png" publishTime="29/03/2012 10:39:38" />
+    <file relUrl="Flex/AnimationEN.swf" publishTime="26/03/2012 13:57:00" />
+    <file relUrl="Res/HeaderCenter.png" publishTime="29/03/2012 10:37:05" />
+    <file relUrl="bin/MADA.DatePercent.BB.IIS.WS.dll" publishTime="29/03/2012 10:39:47" />
+    <file relUrl="Script/swfobject.js" publishTime="22/12/2011 14:19:00" />
+    <file relUrl="Res/HeaderLeft.png" publishTime="29/03/2012 10:37:05" />
+    <file relUrl="Web.config" publishTime="07/03/2012 13:47:12" />
+    <file relUrl="Public/Unauthorised.htm" publishTime="07/03/2012 13:55:27" />
+    <file relUrl="favicon.ico" publishTime="17/01/2012 17:06:02" />
+    <file relUrl="Res/Logo16x16.png" publishTime="29/03/2012 10:37:05" />
+    <file relUrl="crossdomain.xml" publishTime="22/03/2012 14:44:00" />
+    <file relUrl="Res/favicon.ico" publishTime="29/03/2012 10:37:05" />
+    <file relUrl="Res/Logo.png" publishTime="29/03/2012 10:37:05" />
+    <file relUrl="Res/Logo200x75.png" publishTime="29/03/2012 10:37:05" />
+    <file relUrl="Res/Location/Logo.png" publishTime="29/03/2012 10:39:38" />
+    <file relUrl="Res/Loader.png" publishTime="29/03/2012 10:37:05" />
+    <file relUrl="Res/Header.png" publishTime="29/03/2012 10:37:05" />
+    <file relUrl="bin/MADA.DatePercent.BB.IIS.WS.pdb" publishTime="29/03/2012 10:39:46" />
+    <file relUrl="Public/Goodbye.htm" publishTime="07/03/2012 13:54:29" />
+    <file relUrl="robots.txt" publishTime="22/12/2011 14:17:26" />
+  </publishTarget>
+</publishData>

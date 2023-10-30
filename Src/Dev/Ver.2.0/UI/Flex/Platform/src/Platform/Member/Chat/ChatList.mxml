@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<List:VListBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				width="100%" height="100%"
+				initialize="initializeHandler(event)"
+				xmlns:List="UI.List.*" xmlns:Button="UI.Button.*" xmlns:flexws="services.flexws.*">
+	<fx:Script>
+		<![CDATA[
+			import Data.Base.CollectionEvent;
+			import Data.Member.CommData;
+			import Data.Member.CommDataCollection;
+			import Data.MemberData;
+			
+			import Enum.CommTypeEnum;
+			
+			import Handler.SesHandler;
+			
+			import UI.List.ListEvent;
+			import UI.List.ListItemBase;
+			import UI.List.ListItemEvent;
+			
+			import Utils.Log.Logger;
+			
+			import mx.events.FlexEvent;
+			import mx.managers.CursorManager;
+			
+			public var m_memberData:MemberData;
+			
+			protected override function get DoFillByTimer():Boolean
+			{
+				return false;
+			}
+			protected override function get AddItemByCollectionEvent():Boolean
+			{
+				return true;
+			}
+			
+			private function initializeHandler(event:FlexEvent):void
+			{
+				m_scroller = scroller;
+				m_hvGroup = vGroup;
+			}
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (clickButtonNext != null)
+				{
+					clickButtonNext.Dispose();
+					clickButtonNext = null;
+				}
+				if (clickButtonPrev != null)
+				{
+					clickButtonPrev.Dispose();
+					clickButtonPrev = null;
+				}
+				
+				m_memberData = null;
+			}
+			
+			protected override function DoFillStep():void
+			{
+				for (var i:int = 0; i < m_ac.length; i++)
+				{
+					var commData:CommData = CommDataCollection(m_ac).FindItemCommDataByIndex(i);
+					if (FindListItemByID(commData.ID) == null)
+					{
+						AddChatListItem(commData);
+					}
+				}
+				
+				InvalidatePrevNext();
+				
+				dispatchEvent(new ListEvent(ListEvent.DO_FILL_STEP_FILLED, this));
+				
+				callResponderSetMemberCommAsRead.token = wsFlex.SetMemberCommAsRead(SesHandler.Instance.Session.SID, m_memberData.ID);
+				m_memberData.CalculateCommCounts();
+			}
+			
+			protected override function listItem_LIST_ITEM_ADDED(event:ListItemEvent):void
+			{
+				DoMoveEnd();
+			}
+			
+			protected override function collectionBase_OBJECT_ADDED(event:CollectionEvent):void
+			{
+				if (AddItemByCollectionEvent)
+				{
+					var listItemBase:ListItemBase = AddChatListItem(CommData(event.ObjectData));
+					dispatchEvent(new ListItemEvent(ListItemEvent.LIST_ITEM_MOVE_TO_END, listItemBase));
+					
+					callResponderSetMemberCommAsRead.token = wsFlex.SetMemberCommAsRead(SesHandler.Instance.Session.SID, m_memberData.ID);
+					m_memberData.CalculateCommCounts();
+				}
+				
+				DoFillStep();
+			}
+			
+			private function AddChatListItem(p_commData:CommData):ListItemBase
+			{
+				var listItemBase:ListItemBase;
+				
+				switch (p_commData.CommTypeCode)
+				{
+					case CommTypeEnum.TEXT:
+						listItemBase = new ChatListItemText();
+						break;
+					case CommTypeEnum.WINK:
+						listItemBase = new ChatListItemWink();
+						break;
+					case CommTypeEnum.PRESENT:
+						listItemBase = new ChatListItemPresent();
+						break;
+					default:
+						Logger.Instance.WriteSwitchOutOfBoundError(p_commData.CommTypeCode.toString(), flash.utils.getQualifiedClassName(this));
+						break;
+				}
+				p_commData.IsRead = true;
+				SesHandler.Instance.Session.Inboxes.RemoveItemInboxDataByMemberID(p_commData.SenderMemberID);
+				
+				listItemBase.Init(p_commData);
+				AddListItem(listItemBase, false);
+				
+				SesHandler.Instance.Session.Inboxes.RemoveItemInboxDataByID(m_memberData.ID);
+				return listItemBase;
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:CallResponder id="callResponderSetMemberCommAsRead"
+						 result="Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"
+						 fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+		<flexws:FlexWS id="wsFlex"
+					   fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+	</fx:Declarations>
+	<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+		<Button:ClickButton id="clickButtonPrev" visible="{m_bPrevVisible}" m_png="{m_classPrevPng}" CLICKED="DoMovePrev()" m_strTooltip="{m_strToolTipPrev}"/>
+		<s:Scroller id="scroller" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+			<s:Group width="100%" height="100%">
+				<s:VGroup id="vGroup" width="100%" height="100%" clipAndEnableScrolling="false" paddingTop="2" paddingBottom="2" gap="7"/>
+			</s:Group>
+		</s:Scroller>
+		<Button:ClickButton id="clickButtonNext" visible="{m_bNextVisible}" m_png="{m_classNextPng}" CLICKED="DoMoveNext()" m_strTooltip="{m_strToolTipNext}"/>
+	</s:VGroup>
+</List:VListBase>

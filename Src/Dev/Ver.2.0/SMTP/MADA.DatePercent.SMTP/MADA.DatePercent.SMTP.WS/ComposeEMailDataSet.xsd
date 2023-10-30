@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ComposeEMailDataSet" targetNamespace="http://tempuri.org/ComposeEMailDataSet.xsd" xmlns:mstns="http://tempuri.org/ComposeEMailDataSet.xsd" xmlns="http://tempuri.org/ComposeEMailDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ConnectionStringDev" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="ConnectionStringDev (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ConnectionStringDev.ConnectionString" Provider="System.Data.SqlClient">
+          </Connection>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ComposeEMailDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="ComposeEMailDataSet" msprop:Generator_DataSetName="ComposeEMailDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="T_EMAIL_HISTORY" msprop:Generator_UserTableName="T_EMAIL_HISTORY" msprop:Generator_RowDeletedName="T_EMAIL_HISTORYRowDeleted" msprop:Generator_RowChangedName="T_EMAIL_HISTORYRowChanged" msprop:Generator_RowClassName="T_EMAIL_HISTORYRow" msprop:Generator_RowChangingName="T_EMAIL_HISTORYRowChanging" msprop:Generator_RowEvArgName="T_EMAIL_HISTORYRowChangeEvent" msprop:Generator_RowEvHandlerName="T_EMAIL_HISTORYRowChangeEventHandler" msprop:Generator_TableClassName="T_EMAIL_HISTORYDataTable" msprop:Generator_TableVarName="tableT_EMAIL_HISTORY" msprop:Generator_RowDeletingName="T_EMAIL_HISTORYRowDeleting" msprop:Generator_TablePropName="T_EMAIL_HISTORY">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EMH_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="EMH_ID" msprop:Generator_ColumnVarNameInTable="columnEMH_ID" msprop:Generator_ColumnPropNameInRow="EMH_ID" msprop:Generator_ColumnPropNameInTable="EMH_IDColumn" type="xs:int" />
+              <xs:element name="EMH_GETTER_EMAIL" msprop:Generator_UserColumnName="EMH_GETTER_EMAIL" msprop:Generator_ColumnVarNameInTable="columnEMH_GETTER_EMAIL" msprop:Generator_ColumnPropNameInRow="EMH_GETTER_EMAIL" msprop:Generator_ColumnPropNameInTable="EMH_GETTER_EMAILColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMH_GETTER_NAME" msprop:Generator_UserColumnName="EMH_GETTER_NAME" msprop:Generator_ColumnVarNameInTable="columnEMH_GETTER_NAME" msprop:Generator_ColumnPropNameInRow="EMH_GETTER_NAME" msprop:Generator_ColumnPropNameInTable="EMH_GETTER_NAMEColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMH_SUBJECT" msprop:Generator_UserColumnName="EMH_SUBJECT" msprop:Generator_ColumnVarNameInTable="columnEMH_SUBJECT" msprop:Generator_ColumnPropNameInRow="EMH_SUBJECT" msprop:Generator_ColumnPropNameInTable="EMH_SUBJECTColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMH_BODY" msprop:Generator_UserColumnName="EMH_BODY" msprop:Generator_ColumnVarNameInTable="columnEMH_BODY" msprop:Generator_ColumnPropNameInRow="EMH_BODY" msprop:Generator_ColumnPropNameInTable="EMH_BODYColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMH_DATETIME" msprop:Generator_UserColumnName="EMH_DATETIME" msprop:Generator_ColumnVarNameInTable="columnEMH_DATETIME" msprop:Generator_ColumnPropNameInRow="EMH_DATETIME" msprop:Generator_ColumnPropNameInTable="EMH_DATETIMEColumn" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:T_EMAIL_HISTORY" />
+      <xs:field xpath="mstns:EMH_GETTER_EMAIL" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

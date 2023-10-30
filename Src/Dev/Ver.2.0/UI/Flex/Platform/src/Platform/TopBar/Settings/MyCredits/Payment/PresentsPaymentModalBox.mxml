@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModalBox:ModalBoxBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+					   width="400" height.HasCredits="150" height.NeedToBuyCredits="320"
+					   xmlns:ModalBox="UI.Box.ModalBox.*" xmlns:Box="UI.Box.*" xmlns:Photo="UI.Photo.*" xmlns:Label="UI.Label.*" xmlns:Button="UI.Button.*" xmlns:Sep="UI.Sep.*" xmlns:flexws="services.flexws.*" xmlns:UI="UI.*">
+	<fx:Metadata>
+		[Event(name=CLOSE, type="flash.events.Event")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import Data.Member.CommData;
+			import Data.MemberData;
+			import Data.Presents.PresentData;
+			
+			import Enum.CommTypeEnum;
+			
+			import Handler.LocGeneratedCode;
+			import Handler.LocHandler;
+			import Handler.ParHandler;
+			import Handler.SesHandler;
+			
+			import UI.Box.BoxMDI;
+			import UI.Box.MessageBox.MessageBox;
+			import UI.Box.MessageBox.MessageBoxEvent;
+			import UI.Button.ButtonBase;
+			import UI.Button.ButtonEvent;
+			import UI.Photo.PhotoBase;
+			
+			import Utils.AS3.Embeded;
+			import Utils.Log.Logger;
+			
+			import mx.managers.CursorManager;
+			import mx.rpc.events.ResultEvent;
+			
+			[Bindable] private var m_memberData:MemberData;
+			[Bindable] private var m_presentData:PresentData;
+			[Bindable] private var m_iPostBalance:int;
+			private var m_iSelectedCost:int = 50;
+			
+			public override function Init(p_buttonOpener:ButtonBase, p_photoOpener:PhotoBase):void
+			{
+				super.Init(p_buttonOpener, p_photoOpener);
+				DoShowBox(boxCanvas);
+			}
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (boxBC != null)
+				{
+					boxBC.Dispose();
+				}
+				if (boxCanvas != null)
+				{
+					boxCanvas.Dispose();
+				}
+				
+				if (simplePhoto != null)
+				{
+					simplePhoto.Dispose();
+					simplePhoto = null;
+				}
+				if (clickButtonCheckOut != null)
+				{
+					clickButtonCheckOut.Dispose();
+					clickButtonCheckOut = null;
+				}
+				if (clickButtonYes != null)
+				{
+					clickButtonYes.Dispose();
+					clickButtonYes = null;
+				}
+				if (clickButtonNo != null)
+				{
+					clickButtonNo.Dispose();
+					clickButtonNo = null;
+				}
+				
+				m_memberData = null;
+				m_presentData = null;
+			}
+			
+			public function GetData(p_memberData:MemberData, p_presentData:PresentData):void
+			{
+				m_memberData = p_memberData;
+				m_presentData = p_presentData;
+				m_iPostBalance = SesHandler.Instance.Session.Me.CreditsBalance - m_presentData.Cost;
+				if (m_iPostBalance < 0)
+				{
+					currentState = "NeedToBuyCredits";
+					boxBC.ShowCloseButton();
+				}
+				else
+				{
+					currentState = "HasCredits";
+				}
+				boxBC.ShowTitle(LocHandler.GS(LocGeneratedCode.Select_a_present));
+			}
+			public function DoPaint():void
+			{
+				DoShowContent(boxContent);
+			}
+			
+			// events
+			protected function clickButtonCheckOut_CLICKED(event:ButtonEvent):void
+			{
+				var url:String = "https://www.paypal.com/cgi-bin/webscr";
+				var payPal:URLRequest = new URLRequest(url);
+				var variables:URLVariables = new URLVariables();
+				variables.cmd = "_s-xclick";
+				variables.hosted_button_id = "LSZW6FJ8FHYMN";
+				//variables.lc = SesHandler.Instance.Session.Me.Locale;
+				variables.os0 = m_iSelectedCost.toString();
+				//variables.notify_url = "http://" + ParHandler.Instance.BLServer + "/PayPal/IPN.aspx";
+				variables.custom = SesHandler.Instance.Session.Me.UID + "+" + m_memberData.UID + "+" + m_presentData.ID.toString() + "+" + m_iSelectedCost.toString();
+				
+				payPal.data = variables;
+				payPal.method = URLRequestMethod.POST;
+				navigateToURL(payPal, "_blank");
+				
+				BoxMDI.GetBoxMDI.AddMessageBox(LocHandler.GS(LocGeneratedCode.Dating_Credits), LocHandler.GS(LocGeneratedCode.DatePercent_will_open12a_PayPal_web_page_to12continue_the_purchase), "", m_memberData.Photo, MessageBox.YES, paymentPostModalBox);
+			}
+			public function paymentPostModalBox(event:MessageBoxEvent):void
+			{
+				dispatchEvent(new Event(CLOSE));
+			}
+			
+			protected function clickButtonYes_CLICKED(event:ButtonEvent):void
+			{
+				callResponderBuyUnlimitedChat.token = wsFlex.BuyAPresent(SesHandler.Instance.Session.SID, m_memberData.ID, m_presentData.ID, m_presentData.Cost);
+			}
+			private function callResponderBuyUnlimitedChat_resultHandler(event:ResultEvent):void
+			{
+				m_memberData.Comms.AddItemCommData(new CommData(
+					-1, SesHandler.Instance.Session.Me.ID, m_memberData.ID, CommTypeEnum.PRESENT, new Date(), "", -1, m_presentData.ID, true));
+				SesHandler.Instance.Session.Me.CreditsBalance = m_iPostBalance;
+				dispatchEvent(new Event(CLOSE));
+			}
+			
+			protected function clickButtonNo_CLICKED(event:ButtonEvent):void
+			{
+				dispatchEvent(new Event(CLOSE));
+			}
+		]]>
+	</fx:Script>
+	<ModalBox:states>
+		<s:State name="HasCredits"/>
+		<s:State name="NeedToBuyCredits"/>
+	</ModalBox:states>
+	<fx:Declarations>
+		<s:CallResponder id="callResponderBuyUnlimitedChat"
+						 result="Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor();callResponderBuyUnlimitedChat_resultHandler(event)"
+						 fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+		<flexws:FlexWS id="wsFlex"
+					   fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor()"/>
+	</fx:Declarations>
+	<Box:BoxCanvas id="boxCanvas" width="100%" height="100%">
+		<Box:BoxGroup id="boxGroup" width="100%" height="100%">
+			<Box:BoxBC id="boxBC" width="100%" height="100%" backgroundColor="0x3399ff" backgroundAlpha="1" CLOSE="dispatchEvent(new Event(CLOSE))">
+				<Box:BoxContent id="boxContent" width="100%" height="100%">
+					<mx:Spacer height="15"/>
+					<s:HGroup width="100%" height="100%" gap="0">
+						<Photo:SimplePhoto id="simplePhoto" visible="{m_presentData.Photo!=null}" m_iSize="{m_presentData.Photo==null?0:49}" Photo="{m_presentData.Photo}"/>
+						<mx:Spacer width="{simplePhoto.visible?7:0}"/>
+						<Label:NormalLabel text="{m_presentData.Name}" paddingTop="8"/>
+						<mx:Spacer width="100%"/>
+						<s:VGroup height="100%" verticalAlign="top">
+							<mx:Spacer height="4"/>
+							<Label:NormalLabel width="100%" text="{LocHandler.GS(LocGeneratedCode.Price)}:" textAlign="right"/>
+							<Label:NormalLabel includeIn="NeedToBuyCredits" text="{LocHandler.GS(LocGeneratedCode.You_have)}:" textAlign="right" width="100%"/>
+							<Label:NormalLabel includeIn="NeedToBuyCredits" visible="{0>m_iPostBalance}" text="{LocHandler.GS(LocGeneratedCode.You_need)}:" textAlign="right" width="100%"/>
+						</s:VGroup>
+						<s:VGroup width="100%" height="100%" verticalAlign="top">
+							<mx:Spacer height="4"/>
+							<Label:NormalLabel text="{m_presentData.Cost} {LocHandler.GS(LocGeneratedCode.Credits)}" width="100%" textAlign="right"/>
+							<Label:NormalLabel includeIn="NeedToBuyCredits" text="{SesHandler.Instance.Session.Me.CreditsBalance} {LocHandler.GS(LocGeneratedCode.Credits)}" width="100%" textAlign="right"/>
+							<Label:NormalLabel includeIn="NeedToBuyCredits" text="{Math.abs(m_iPostBalance)} {LocHandler.GS(LocGeneratedCode.Credits)}" textAlign="right" width="100%"/>
+						</s:VGroup>
+					</s:HGroup>
+					<mx:Spacer includeIn="NeedToBuyCredits" height="10"/>
+					<Label:HeaderLabel includeIn="NeedToBuyCredits" text="{LocHandler.GS(LocGeneratedCode.Select_a_Dating_Credits_Pack)}"/>
+					<s:HGroup includeIn="NeedToBuyCredits" width="100%">
+						<mx:Spacer width="4"/>
+						<s:VGroup gap="0">
+							<UI:RadioButtonNormal groupName="radioButtonGroup" label="10 {LocHandler.GS(LocGeneratedCode.Dating_Credit_for)} $0.99 {LocHandler.GS(LocGeneratedCode.USD)}" change="m_iSelectedCost=10"/>
+							<UI:RadioButtonNormal groupName="radioButtonGroup" label="20 {LocHandler.GS(LocGeneratedCode.Dating_Credit_for)} $1.99 {LocHandler.GS(LocGeneratedCode.USD)}" change="m_iSelectedCost=20"/>
+							<UI:RadioButtonNormal groupName="radioButtonGroup" label="50 {LocHandler.GS(LocGeneratedCode.Dating_Credit_for)} $4.99 {LocHandler.GS(LocGeneratedCode.USD)}" change="m_iSelectedCost=50" selected="true"/>
+							<UI:RadioButtonNormal groupName="radioButtonGroup" label="100 {LocHandler.GS(LocGeneratedCode.Dating_Credit_for)} $7.99 {LocHandler.GS(LocGeneratedCode.USD)}" change="m_iSelectedCost=100"/>
+							<UI:RadioButtonNormal groupName="radioButtonGroup" label="500 {LocHandler.GS(LocGeneratedCode.Dating_Credit_for)} $34.99 {LocHandler.GS(LocGeneratedCode.USD)}" change="m_iSelectedCost=500"/>
+							<UI:RadioButtonNormal groupName="radioButtonGroup" label="1000 {LocHandler.GS(LocGeneratedCode.Dating_Credit_for)} $64.99 {LocHandler.GS(LocGeneratedCode.USD)}" change="m_iSelectedCost=1000"/>
+							<UI:RadioButtonNormal groupName="radioButtonGroup" label="10000 {LocHandler.GS(LocGeneratedCode.Dating_Credit_for)} $499.99 {LocHandler.GS(LocGeneratedCode.USD)}" change="m_iSelectedCost=10000"/>
+						</s:VGroup>
+					</s:HGroup>
+					<s:HGroup width="100%" gap="0" verticalAlign="bottom">
+						<Label:NormalLabel includeIn="HasCredits" buttonMode="true" text="{LocHandler.GS(LocGeneratedCode.You_have)} {SesHandler.Instance.Session.Me.CreditsBalance} {LocHandler.GS(LocGeneratedCode.Credits)}."/>
+						<mx:Spacer width="100%"/>
+						<Button:ClickButton id="clickButtonCheckOut" includeIn="NeedToBuyCredits" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Buy_with_PayPal)}" m_png="{Embeded.s_imgPayPalCheckOut}" CLICKED="clickButtonCheckOut_CLICKED(event)"/>
+						<Button:ClickButton id="clickButtonYes" includeIn="HasCredits" m_strTooltip="{LocHandler.GS(LocGeneratedCode.Yes)}" m_png="{Embeded.s_imgYes}" CLICKED="clickButtonYes_CLICKED(event)"/>
+						<mx:Spacer width="4" includeIn="HasCredits"/>
+						<Button:ClickButton id="clickButtonNo" includeIn="HasCredits" m_strTooltip="{LocHandler.GS(LocGeneratedCode.No)}" m_png="{Embeded.s_imgNo}" CLICKED="clickButtonNo_CLICKED(event)"/>
+					</s:HGroup>
+				</Box:BoxContent>
+			</Box:BoxBC>
+		</Box:BoxGroup>
+	</Box:BoxCanvas>
+</ModalBox:ModalBoxBase>

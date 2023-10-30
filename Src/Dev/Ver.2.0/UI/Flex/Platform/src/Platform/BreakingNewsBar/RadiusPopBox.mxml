@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PopBox:PopBoxBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="300" height="259"
+				   preinitialize="preinitializeHandler(event)" creationComplete="creationCompleteHandler(event)"
+				   xmlns:PopBox="UI.Box.PopBox.*" xmlns:Box="UI.Box.*" xmlns:Button="UI.Button.*" xmlns:Sep="UI.Sep.*" xmlns:flexws="services.flexws.*">
+	<fx:Script>
+		<![CDATA[
+			import Enum.RadiusTypeEnum;
+			
+			import Handler.LocHandler;
+			import Handler.SesHandler;
+			
+			import UI.Box.PopBox.NodgePositionEnum;
+			import UI.Button.ButtonBase;
+			import UI.Button.ButtonEvent;
+			import UI.Photo.PhotoBase;
+			
+			import Utils.AS3.Embeded;
+			import Handler.LocGeneratedCode;
+			import Utils.Log.Logger;
+			
+			import mx.events.FlexEvent;
+			import mx.managers.CursorManager;
+			import mx.rpc.events.ResultEvent;
+			
+			protected function preinitializeHandler(event:FlexEvent):void
+			{
+				m_enumNodgePosition = NodgePositionEnum.LEFT_TOP;
+			}
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				boxGroup.InitPadding(m_enumNodgePosition);
+				boxCanvas.InidNodge(m_enumNodgePosition);
+				boxBC.ShowCloseButton();
+			}
+			public override function Init(p_buttonOpener:ButtonBase, p_photoOpener:PhotoBase):void
+			{
+				super.Init(p_buttonOpener, p_photoOpener);
+				DoShowBox(boxCanvas);
+			}
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (selectButtonRadiusLarge != null)
+				{
+					selectButtonRadiusLarge.Dispose();
+					selectButtonRadiusLarge = null;
+				}
+				if (selectButtonRadiusMedium != null)
+				{
+					selectButtonRadiusMedium.Dispose();
+					selectButtonRadiusMedium = null;
+				}
+				if (selectButtonRadiusSmall != null)
+				{
+					selectButtonRadiusSmall.Dispose();
+					selectButtonRadiusSmall = null;
+				}
+				
+				if (boxBC != null)
+				{
+					boxBC.Dispose();
+				}
+				if (boxCanvas != null)
+				{
+					boxCanvas.Dispose();
+				}
+			}
+			
+			public function GetData():void
+			{
+				DoPaint();
+			}
+			public function DoPaint():void
+			{
+				DoShowContent(boxContent);
+				
+				switch (SesHandler.Instance.Session.Me.Radius)
+				{
+					case RadiusTypeEnum.SMALL:
+						selectButtonRadiusSmall.Selected = true;
+						selectButtonRadiusMedium.Selected = false;
+						selectButtonRadiusLarge.Selected = false;
+						break;
+					case RadiusTypeEnum.MEDIUM:
+						selectButtonRadiusSmall.Selected = false;
+						selectButtonRadiusMedium.Selected = true;
+						selectButtonRadiusLarge.Selected = false;
+						break;
+					case RadiusTypeEnum.LARGE:
+						selectButtonRadiusSmall.Selected = false;
+						selectButtonRadiusMedium.Selected = false;
+						selectButtonRadiusLarge.Selected = true;
+						break;
+					default:
+						Logger.Instance.WriteSwitchOutOfBoundError(SesHandler.Instance.Session.Me.Radius.toString(), flash.utils.getQualifiedClassName(this));
+						selectButtonRadiusSmall.Selected = false;
+						selectButtonRadiusMedium.Selected = false;
+						selectButtonRadiusLarge.Selected = true;
+				}
+			}
+			
+			protected override function SetLocation():void
+			{
+				this.left = 125;
+				this.top = 64 - 26;
+			}
+			
+			protected function clickButtonRadius_CLICKED(event:ButtonEvent):void
+			{
+				var iRadiusKm:int;
+				
+				switch (event.GetButton.id)
+				{
+					case selectButtonRadiusSmall.id:
+						iRadiusKm = RadiusTypeEnum.SMALL;
+						break;
+					case selectButtonRadiusMedium.id:
+						iRadiusKm = RadiusTypeEnum.MEDIUM;
+						break;
+					case selectButtonRadiusLarge.id:
+						iRadiusKm = RadiusTypeEnum.LARGE;
+						break;
+					default:
+						Logger.Instance.WriteSwitchOutOfBoundError(event.GetButton.id, flash.utils.getQualifiedClassName(this));
+						iRadiusKm = RadiusTypeEnum.LARGE;
+				}
+				
+				SesHandler.Instance.Session.Me.Radius = iRadiusKm;
+				callResponderSetRadius.token = wsFlex.SetRadius(SesHandler.Instance.Session.SID, iRadiusKm);
+			}
+			private function callResponderSetRadius_resultHandler(event:ResultEvent):void
+			{
+				dispatchEvent(new Event(CLOSE));
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:CallResponder id="callResponderSetRadius"
+						 result="Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor();callResponderSetRadius_resultHandler(event)"
+						 fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor();dispatchEvent(new Event(CLOSE));"/>
+		<flexws:FlexWS id="wsFlex"
+					   fault="Logger.Instance.WriteFaultEvent(event, flash.utils.getQualifiedClassName(this));CursorManager.removeBusyCursor();dispatchEvent(new Event(CLOSE));"/>
+	</fx:Declarations>
+	<Box:BoxCanvas id="boxCanvas" width="100%" height="100%">
+		<Box:BoxGroup id="boxGroup" width="100%" height="100%">
+			<Box:BoxBC id="boxBC" width="100%" height="100%" CLOSE="dispatchEvent(new Event(CLOSE))">
+				<Box:BoxContent id="boxContent" width="100%" height="100%">
+					<Button:SelectButton id="selectButtonRadiusSmall" width="71" height="71"
+										 m_strText="{LocHandler.GS(LocGeneratedCode.Set_to_small)}&#xD;{RadiusTypeEnum.RadiusLabel(RadiusTypeEnum.SMALL)}" m_iLabelPaddingLeft="81" m_iLabelPaddingRight="4" m_iFontSize="12" m_strLabelHorizontalAlign="left"
+										 m_png="{Embeded.s_imgRadiusSmall}"
+										 CLICKED="clickButtonRadius_CLICKED(event)"/>
+					<Sep:HSep width="260"/>
+					<Button:SelectButton id="selectButtonRadiusMedium" width="71" height="71"
+										 m_strText="{LocHandler.GS(LocGeneratedCode.Set_to_medium)}&#xD;{RadiusTypeEnum.RadiusLabel(RadiusTypeEnum.MEDIUM)}" m_iLabelPaddingLeft="81" m_iLabelPaddingRight="4" m_iFontSize="12" m_strLabelHorizontalAlign="left"
+										 m_png="{Embeded.s_imgRadiusMid}"
+										 CLICKED="clickButtonRadius_CLICKED(event)"/>
+					<Sep:HSep width="260"/>
+					<Button:SelectButton id="selectButtonRadiusLarge" width="71" height="71"
+										 m_strText="{LocHandler.GS(LocGeneratedCode.Set_to_big)}&#xD;{RadiusTypeEnum.RadiusLabel(RadiusTypeEnum.LARGE)}" m_iLabelPaddingLeft="81" m_iLabelPaddingRight="4" m_iFontSize="12" m_strLabelHorizontalAlign="left"
+										 m_png="{Embeded.s_imgRadiusBig}"
+										 CLICKED="clickButtonRadius_CLICKED(event)"/>
+				</Box:BoxContent>
+			</Box:BoxBC>
+		</Box:BoxGroup>
+	</Box:BoxCanvas>
+</PopBox:PopBoxBase>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Sep:SepBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+			 source="{Embeded.s_imgVSep}" height="100%"
+			 xmlns:Sep="UI.Sep.*">
+	<fx:Script>
+		<![CDATA[
+			import Utils.AS3.Embeded;
+		]]>
+	</fx:Script>
+</Sep:SepBase>

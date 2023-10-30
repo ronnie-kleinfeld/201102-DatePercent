@@ -1,0 +1,120 @@
+.nav1
+{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	color:#ffffff;
+	text-decoration:none;
+	padding-right:5px;
+	padding-left:5px;
+}
+.nav1:hover
+{
+	color:#3b5998;
+}
+.nav1background
+{
+	background-color:#888FC5;
+}
+.nav2
+{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:13px;
+	font-weight:bold;
+	color:#3b5998;
+	text-decoration:none;
+}
+.nav2active
+{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:13px;
+	font-weight:bold;
+	color:#3b5998;
+	text-decoration:none;
+}
+.nav2:hover
+{
+	color:#BFC3DC;
+	font-size:13px;
+	background-repeat:repeat;
+}
+.nav2border
+{
+	border-top-width:2px;
+	border-right-width:2px;
+	border-bottom-width:2px;
+	border-left-width:2px;
+	border-bottom-style:solid;
+	border-top-color:#BFC3DC;
+	border-right-color:#BFC3DC;
+	border-bottom-color:#BFC3DC;
+	border-left-color:#BFC3DC;
+}
+.nav2borderactive
+{
+	border-top-width:2px;
+	border-right-width:2px;
+	border-bottom-width:2px;
+	border-left-width:2px;
+	border-bottom-style:solid;
+	border-top-color:#BFC3DC;
+	border-right-color:#BFC3DC;
+	border-bottom-color:#BFC3DC;
+	border-left-color:#BFC3DC;
+	background-color:#BFC3DC;
+}
+a
+{
+	color:#3b5998;
+}
+a:hover
+{
+	text-decoration:none;
+}
+p
+{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+}
+td
+{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+}
+h1
+{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:16px;
+}
+.copyright
+{
+	color:#BFC3DC;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10px;
+}
+.contentbackground
+{
+	background-color:#FFFFFF;
+}
+.leftnavbackground
+{
+	background-color:#FFFFFF;
+}
+.bannerbackground
+{
+	background-color:#888FC5;
+}
+.slogan
+{
+	font-family:"lucida grande", tahoma, verdana, arial, sans-serif;
+	font-size:20px;
+	color:#3b5998;
+	font-style:italic;
+	font-weight:bold;
+}
+.contentleftbk
+{
+	background-color:#FFFFFF;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+}

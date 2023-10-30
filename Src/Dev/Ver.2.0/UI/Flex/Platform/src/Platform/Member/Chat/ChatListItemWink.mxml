@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<List:ListItemBase xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="100%"
+				   buttonMode="false"
+				   xmlns:List="UI.List.*" xmlns:Photo="UI.Photo.*" xmlns:Label="UI.Label.*">
+	<fx:Script>
+		<![CDATA[
+			import Data.Member.CommData;
+			
+			import Enum.WinkTypeEnum;
+			
+			import Handler.SesHandler;
+			
+			protected override function get WidthTo():Number
+			{
+				return 180;
+			}
+			protected override function get HeightTo():Number
+			{
+				return 24;
+			}
+			
+			public override function Dispose():void
+			{
+				super.Dispose();
+				
+				if (simplePhoto != null)
+				{
+					simplePhoto.Dispose();
+					simplePhoto = null;
+				}
+			}
+		]]>
+	</fx:Script>
+	<s:VGroup width="100%" height="100%">
+		<s:HGroup width="100%" height="100%" paddingLeft="2" paddingRight="2" gap="7">
+			<Photo:SimplePhoto id="simplePhoto" m_iSize="24"
+							   Photo="{CommData(m_objectBase).SenderMemberID==SesHandler.Instance.Session.Me.ID?SesHandler.Instance.Session.Me.Photo:CommData(m_objectBase).SenderMember.Photo}"/>
+			<Label:NormalLabel height="100%" text="Sent" paddingTop="3"/>
+			<mx:Image source="{WinkTypeEnum.Image(CommData(m_objectBase).WinkTypeCode)}" scaleContent="true" verticalAlign="middle" horizontalAlign="center"/>
+		</s:HGroup>
+	</s:VGroup>
+</List:ListItemBase>

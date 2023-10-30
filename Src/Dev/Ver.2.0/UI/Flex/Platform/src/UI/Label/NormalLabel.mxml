@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Label xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+		 fontFamily="{m_strfontFamily}" fontSize="{m_iFontSize}" fontWeight="normal" color="0xffffff">
+	<fx:Script>
+		<![CDATA[
+			[Bindable] public var m_strfontFamily:String = "calibri";
+			[Bindable] public var m_iFontSize:int = 12;
+		]]>
+	</fx:Script>
+</s:Label>

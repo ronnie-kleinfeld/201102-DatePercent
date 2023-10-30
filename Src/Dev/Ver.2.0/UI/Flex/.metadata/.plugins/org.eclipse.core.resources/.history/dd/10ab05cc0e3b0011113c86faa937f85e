@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+		   width="100%" height="100%">
+	<fx:Metadata>
+		[Event(name=CLOSE, type="flash.events.Event")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import Utils.AS3.ResultCode;
+			import Utils.Log.Logger;
+			
+			import mx.core.UIComponent;
+			import mx.managers.PopUpManager;
+			
+			private const CLOSE:String = "CLOSE";
+			
+			public function RemovePopBox():void
+			{
+				RemoveModalPopBox();
+				RemoveCanvasPopBox();
+			}
+			
+			// modal
+			private var m_uiComponentModal:UIComponent;
+			
+			public function AddModalPopUp(p_uiComponent:UIComponent):String
+			{
+				Logger.Instance.WriteInformation("AddModalPopUp:" + p_uiComponent.toString(), flash.utils.getQualifiedClassName(this));
+
+				if (m_uiComponentModal == null)
+				{
+					Logger.Instance.WriteCritical("Duplicate Modal popbox", "", flash.utils.getQualifiedClassName(this));
+					return ResultCode.FAILED;
+				}
+				else
+				{
+					m_uiComponentModal = p_uiComponent;
+					
+					m_uiComponentModal.addEventListener(CLOSE, m_uiComponentModal_CLOSE, false, 0, true);
+					PopUpManager.addPopUp(m_uiComponentModal, this, true);
+					PopUpManager.centerPopUp(m_uiComponentModal);
+					
+					return ResultCode.SUCCESS;
+				}
+			}
+			private function m_uiComponentModal_CLOSE(event:Event):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+
+				RemoveModalPopBox();
+			}
+			public function RemoveModalPopBox():void
+			{
+				Logger.Instance.WriteInformation("RemoveModalPopBox:" + m_uiComponentModal.toString(), flash.utils.getQualifiedClassName(this));
+				
+				PopUpManager.removePopUp(m_uiComponentModal);
+				m_uiComponentModal.removeEventListener(CLOSE, m_uiComponentModal_CLOSE);
+				m_uiComponentModal = null;
+				
+				dispatchEvent(new Event(CLOSE));
+			}
+			
+			// canvas
+			private var m_uiComponentCanvas:UIComponent;
+			private var m_uiComponentMember:UIComponent;
+			private var m_uiComponentBalloon:UIComponent;
+			
+			public function AddCanvasPopUp(p_uiComponent:UIComponent):void
+			{
+				m_uiComponentCanvas = p_uiComponent;
+				
+				m_uiComponentCanvas.addEventListener(CLOSE, m_uiComponentCanvas_CLOSE, false, 0, true);
+				CenterPopBox(m_uiComponentCanvas);
+				this.addElement(m_uiComponentCanvas);
+			}
+			private function m_uiComponentCanvas_CLOSE(event:Event):void
+			{
+				Logger.Instance.WriteEvent(event, flash.utils.getQualifiedClassName(this));
+				
+				RemoveCanvasPopBox();
+			}
+			
+			private function CenterPopBox(p_uiComponent:UIComponent):void
+			{
+				p_uiComponent.left = (this.width - p_uiComponent.width) / 2;
+				p_uiComponent.top = (this.height - p_uiComponent.height) / 2;
+			}
+			
+			private function RemoveCanvasPopBox():void
+			{
+			}
+			private function RemoveCanvasPopBox():void
+			{
+				Logger.Instance.WriteInformation("RemoveCanvasPopBox:" + m_uiComponentCanvas.toString(), flash.utils.getQualifiedClassName(this));
+				
+				this.removeElement(m_uiComponentCanvas);
+				m_uiComponentCanvas.removeEventListener(CLOSE, m_uiComponentCanvas_CLOSE);
+				m_uiComponentCanvas = null;
+			}
+		]]>
+	</fx:Script>
+</mx:Canvas>

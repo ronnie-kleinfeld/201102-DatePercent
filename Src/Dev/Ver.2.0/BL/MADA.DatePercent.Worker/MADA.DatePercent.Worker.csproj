@@ -1,0 +1,197 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{41D3A7B5-7D0E-4C3B-BD97-B7F5B49D75C7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MADA.DatePercent.Worker</RootNamespace>
+    <AssemblyName>MADA.DatePercent.Worker</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ContactFetcherWorker.cs" />
+    <Compile Include="GeniusDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GeniusDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GeniusWorker.cs" />
+    <Compile Include="WorkerDBBase.cs" />
+    <Compile Include="RMNEMailNotifierDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RMNEMailNotifierDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="RMNEMailNotifierWorker.cs" />
+    <Compile Include="TimerHandler.cs" />
+    <Compile Include="MailComposerDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MailComposerDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MailComposerWorker.cs" />
+    <Compile Include="MailSenderDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MailSenderDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseFixupWorker.cs" />
+    <Compile Include="InviteeDataSet.cs">
+      <DependentUpon>InviteeDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="InviteeDataSet.Designer.cs">
+      <DependentUpon>InviteeDataSet.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="InviteeWorker.cs" />
+    <Compile Include="LogonUserWorker.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="MailSenderWorker.cs" />
+    <Compile Include="WorkerBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Framework\Dev\Ver.1.0\EnterpriseLibrary\Common\Common.csproj">
+      <Project>{A09297C8-2C40-470B-8856-D856676DDFFA}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\Framework\Dev\Ver.1.0\EnterpriseLibrary\Data\Data.csproj">
+      <Project>{D349B6D8-992F-443F-BB57-57E50DD98794}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\Framework\Dev\Ver.1.0\MADA.Data\MADA.Data.csproj">
+      <Project>{CC8CF9E4-6755-4B24-AD9A-B70F71EA9645}</Project>
+      <Name>MADA.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\Log\Dev\Ver.1.0\MADA.Log.Api.Net\MADA.Log.Api.Net.csproj">
+      <Project>{11F390E2-70D9-4F27-A0C0-95EC370C4EAC}</Project>
+      <Name>MADA.Log.Api.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MADA.ContactFetcher\MADA.ContactFetcher.csproj">
+      <Project>{195E0FCD-98A6-4D74-9792-DD3FB687A78A}</Project>
+      <Name>MADA.ContactFetcher</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MADA.DatePercent.BE\MADA.DatePercent.BE.csproj">
+      <Project>{BA338231-6FA3-45F9-8A80-05FE6821BA5E}</Project>
+      <Name>MADA.DatePercent.BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MADA.DatePercent.BL\MADA.DatePercent.BL.csproj">
+      <Project>{1A0AEBA0-D7D5-4091-866C-50E138292703}</Project>
+      <Name>MADA.DatePercent.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MADA.DatePercent.DBS\MADA.DatePercent.DBS.csproj">
+      <Project>{E1A8D368-D5B4-4146-B225-189EE66A730B}</Project>
+      <Name>MADA.DatePercent.DBS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="InviteeDataSet.xsc">
+      <DependentUpon>InviteeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="InviteeDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InviteeDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="InviteeDataSet.xss">
+      <DependentUpon>InviteeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="GeniusDataSet.xsc">
+      <DependentUpon>GeniusDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GeniusDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GeniusDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="GeniusDataSet.xss">
+      <DependentUpon>GeniusDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MailComposerDataSet.xsc">
+      <DependentUpon>MailComposerDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MailComposerDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MailComposerDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MailComposerDataSet.xss">
+      <DependentUpon>MailComposerDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MailSenderDataSet.xsc">
+      <DependentUpon>MailSenderDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MailSenderDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MailSenderDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MailSenderDataSet.xss">
+      <DependentUpon>MailSenderDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="RMNEMailNotifierDataSet.xsc">
+      <DependentUpon>RMNEMailNotifierDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="RMNEMailNotifierDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RMNEMailNotifierDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="RMNEMailNotifierDataSet.xss">
+      <DependentUpon>RMNEMailNotifierDataSet.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

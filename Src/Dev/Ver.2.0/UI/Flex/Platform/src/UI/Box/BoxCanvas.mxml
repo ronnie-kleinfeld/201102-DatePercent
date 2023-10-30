@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+		   width="100%" height="100%">
+	<fx:Script>
+		<![CDATA[
+			import UI.Box.PopBox.NodgePositionEnum;
+			
+			import Utils.AS3.Embeded;
+			import Utils.Log.Logger;
+			
+			import mx.controls.Image;
+			
+			protected static const CLOSE:String = "CLOSE";
+			
+			private var m_imageNodge:Image;
+			
+			public function Dispose():void
+			{
+				if (m_imageNodge != null)
+				{
+					this.removeElement(m_imageNodge);
+					m_imageNodge.source = null;
+					m_imageNodge = null;
+				}
+			}
+			
+			// nodge
+			public function InidNodge(p_enumNodgePosition:int):void
+			{
+				if (m_imageNodge == null)
+				{
+					m_imageNodge = new Image();
+					//m_imageNodge.alpha = 0.77;
+					switch (p_enumNodgePosition)
+					{
+						case NodgePositionEnum.LEFT_TOP:
+							m_imageNodge.top = 20;
+							m_imageNodge.left = 1;
+							m_imageNodge.source = Embeded.s_imgTriLeft;
+							break;
+						case NodgePositionEnum.LEFT_MIDDLE:
+							m_imageNodge.top = this.height / 2 - m_imageNodge.height / 2 - 6;
+							m_imageNodge.left = 1;
+							m_imageNodge.source = Embeded.s_imgTriLeft;
+							break;
+						case NodgePositionEnum.LEFT_BOTTOM:
+							m_imageNodge.bottom = 20;
+							m_imageNodge.left = 1;
+							m_imageNodge.source = Embeded.s_imgTriLeft;
+							break;
+						case NodgePositionEnum.RIGHT_TOP:
+							m_imageNodge.top = 20;
+							m_imageNodge.right = 0;
+							m_imageNodge.source = Embeded.s_imgTriRight;
+							break;
+						case NodgePositionEnum.RIGHT_MIDDLE:
+							m_imageNodge.top = this.height / 2 - m_imageNodge.height / 2 - 6;
+							m_imageNodge.right = 0;
+							m_imageNodge.source = Embeded.s_imgTriRight;
+							break;
+						case NodgePositionEnum.RIGHT_BOTTOM:
+							m_imageNodge.bottom = 20;
+							m_imageNodge.right = 0;
+							m_imageNodge.source = Embeded.s_imgTriRight;
+							break;
+						case NodgePositionEnum.TOP_LEFT:
+							m_imageNodge.top = 0;
+							m_imageNodge.left = 20;
+							m_imageNodge.source = Embeded.s_imgTriUp;
+							break;
+						case NodgePositionEnum.TOP_MIDDLE:
+							m_imageNodge.top = 0;
+							m_imageNodge.left = this.width / 2 - m_imageNodge.width / 2 - 6;
+							m_imageNodge.source = Embeded.s_imgTriUp;
+							break;
+						case NodgePositionEnum.TOP_RIGHT:
+							m_imageNodge.top = 0;
+							m_imageNodge.right = 20;
+							m_imageNodge.source = Embeded.s_imgTriUp;
+							break;
+						case NodgePositionEnum.BOTTOM_LEFT:
+							m_imageNodge.bottom = 1;
+							m_imageNodge.left = 20;
+							m_imageNodge.source = Embeded.s_imgTriDown;
+							break;
+						case NodgePositionEnum.BOTTOM_MIDDLE:
+							m_imageNodge.bottom = 1;
+							m_imageNodge.left = this.width / 2 - m_imageNodge.width / 2 - 8;
+							m_imageNodge.source = Embeded.s_imgTriDown;
+							break;
+						case NodgePositionEnum.BOTTOM_RIGHT:
+							m_imageNodge.bottom = 1;
+							m_imageNodge.right = 20;
+							m_imageNodge.source = Embeded.s_imgTriDown;
+							break;
+						case NodgePositionEnum.BALLOON_TOP_LEFT:
+							m_imageNodge.top = 0;
+							m_imageNodge.left = 20;
+							m_imageNodge.source = Embeded.s_imgBalloonUp;
+							break;
+						case NodgePositionEnum.BALLOON_TOP_RIGHT:
+							m_imageNodge.top = 0;
+							m_imageNodge.right = 20;
+							m_imageNodge.source = Embeded.s_imgBalloonUp;
+							break;
+						case NodgePositionEnum.BALLOON_BOTTOM_LEFT:
+							m_imageNodge.bottom = 1;
+							m_imageNodge.left = 20;
+							m_imageNodge.source = Embeded.s_imgBalloonDown
+							break;
+						case NodgePositionEnum.BALLOON_BOTTOM_RIGHT:
+							m_imageNodge.bottom = 1;
+							m_imageNodge.right = 20;
+							m_imageNodge.source = Embeded.s_imgBalloonDown;
+							break;
+						default:
+							Logger.Instance.WriteSwitchOutOfBoundError(p_enumNodgePosition.toString(), flash.utils.getQualifiedClassName(this));
+							break;
+					}
+					this.addElement(m_imageNodge);
+				}
+			}
+		]]>
+	</fx:Script>
+</mx:Canvas>

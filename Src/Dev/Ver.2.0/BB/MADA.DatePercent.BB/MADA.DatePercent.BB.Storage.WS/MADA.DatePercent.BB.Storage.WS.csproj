@@ -1,0 +1,272 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{33D5F7C5-D1E7-494F-8A61-7E62A15F22B0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MADA.DatePercent.BB.Storage.WS</RootNamespace>
+    <AssemblyName>MADA.DatePercent.BB.Storage.WS</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dashboard\UsersCount.aspx" />
+    <Content Include="Default.htm" />
+    <Content Include="crossdomain.xml" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="PayPal\IPN.aspx" />
+    <Content Include="robots.txt" />
+    <Content Include="Web.config" />
+    <Content Include="WS\FlexWS.asmx" />
+    <Content Include="WS\NLBWS.asmx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationHandler.cs">
+      <DependentUpon>ApplicationHandler.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ApplicationHandler.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApplicationHandler.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\UsersCount.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>UsersCount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\UsersCount.aspx.designer.cs">
+      <DependentUpon>UsersCount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FacebookDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FacebookDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FacebookHandler.cs">
+      <DependentUpon>FacebookHandler.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FacebookHandler.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FacebookHandler.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="PayPal\IPN.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>IPN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PayPal\IPN.aspx.designer.cs">
+      <DependentUpon>IPN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Worker\DatabaseFixupDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatabaseFixupDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Worker\DatabaseFixupWorker.cs" />
+    <Compile Include="Worker\LogonUserDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LogonUserDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Worker\LogonUserWorker.cs" />
+    <Compile Include="Worker\WorkerBase.cs" />
+    <Compile Include="Worker\WorkerDBBase.cs" />
+    <Compile Include="Worker\WorkerTimer.cs" />
+    <Compile Include="WS\FlexDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FlexDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="WS\FlexWS.asmx.cs">
+      <DependentUpon>FlexWS.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WS\NLBWS.asmx.cs">
+      <DependentUpon>NLBWS.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\Framework\Dev\Ver.1.0\EnterpriseLibrary\Common\Common.csproj">
+      <Project>{A09297C8-2C40-470B-8856-D856676DDFFA}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Framework\Dev\Ver.1.0\EnterpriseLibrary\Data\Data.csproj">
+      <Project>{D349B6D8-992F-443F-BB57-57E50DD98794}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Framework\Dev\Ver.1.0\MADA.Common\MADA.Common.csproj">
+      <Project>{4CD17982-9552-4CEE-9AD1-531534D9FB8B}</Project>
+      <Name>MADA.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Framework\Dev\Ver.1.0\MADA.Data\MADA.Data.csproj">
+      <Project>{CC8CF9E4-6755-4B24-AD9A-B70F71EA9645}</Project>
+      <Name>MADA.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Framework\Dev\Ver.1.0\MADA.Web\MADA.Web.csproj">
+      <Project>{AE746367-2AB4-44EC-A1BB-A2A94FE73B9B}</Project>
+      <Name>MADA.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Log\Dev\Ver.1.0\MADA.Log.Api.Net\MADA.Log.Api.Net.csproj">
+      <Project>{11F390E2-70D9-4F27-A0C0-95EC370C4EAC}</Project>
+      <Name>MADA.Log.Api.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SMTP\MADA.DatePercent.SMTP\MADA.DatePercent.SMTP.Api.Net\MADA.DatePercent.SMTP.Api.Net.csproj">
+      <Project>{BE5453AA-0C1B-4D80-A999-EB7D93C20C14}</Project>
+      <Name>MADA.DatePercent.SMTP.Api.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MADA.DatePercent.BB.BE\MADA.DatePercent.BB.BE.csproj">
+      <Project>{15FAE7CE-43BE-4267-9D93-915231887CE8}</Project>
+      <Name>MADA.DatePercent.BB.BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MADA.DatePercent.BB.BL\MADA.DatePercent.BB.BL.csproj">
+      <Project>{6C5FEE5B-9853-41EC-B039-A104F5044543}</Project>
+      <Name>MADA.DatePercent.BB.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MADA.DatePercent.BB.Storage.DBS\MADA.DatePercent.BB.Storage.DBS.csproj">
+      <Project>{6908DAC8-314F-4EB9-AAD8-6E9017C145CF}</Project>
+      <Name>MADA.DatePercent.BB.Storage.DBS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ApplicationHandler.xsc">
+      <DependentUpon>ApplicationHandler.xsd</DependentUpon>
+    </None>
+    <None Include="ApplicationHandler.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ApplicationHandler.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ApplicationHandler.xss">
+      <DependentUpon>ApplicationHandler.xsd</DependentUpon>
+    </None>
+    <None Include="FacebookDataSet.xsc">
+      <DependentUpon>FacebookDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="FacebookDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FacebookDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="FacebookDataSet.xss">
+      <DependentUpon>FacebookDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="FacebookHandler.xsc">
+      <DependentUpon>FacebookHandler.xsd</DependentUpon>
+    </None>
+    <None Include="FacebookHandler.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FacebookHandler.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="FacebookHandler.xss">
+      <DependentUpon>FacebookHandler.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Worker\DatabaseFixupDataSet.xsc">
+      <DependentUpon>DatabaseFixupDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Worker\DatabaseFixupDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatabaseFixupDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Worker\DatabaseFixupDataSet.xss">
+      <DependentUpon>DatabaseFixupDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Worker\LogonUserDataSet.xsc">
+      <DependentUpon>LogonUserDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Worker\LogonUserDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LogonUserDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Worker\LogonUserDataSet.xss">
+      <DependentUpon>LogonUserDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="WS\FlexDataSet.xsc">
+      <DependentUpon>FlexDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="WS\FlexDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FlexDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="WS\FlexDataSet.xss">
+      <DependentUpon>FlexDataSet.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v8.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>63335</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

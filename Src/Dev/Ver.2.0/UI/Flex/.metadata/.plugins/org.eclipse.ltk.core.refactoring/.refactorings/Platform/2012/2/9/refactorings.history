@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Platform/src/Platform/Member/Chat/ChatListItemPresent.as&apos; to &apos;ChatListItemPresent.mxml&apos;" description="Rename resource &apos;ChatListItemPresent.as&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/Platform/Member/Chat/ChatListItemPresent.as" name="ChatListItemPresent.mxml" stamp="1330515984186" updateReferences="true"/>
+</session>

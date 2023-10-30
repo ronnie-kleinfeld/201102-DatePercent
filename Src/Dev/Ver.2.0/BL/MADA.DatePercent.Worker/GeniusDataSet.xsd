@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="GeniusDataSet" targetNamespace="http://tempuri.org/GeniusDataSet.xsd" xmlns:mstns="http://tempuri.org/GeniusDataSet.xsd" xmlns="http://tempuri.org/GeniusDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="DatePercentDBConnectionString" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="DatePercentDBConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.MADA.DatePercent.Worker.Properties.Settings.GlobalReference.Default.DatePercentDBConnectionString" Provider="System.Data.SqlClient">
+          </Connection>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="GeniusDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="GeniusDataSet" msprop:Generator_DataSetName="GeniusDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="PT_USER_SETTINGSelect50DueGetDate" msprop:Generator_UserTableName="PT_USER_SETTINGSelect50DueGetDate" msprop:Generator_RowDeletedName="PT_USER_SETTINGSelect50DueGetDateRowDeleted" msprop:Generator_RowChangedName="PT_USER_SETTINGSelect50DueGetDateRowChanged" msprop:Generator_RowClassName="PT_USER_SETTINGSelect50DueGetDateRow" msprop:Generator_RowChangingName="PT_USER_SETTINGSelect50DueGetDateRowChanging" msprop:Generator_RowEvArgName="PT_USER_SETTINGSelect50DueGetDateRowChangeEvent" msprop:Generator_RowEvHandlerName="PT_USER_SETTINGSelect50DueGetDateRowChangeEventHandler" msprop:Generator_TableClassName="PT_USER_SETTINGSelect50DueGetDateDataTable" msprop:Generator_TableVarName="tablePT_USER_SETTINGSelect50DueGetDate" msprop:Generator_RowDeletingName="PT_USER_SETTINGSelect50DueGetDateRowDeleting" msprop:Generator_TablePropName="PT_USER_SETTINGSelect50DueGetDate">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="USS_USER_ID" msprop:Generator_UserColumnName="USS_USER_ID" msprop:Generator_ColumnVarNameInTable="columnUSS_USER_ID" msprop:Generator_ColumnPropNameInRow="USS_USER_ID" msprop:Generator_ColumnPropNameInTable="USS_USER_IDColumn" type="xs:int" />
+              <xs:element name="USE_EMAIL" msprop:Generator_UserColumnName="USE_EMAIL" msprop:Generator_ColumnVarNameInTable="columnUSE_EMAIL" msprop:Generator_ColumnPropNameInRow="USE_EMAIL" msprop:Generator_ColumnPropNameInTable="USE_EMAILColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USR_NAME" msprop:Generator_UserColumnName="USR_NAME" msprop:Generator_ColumnVarNameInTable="columnUSR_NAME" msprop:Generator_ColumnPropNameInRow="USR_NAME" msprop:Generator_ColumnPropNameInTable="USR_NAMEColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PT_USERSelectGeniusLinked" msprop:Generator_UserTableName="PT_USERSelectGeniusLinked" msprop:Generator_RowDeletedName="PT_USERSelectGeniusLinkedRowDeleted" msprop:Generator_TableClassName="PT_USERSelectGeniusLinkedDataTable" msprop:Generator_RowChangedName="PT_USERSelectGeniusLinkedRowChanged" msprop:Generator_RowClassName="PT_USERSelectGeniusLinkedRow" msprop:Generator_RowChangingName="PT_USERSelectGeniusLinkedRowChanging" msprop:Generator_RowEvArgName="PT_USERSelectGeniusLinkedRowChangeEvent" msprop:Generator_RowEvHandlerName="PT_USERSelectGeniusLinkedRowChangeEventHandler" msprop:Generator_TablePropName="PT_USERSelectGeniusLinked" msprop:Generator_TableVarName="tablePT_USERSelectGeniusLinked" msprop:Generator_RowDeletingName="PT_USERSelectGeniusLinkedRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="USR_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="USR_ID" msprop:Generator_ColumnPropNameInRow="USR_ID" msprop:Generator_ColumnVarNameInTable="columnUSR_ID" msprop:Generator_ColumnPropNameInTable="USR_IDColumn" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:PT_USERSelectGeniusLinked" />
+      <xs:field xpath="mstns:USR_ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

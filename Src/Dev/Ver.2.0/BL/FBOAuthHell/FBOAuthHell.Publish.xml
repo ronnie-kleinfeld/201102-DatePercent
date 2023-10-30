@@ -1,0 +1,8 @@
+<publishData>
+  <publishTarget publishUrl="http://localhost/DatePercent/">
+    <file relUrl="bin/FBOAuthHell.pdb" publishTime="23/07/2011 14:45:39" />
+    <file relUrl="Default.aspx" publishTime="23/07/2011 14:45:37" />
+    <file relUrl="bin/FBOAuthHell.dll" publishTime="23/07/2011 14:45:40" />
+    <file relUrl="Web.config" publishTime="23/07/2011 14:46:44" />
+  </publishTarget>
+</publishData>

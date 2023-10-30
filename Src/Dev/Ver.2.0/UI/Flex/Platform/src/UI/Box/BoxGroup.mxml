@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="100%" height="100%"
+		 xmlns:UI="Components.UI.*">
+	<fx:Script>
+		<![CDATA[
+			import UI.Box.PopBox.NodgePositionEnum;
+			
+			import Utils.Log.Logger;
+			
+			import spark.layouts.VerticalLayout;
+			
+			public function InitPadding(p_enumNodgePosition:int):void
+			{
+				var verticalLayout:VerticalLayout = new VerticalLayout();
+				verticalLayout.paddingLeft = 0;
+				verticalLayout.paddingRight = 0;
+				verticalLayout.paddingTop = 0;
+				verticalLayout.paddingBottom = 0;
+				switch (p_enumNodgePosition)
+				{
+					case NodgePositionEnum.LEFT_TOP:
+					case NodgePositionEnum.LEFT_MIDDLE:
+					case NodgePositionEnum.LEFT_BOTTOM:
+						verticalLayout.paddingLeft = 14;
+						break;
+					case NodgePositionEnum.RIGHT_TOP:
+					case NodgePositionEnum.RIGHT_MIDDLE:
+					case NodgePositionEnum.RIGHT_BOTTOM:
+						verticalLayout.paddingRight = 14;
+						break;
+					case NodgePositionEnum.TOP_LEFT:
+					case NodgePositionEnum.TOP_MIDDLE:
+					case NodgePositionEnum.TOP_RIGHT:
+						verticalLayout.paddingTop = 14;
+						break;
+					case NodgePositionEnum.BOTTOM_LEFT:
+					case NodgePositionEnum.BOTTOM_MIDDLE:
+					case NodgePositionEnum.BOTTOM_RIGHT:
+						verticalLayout.paddingBottom = 14;
+						break;
+					case NodgePositionEnum.BALLOON_TOP_LEFT:
+					case NodgePositionEnum.BALLOON_TOP_RIGHT:
+					case NodgePositionEnum.BALLOON_BOTTOM_LEFT:
+					case NodgePositionEnum.BALLOON_BOTTOM_RIGHT:
+						verticalLayout.paddingTop = 14;
+						verticalLayout.paddingBottom = 14;
+						break;
+					default:
+						Logger.Instance.WriteSwitchOutOfBoundError(p_enumNodgePosition.toString(), flash.utils.getQualifiedClassName(this));
+						break;
+				}
+				layout = verticalLayout;
+			}
+		]]>
+	</fx:Script>
+</s:Group>
